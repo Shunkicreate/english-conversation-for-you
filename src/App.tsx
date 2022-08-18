@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { TextInput } from './TextInput'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           Learn React
         </a>
       </header>
+      <TextInput></TextInput>
     </div>
   );
 }
