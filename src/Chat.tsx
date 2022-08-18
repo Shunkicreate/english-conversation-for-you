@@ -1,5 +1,5 @@
-import React, { useEffect, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import React, { useEffect, useCallback, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { ResponseType } from '../types/OpenAiType'
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -8,20 +8,22 @@ const { Configuration, OpenAIApi } = require("openai");
 // }
 const accessApi = async (text:string) => {
     const configuration = new Configuration({
-        apiKey: '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',
+        apiKey: process.env.REACT_APP_OPENAI_APIKEY,
     });
-    const openai = new OpenAIApi(configuration);
-    // debugger;
-    const response: ResponseType = await openai.createCompletion("text-davinci-002", {
-        prompt: text,
-        temperature: 0.5,
-        max_tokens: 60,
-        top_p: 1.0,
-        frequency_penalty: 0.5,
-        presence_penalty: 0.0,
-        stop: ["You:"],
-    });
-    // debugger;
+    console.log(configuration.apiKey)
+      const openai = new OpenAIApi(configuration);
+      
+      const response = await openai.createCompletion({
+        model: "text-davinci-002",
+        prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: ",
+        temperature: 0.9,
+        max_tokens: 150,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0.6,
+        stop: [" Human:", " AI:"],
+      });
+    debugger;
     const body = response.data.choices[0].text;
     text = (text + body + "\n"); // stateに反映する
     return text
