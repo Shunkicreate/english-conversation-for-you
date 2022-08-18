@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Chat } from "./Chat";
+import { ChatText } from "./ChatText";
 
 // const nToBr = (text:string) => {
 //     return text.replaceAll("\n", "<br>")
@@ -79,7 +80,7 @@ export const TextInput = () => {
           type="text"
           value={text}
           onKeyPress={(event) => {
-            if (event.key == "Enter") {
+            if (event.key === "Enter") {
               event.preventDefault();
               con(text);
             }
@@ -90,6 +91,7 @@ export const TextInput = () => {
         />
       </label>
       <input type="submit" value="Submit" />
+      {/* <ChatText event.target.value></ChatText> */}
       <div>{text}</div>
       <SowChat text={ShowText}></SowChat>
       {/* <div onClick={(event)=>{con(text)}}>button</div> */}
