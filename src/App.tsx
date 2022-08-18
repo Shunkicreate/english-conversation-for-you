@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { TextInput } from './TextInput'
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { TextInput } from "./TextInput";
 
 const App = () => {
   return (
@@ -23,6 +23,6 @@ const App = () => {
       <TextInput></TextInput>
     </div>
   );
-}
+};
 
 export default App;
