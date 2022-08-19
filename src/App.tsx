@@ -1,19 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { TextInput } from "./TextInput";
 import { ChatText } from "./ChatText";
 import { useState } from "react";
 import { Chat } from "../types/Chat";
+import { Input } from "./Input";
 const App = () => {
-  const [ChatData, setChatData] = useState<Chat[]>([])
-  const [TestChatData, setTextChatData] = useState<string[]>([])
-  const [uid, setUid] = useState<number>(0)
-  
+  const [ChatData, setChatData] = useState<Chat[]>([]);
+  const [TestChatData, setTextChatData] = useState<string[]>([]);
+  const [uid, setUid] = useState<number>(0);
+
   return (
     <div className="App">
-      
-
+      app
+      {TestChatData}app
+      <Input TestChatData={TestChatData} setTextChatData={setTextChatData} />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
