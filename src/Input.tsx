@@ -12,8 +12,12 @@ export const Input: FC<InputInterface> = ({
   setTextChatData,
 }) => {
   const [text, setText] = useState("");
+  const handleSubmitEvent = () => {
+    setTextChatData([...TestChatData, text]);
+    setText("");
+  };
   return (
-    <div className="startmanuebar">
+    <div className="input">
       <label>
         <input
           type="text"
@@ -21,14 +25,18 @@ export const Input: FC<InputInterface> = ({
           onChange={(event) => {
             setText(event.target.value);
           }}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleSubmitEvent();
+            }
+          }}
         />
       </label>
       <input
         type="submit"
         value="Submit"
         onClick={(event) => {
-          setTextChatData([...TestChatData, text]);
-          setText("")
+          handleSubmitEvent();
         }}
       />
       <div>{text}</div>
