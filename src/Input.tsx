@@ -1,12 +1,6 @@
-import React, { useEffect, useCallback, useState, FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { Chat } from "./Chat";
-import { ChatText } from "./ChatText";
+import React, { useState, FC } from "react";
+import { InputInterface } from '../types/InputInterface'
 
-interface InputInterface {
-  TestChatData: string[];
-  setTextChatData: React.Dispatch<React.SetStateAction<string[]>>;
-}
 export const Input: FC<InputInterface> = ({
   TestChatData,
   setTextChatData,
