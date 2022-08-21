@@ -1,4 +1,4 @@
-export interface Chat {
+export interface ChatType {
   person: string;
   message: string;
 }

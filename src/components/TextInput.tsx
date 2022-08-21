@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Chat } from "./Chat";
-import { ChatText } from "./ChatText";
+import { Chat } from "../functions/Chat";
+import { ChatText } from "../functions/ChatText";
 
 // const nToBr = (text:string) => {
 //     return text.replaceAll("\n", "<br>")

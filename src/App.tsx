@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import { TextInput } from "./TextInput";
-import { ChatText } from "./ChatText";
+import { TextInput } from "./components/TextInput";
+import { ChatText } from "./functions/ChatText";
 import { useState } from "react";
-import { Chat } from "../types/ChatType";
-import { Input } from "./Input";
+import { ChatType } from "../types/ChatType";
+import { Input } from "./components/Input";
 const App = () => {
-  const [ChatDatas, setChatDatas] = useState<Chat[]>([]);
+  const [ChatDatas, setChatDatas] = useState<ChatType[]>([]);
   const [uid, setUid] = useState<number>(0);
 
   return (

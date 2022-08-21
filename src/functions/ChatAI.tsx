@@ -2,7 +2,10 @@ import React, { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Chat } from "./Chat";
 import { ChatText } from "./ChatText";
-
+import { ChatEncoder } from './ChatEncoder' 
+import { ChatDecoder } from './ChatDecoder' 
+import { ChatGetter } from './ChatGetter'
+import { ChatAIType } from '../../types/ChatAIType'
 interface Propstype {
   text: string;
 }
@@ -17,8 +20,7 @@ const SowChat = (props: Propstype) => {
   });
   return <div>{texts}</div>;
 };
-export const ChatAI = () => {
-  const [text, setText] = useState("");
+export const ChatAI = (ChatData: ChatAIType) => {
   const [ShowText, setShowText] = useState(
     "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`"
   );
@@ -29,7 +31,7 @@ export const ChatAI = () => {
     returnData
       .then((result) => {
         setShowText(result);
-        setText("");
+        // setText("");
       })
       .catch((error) => {
         console.log(error);

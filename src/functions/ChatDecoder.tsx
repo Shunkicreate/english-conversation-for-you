@@ -1,13 +1,13 @@
-import { Chat } from "../types/ChatType";
+import { ChatType } from "../../types/ChatType";
 export const ChatDecoder = (ChatDatas: string) => {
-  let ReturnData: Chat[] = [];
+  let ReturnData: ChatType[] = [];
   const regex = /\n\n/g;
   ChatDatas = ChatDatas.replace(regex, "\n");
   let ReturnDataArray: string[] = ChatDatas.split("\n");
   debugger;
   for (let i of ReturnDataArray) {
     const devideData: string[] = i.split(":");
-    const singleChatData: Chat = {
+    const singleChatData: ChatType = {
       person: devideData[0],
       message: devideData[1],
     };

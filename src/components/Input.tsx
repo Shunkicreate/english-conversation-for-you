@@ -1,11 +1,11 @@
 import React, { useState, FC } from "react";
-import { Chat } from "../types/ChatType";
-import { InputType } from "../types/InputType";
+import { ChatType } from "../../types/ChatType";
+import { InputType } from "../../types/InputType";
 
 export const Input: FC<InputType> = ({ ChatDatas, setChatDatas }) => {
   const [text, setText] = useState("");
   const handleSubmitEvent = () => {
-    const addData: Chat = {
+    const addData: ChatType = {
       person: "Human",
       message: text,
     };
