@@ -1,5 +1,5 @@
 import React, { useState, FC } from "react";
-import { InputInterface } from '../types/InputInterface'
+import { InputInterface } from '../types/InputType'
 
 export const Input: FC<InputInterface> = ({
   TestChatData,

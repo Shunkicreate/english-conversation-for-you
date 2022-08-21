@@ -4,7 +4,7 @@ import "./App.css";
 import { TextInput } from "./TextInput";
 import { ChatText } from "./ChatText";
 import { useState } from "react";
-import { Chat } from "../types/Chat";
+import { Chat } from "../types/ChatType";
 import { Input } from "./Input";
 const App = () => {
   const [ChatData, setChatData] = useState<Chat[]>([]);
