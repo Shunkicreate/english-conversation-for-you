@@ -7,6 +7,5 @@ export const ChatGetter = (ChatDatas: Chat[]) => {
     }
     ReturnData.push(ChatDatas[ChatDatas.length - i]);
   }
-
   return ReturnData;
 };
