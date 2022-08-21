@@ -5,18 +5,24 @@ import { ChatText } from "./functions/ChatText";
 import { useState } from "react";
 import { ChatType } from "../types/ChatType";
 import { Input } from "./components/Input";
+import { ChatAI } from "./functions/ChatAI";
 const App = () => {
-  const [ChatDatas, setChatDatas] = useState<ChatType[]>([]);
+  const [ChatDatas, setChatDatas] = useState<ChatType[]>([{person: 'AI', message: 'AI: I am an AI created by OpenAI. How can I help you today?\n`'}]);
+  const [DoChat, setDoChat] = useState(false)
   const [uid, setUid] = useState<number>(0);
   useEffect(() => {
-    console.log('triger chatai')
+    if(ChatDatas.length > 1 && DoChat){
+      console.log('triger chatai', ChatDatas)
+      ChatAI({ChatDatas, setChatDatas})
+      setDoChat(false)
+    }
   },
   [ChatDatas])
 
   return (
     <div className="App">
       app
-      <Input ChatDatas={ChatDatas} setChatDatas={setChatDatas} />
+      <Input ChatDatas={ChatDatas} setChatDatas={setChatDatas} setDoChat={setDoChat} />
       <div>
         <ol>
           {ChatDatas.map((ChatData) => (
@@ -26,7 +32,7 @@ const App = () => {
           ))}
         </ol>
       </div>
-      <TextInput></TextInput>
+      {/* <TextInput></TextInput> */}
       {/* <ChatText></ChatText> */}
     </div>
   );

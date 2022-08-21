@@ -16,7 +16,7 @@ export const AccessOpenAIAPI = async (text: string) => {
     presence_penalty: 0.6,
     stop: [" Human:"],
   });
-  debugger;
+  // debugger;
   const body = response.data.choices[0].text;
   return body
   // text = text + body + "\n"; // stateに反映する
