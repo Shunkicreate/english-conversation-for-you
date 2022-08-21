@@ -1,6 +1,6 @@
-import { Chat } from "../types/ChatType";
-export const ChatGetter = (ChatDatas: Chat[]) => {
-  let ReturnData: Chat[] = [];
+import { ChatType } from "../../types/ChatType";
+export const ChatGetter = (ChatDatas: ChatType[]) => {
+  let ReturnData: ChatType[] = [];
   for (let i = 0; i < ChatDatas.length; i++) {
     if (i > 10) {
       break;

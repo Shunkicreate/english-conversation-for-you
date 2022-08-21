@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Chat } from "../functions/Chat";
+import { Chat } from "../functions/AccessOpenAIAPI";
 import { ChatText } from "../functions/ChatText";
 
 // const nToBr = (text:string) => {
@@ -51,6 +51,7 @@ export const TextInput = () => {
     );
     returnData
       .then((result) => {
+        console.log(result)
         setShowText(result);
         setText("");
       })

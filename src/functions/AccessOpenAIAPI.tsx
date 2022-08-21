@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 
-const accessApi = async (text: string) => {
+export const AccessOpenAIAPI = async (text: string) => {
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
   });
@@ -8,8 +8,7 @@ const accessApi = async (text: string) => {
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-002",
-    prompt:
-      "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: ",
+    prompt: text,
     temperature: 0.9,
     max_tokens: 150,
     top_p: 1,
@@ -17,12 +16,14 @@ const accessApi = async (text: string) => {
     presence_penalty: 0.6,
     stop: [" Human:"],
   });
+  debugger;
   const body = response.data.choices[0].text;
-  text = text + body + "\n"; // stateに反映する
-  return text;
+  return body
+  // text = text + body + "\n"; // stateに反映する
+  // return text;
 };
 export const Chat = (text: string) => {
   console.log("text", text);
-  const result_text = accessApi(text);
+  const result_text = AccessOpenAIAPI(text);
   return result_text;
 };

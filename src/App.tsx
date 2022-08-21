@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { TextInput } from "./components/TextInput";
 import { ChatText } from "./functions/ChatText";
@@ -8,6 +8,10 @@ import { Input } from "./components/Input";
 const App = () => {
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([]);
   const [uid, setUid] = useState<number>(0);
+  useEffect(() => {
+    console.log('triger chatai')
+  },
+  [ChatDatas])
 
   return (
     <div className="App">

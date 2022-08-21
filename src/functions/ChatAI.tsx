@@ -1,11 +1,15 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState, FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { Chat } from "./Chat";
+import { Chat } from "./AccessOpenAIAPI";
 import { ChatText } from "./ChatText";
-import { ChatEncoder } from './ChatEncoder' 
-import { ChatDecoder } from './ChatDecoder' 
-import { ChatGetter } from './ChatGetter'
-import { ChatAIType } from '../../types/ChatAIType'
+import { ChatEncoder } from "./ChatEncoder";
+import { ChatDecoder } from "./ChatDecoder";
+import { ChatGetter } from "./ChatGetter";
+import { InputType } from "../../types/InputType";
+
+// import { ChatAIType } from '../../types/ChatAIType'
+import { ChatType } from "../../types/ChatType";
+import { AccessOpenAIAPI } from "./AccessOpenAIAPI";
 interface Propstype {
   text: string;
 }
@@ -20,7 +24,16 @@ const SowChat = (props: Propstype) => {
   });
   return <div>{texts}</div>;
 };
-export const ChatAI = (ChatData: ChatAIType) => {
+export const ChatAI: FC<InputType> = ({ ChatDatas, setChatDatas }) => {
+  debugger;
+  const resultText: Promise<string> = AccessOpenAIAPI(
+    ChatEncoder(ChatGetter(ChatDatas))
+  );
+  resultText.then((result) => {
+    const decodedResultText: ChatType[] = ChatDecoder(result);
+    setChatDatas(ChatDatas.concat(decodedResultText));
+  });
+
   const [ShowText, setShowText] = useState(
     "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`"
   );
@@ -38,26 +51,26 @@ export const ChatAI = (ChatData: ChatAIType) => {
       });
   };
 
-  //   return (
-  //     <div className="startmanuebar">
-  //       <label>
-  //         <input
-  //           type="text"
-  //           value={text}
-  //           onKeyPress={(event) => {
-  //             if (event.key === "Enter") {
-  //               event.preventDefault();
-  //               con(text);
-  //             }
-  //           }}
-  //           onChange={(event) => {
-  //             setText(event.target.value);
-  //           }}
-  //         />
-  //       </label>
-  //       <input type="submit" value="Submit" />
-  //       <div>{text}</div>
-  //       <SowChat text={ShowText}></SowChat>
-  //     </div>
-  //   );
+  return (
+    <div className="startmanuebar">
+      {/* <label>
+          <input
+            type="text"
+            value={text}
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                con(text);
+              }
+            }}
+            onChange={(event) => {
+              setText(event.target.value);
+            }}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+        <div>{text}</div>
+        <SowChat text={ShowText}></SowChat> */}
+    </div>
+  );
 };

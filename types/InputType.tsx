@@ -1,5 +1,5 @@
-import { Chat } from "./ChatType";
+import { ChatType } from "./ChatType";
 export interface InputType {
-  ChatDatas: Chat[];
-  setChatDatas: React.Dispatch<React.SetStateAction<Chat[]>>;
+  ChatDatas: ChatType[];
+  setChatDatas: React.Dispatch<React.SetStateAction<ChatType[]>>;
 }
