@@ -22,11 +22,7 @@ const accessApi = async (text: string) => {
   return text;
 };
 export const Chat = (text: string) => {
-  // const [state, setState] = useState(text);
   console.log("text", text);
-  // useEffect(() => {
-  // useEffect自体ではasyncの関数を受け取れないので内部で関数を定義して呼び出す。
   const result_text = accessApi(text);
-
   return result_text;
 };
