@@ -36,26 +36,26 @@ export const ChatAI = () => {
       });
   };
 
-//   return (
-//     <div className="startmanuebar">
-//       <label>
-//         <input
-//           type="text"
-//           value={text}
-//           onKeyPress={(event) => {
-//             if (event.key === "Enter") {
-//               event.preventDefault();
-//               con(text);
-//             }
-//           }}
-//           onChange={(event) => {
-//             setText(event.target.value);
-//           }}
-//         />
-//       </label>
-//       <input type="submit" value="Submit" />
-//       <div>{text}</div>
-//       <SowChat text={ShowText}></SowChat>
-//     </div>
-//   );
+  //   return (
+  //     <div className="startmanuebar">
+  //       <label>
+  //         <input
+  //           type="text"
+  //           value={text}
+  //           onKeyPress={(event) => {
+  //             if (event.key === "Enter") {
+  //               event.preventDefault();
+  //               con(text);
+  //             }
+  //           }}
+  //           onChange={(event) => {
+  //             setText(event.target.value);
+  //           }}
+  //         />
+  //       </label>
+  //       <input type="submit" value="Submit" />
+  //       <div>{text}</div>
+  //       <SowChat text={ShowText}></SowChat>
+  //     </div>
+  //   );
 };
