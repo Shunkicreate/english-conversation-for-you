@@ -1,11 +1,5 @@
-// import React, { useEffect, useCallback, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import { ResponseType } from "../types/OpenAiType";
 const { Configuration, OpenAIApi } = require("openai");
 
-// interface Propstype {
-//     text: string;
-// }
 const accessApi = async (text: string) => {
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
