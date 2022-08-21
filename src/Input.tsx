@@ -1,13 +1,16 @@
 import React, { useState, FC } from "react";
-import { InputInterface } from '../types/InputType'
+import { Chat } from "../types/ChatType";
+import { InputType } from "../types/InputType";
 
-export const Input: FC<InputInterface> = ({
-  TestChatData,
-  setTextChatData,
-}) => {
+export const Input: FC<InputType> = ({ ChatDatas, setChatDatas }) => {
   const [text, setText] = useState("");
   const handleSubmitEvent = () => {
-    setTextChatData([...TestChatData, text]);
+    const addData: Chat = {
+      person: "Human",
+      message: text,
+    };
+    setChatDatas([...ChatDatas, addData]);
+    console.log(ChatDatas);
     setText("");
   };
   return (

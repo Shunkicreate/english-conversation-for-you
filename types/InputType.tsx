@@ -1,4 +1,5 @@
-export interface InputInterface {
-    TestChatData: string[];
-    setTextChatData: React.Dispatch<React.SetStateAction<string[]>>;
-  }
+import { Chat } from "./ChatType";
+export interface InputType {
+  ChatDatas: Chat[];
+  setChatDatas: React.Dispatch<React.SetStateAction<Chat[]>>;
+}

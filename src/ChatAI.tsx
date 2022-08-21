@@ -17,8 +17,7 @@ const SowChat = (props: Propstype) => {
   });
   return <div>{texts}</div>;
 };
-export const TextInput = () => {
-
+export const ChatAI = () => {
   const [text, setText] = useState("");
   const [ShowText, setShowText] = useState(
     "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`"
@@ -37,26 +36,26 @@ export const TextInput = () => {
       });
   };
 
-  return (
-    <div className="startmanuebar">
-      <label>
-        <input
-          type="text"
-          value={text}
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              con(text);
-            }
-          }}
-          onChange={(event) => {
-            setText(event.target.value);
-          }}
-        />
-      </label>
-      <input type="submit" value="Submit" />
-      <div>{text}</div>
-      <SowChat text={ShowText}></SowChat>
-    </div>
-  );
+//   return (
+//     <div className="startmanuebar">
+//       <label>
+//         <input
+//           type="text"
+//           value={text}
+//           onKeyPress={(event) => {
+//             if (event.key === "Enter") {
+//               event.preventDefault();
+//               con(text);
+//             }
+//           }}
+//           onChange={(event) => {
+//             setText(event.target.value);
+//           }}
+//         />
+//       </label>
+//       <input type="submit" value="Submit" />
+//       <div>{text}</div>
+//       <SowChat text={ShowText}></SowChat>
+//     </div>
+//   );
 };

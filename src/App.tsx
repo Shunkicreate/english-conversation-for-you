@@ -7,15 +7,24 @@ import { useState } from "react";
 import { Chat } from "../types/ChatType";
 import { Input } from "./Input";
 const App = () => {
-  const [ChatData, setChatData] = useState<Chat[]>([]);
-  const [TestChatData, setTextChatData] = useState<string[]>([]);
+  const [ChatDatas, setChatDatas] = useState<Chat[]>([]);
+  const [TestChatDatas, setTextChatDatas] = useState<string[]>([]);
   const [uid, setUid] = useState<number>(0);
 
   return (
     <div className="App">
       app
-      {TestChatData}app
-      <Input TestChatData={TestChatData} setTextChatData={setTextChatData} />
+      {/* {ChatDatas}app */}
+      <Input ChatDatas={ChatDatas} setChatDatas={setChatDatas} />
+      <div>
+        <ol>
+          {ChatDatas.map((ChatData) => (
+            <ul>
+              {ChatData.person}:          {ChatData.message}
+            </ul>
+          ))}
+        </ol>
+      </div>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
