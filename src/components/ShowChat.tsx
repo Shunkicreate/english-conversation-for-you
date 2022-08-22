@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { ChatType } from "../../types/ChatType";
 import { ShowChatTypes } from "../../types/ShowChatTypes";
 import '../stylesheets/ShowChat.css'
 

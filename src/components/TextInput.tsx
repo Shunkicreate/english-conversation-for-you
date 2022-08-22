@@ -1,21 +1,9 @@
-import React, { useEffect, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { Chat } from "../functions/AccessOpenAIAPI";
-import { ChatText } from "../functions/ChatText";
 
-// const nToBr = (text:string) => {
-//     return text.replaceAll("\n", "<br>")
-// }
-// const BrTon = (text:string) => {
-//     return text.replaceAll("<br>", "\n")
-// }
 interface Propstype {
   text: string;
 }
-const lbToBr = (text: string) => {
-  return text.split(/(\n)/g).map((t) => (t === "\n" ? <br /> : t));
-};
-//   const msg = "星宮いちご\n霧矢あおい\n紫吹蘭";
 
 const SowChat = (props: Propstype) => {
   const texts = props.text.split(/(\n)/).map((item, index) => {

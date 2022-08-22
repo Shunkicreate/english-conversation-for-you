@@ -1,11 +1,7 @@
-import React, { useEffect, useCallback, useState, FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { Chat } from "./AccessOpenAIAPI";
-import { ChatText } from "./ChatText";
+import React, { FC } from "react";
 import { ChatEncoder } from "./ChatEncoder";
 import { ChatDecoder } from "./ChatDecoder";
 import { ChatGetter } from "./ChatGetter";
-import { InputType } from "../../types/InputType";
 
 import { ChatAIType } from '../../types/ChatAIType'
 import { ChatType } from "../../types/ChatType";
