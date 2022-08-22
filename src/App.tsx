@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import "./stylesheets/App.css";
 import { TextInput } from "./components/TextInput";
 import { ChatText } from "./functions/ChatText";
 import { useState } from "react";
