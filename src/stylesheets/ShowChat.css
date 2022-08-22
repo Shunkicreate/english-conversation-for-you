@@ -1,7 +1,7 @@
 .OneChat{
     text-align: left;
     max-width: 70%;
-    padding: 5%
+    padding: 0 1rem;
 }
 
 .AI>.message{
