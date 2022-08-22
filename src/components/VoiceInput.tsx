@@ -26,23 +26,27 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
       }
     ]
   });
+  const [PreFinalTranscript, setPreFinalTranscript] = useState("");
 
   useEffect(()=>{
-    console.log("finalTranscript", finalTranscript)
-    const addData: ChatType = {
-      person: "You",
-      message: finalTranscript,
-    };
-    setChatDatas([...ChatDatas, addData]);
-    resetTranscript()
-    // setDoChat(true)
+    if( finalTranscript !== ""){
+      setPreFinalTranscript(finalTranscript)
+      console.log("finalTranscript", finalTranscript)
+      const addData: ChatType = {
+        person: "You",
+        message: finalTranscript,
+      };
+      setChatDatas([...ChatDatas, addData]);
+      resetTranscript()
+      setDoChat(true)
+    }
   }, [finalTranscript])
 
-  useEffect(() => {
-    if (finalTranscript !== "") {
-      console.log("Got final result:", finalTranscript);
-    }
-  }, [interimTranscript, finalTranscript]);
+  // useEffect(() => {
+  //   if (finalTranscript !== "") {
+  //     console.log("Got final result:", finalTranscript);
+  //   }
+  // }, [interimTranscript, finalTranscript]);
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     console.log(
