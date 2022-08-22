@@ -1,5 +1,7 @@
+import { FC } from "react";
 import { ChatType } from "../../types/ChatType";
-export const ShowChat = (ChatDatas: ChatType[]) => {
+import { ShowChatTypes } from "../../types/ShowChatTypes";
+export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
   return (
     <div>
       <div>
