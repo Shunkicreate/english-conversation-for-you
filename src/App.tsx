@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ChatType } from "../types/ChatType";
 import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
+import { ShowChat } from "./components/ShowChat";
 const App = () => {
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([{person: 'AI', message: 'I am an AI created by OpenAI. How can I help you today?\n`'}]);
   const [DoChat, setDoChat] = useState(false)
@@ -22,15 +23,8 @@ const App = () => {
   return (
     <div className="App">
       <Input ChatDatas={ChatDatas} setChatDatas={setChatDatas} setDoChat={setDoChat} />
-      <div>
-        <ol>
-          {ChatDatas.map((ChatData) => (
-            <ul>
-              {ChatData.person}:{ChatData.message}
-            </ul>
-          ))}
-        </ol>
-      </div>
+      <ShowChat ChatDatas={ChatDatas}></ShowChat>
+
       {/* <TextInput></TextInput> */}
       {/* <ChatText></ChatText> */}
     </div>
