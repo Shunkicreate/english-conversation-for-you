@@ -5,6 +5,7 @@ import { ChatType } from "../types/ChatType";
 import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
+import { VoiceInput } from "./components/VoiceInput"
 const App = () => {
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([
     {
@@ -25,6 +26,11 @@ const App = () => {
   return (
     <div className="App">
       <Input
+        ChatDatas={ChatDatas}
+        setChatDatas={setChatDatas}
+        setDoChat={setDoChat}
+      />
+      <VoiceInput
         ChatDatas={ChatDatas}
         setChatDatas={setChatDatas}
         setDoChat={setDoChat}
