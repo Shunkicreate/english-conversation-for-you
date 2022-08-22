@@ -20,7 +20,7 @@ export const AccessOpenAIAPI = async (text: string) => {
       console.log(e.message);
       return "AI: Sorry. I have no idea.";
     });
-  debugger;
+  // debugger;
   let body = response.data.choices[0].text;
   if(!body.includes("AI:")){
     body = "AI:" + body 

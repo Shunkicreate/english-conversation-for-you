@@ -27,6 +27,17 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
     ]
   });
 
+  useEffect(()=>{
+    console.log("finalTranscript", finalTranscript)
+    const addData: ChatType = {
+      person: "You",
+      message: finalTranscript,
+    };
+    setChatDatas([...ChatDatas, addData]);
+    resetTranscript()
+    // setDoChat(true)
+  }, [finalTranscript])
+
   useEffect(() => {
     if (finalTranscript !== "") {
       console.log("Got final result:", finalTranscript);
