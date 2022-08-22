@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import { ShowChatTypes } from "../../types/ShowChatTypes";
 import '../stylesheets/ShowChat.css'
 
@@ -11,15 +11,25 @@ const OneChat = (person: string, message: string) => {
             <div className="message">
                 {message}
             </div>
-
         </div>
     )
 }
 
 export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
-    console.log(ChatDatas)
+    const element = useRef<HTMLDivElement>(null);
+    // const scrollDoc =document.getElementById("ShowChat")
+    useEffect(() => {
+        element?.current?.scrollIntoView();
+        console.log(typeof(element))
+        // if(element === object){
+        //     element.scrollIntoView({behavior:"smooth"}})
+
+        // }
+    }, 
+    [element])
+    // scrollDoc.scrollIntoView({behavior:"smooth"});
   return (
-    <div className="ShowChat">
+    <div className="ShowChat" ref={element}>
           {ChatDatas.map((ChatData) => (
             OneChat(ChatData.person, ChatData.message)
           ))}

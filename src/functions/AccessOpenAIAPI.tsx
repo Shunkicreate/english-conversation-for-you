@@ -6,19 +6,26 @@ export const AccessOpenAIAPI = async (text: string) => {
   });
   console.log(configuration.apiKey);
   const openai = new OpenAIApi(configuration);
-  const response = await openai.createCompletion({
-    model: "text-davinci-002",
-    prompt: text,
-    temperature: 0.9,
-    max_tokens: 150,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0.6,
-    stop: [" You:"],
-  });
+  const response = await openai
+    .createCompletion({
+      model: "text-davinci-002",
+      prompt: text,
+      temperature: 0.9,
+      max_tokens: 150,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0.6,
+      stop: [" You:"],
+    })
+    .catch((e: any) => {
+      console.log(e.message);
+      return "AI: Sorry. I have no idea.";
+    });
+  // .then(() => {
   // debugger;
   const body = "AI:" + response.data.choices[0].text;
-  return body
+  return body;
+  // });
   // text = text + body + "\n"; // stateに反映する
   // return text;
 };
