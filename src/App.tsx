@@ -8,7 +8,7 @@ import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
 const App = () => {
-  const [ChatDatas, setChatDatas] = useState<ChatType[]>([{person: 'AI', message: 'I am an AI created by OpenAI. How can I help you today?\n`'}]);
+  const [ChatDatas, setChatDatas] = useState<ChatType[]>([{person: 'AI', message: 'I am an AI created by OpenAI. How can I help you today?\n'}]);
   const [DoChat, setDoChat] = useState(false)
   const [uid, setUid] = useState<number>(0);
   useEffect(() => {
@@ -18,7 +18,7 @@ const App = () => {
       setDoChat(false)
     }
   },
-  [ChatDatas])
+  [ChatDatas, DoChat])
 
   return (
     <div className="App">
