@@ -14,10 +14,10 @@ export const AccessOpenAIAPI = async (text: string) => {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0.6,
-    stop: [" Human:"],
+    stop: [" You:"],
   });
   // debugger;
-  const body = response.data.choices[0].text;
+  const body = "AI:" + response.data.choices[0].text;
   return body
   // text = text + body + "\n"; // stateに反映する
   // return text;

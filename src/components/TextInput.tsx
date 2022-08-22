@@ -36,18 +36,18 @@ export const TextInput = () => {
   // )
   const [text, setText] = useState("");
   const [ShowText, setShowText] = useState(
-    "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`"
+    "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nYou: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`"
   );
-  // let first_send_text:string = "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`";
+  // let first_send_text:string = "`The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nYou: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\n`";
   // setText(first_send_text);
   const con = (con_text: string) => {
     // debugger;
-    // con_text += "Human: " + con_text + "\n";
-    // setShowText(ShowText + "Human: " + con_text + "\n")
+    // con_text += "You: " + con_text + "\n";
+    // setShowText(ShowText + "You: " + con_text + "\n")
     // setText("")
     // console.log('con_text', con_text)
     const returnData: Promise<string> = Chat(
-      ShowText + "Human: " + con_text + "\n"
+      ShowText + "You: " + con_text + "\n"
     );
     returnData
       .then((result) => {

@@ -1,0 +1,17 @@
+.OneChat{
+    text-align: left;
+    max-width: 70%;
+    padding: 5%
+}
+
+.AI>.message{
+    border-radius: 1rem;
+    border-top-left-radius: 0;
+    color: red;
+}
+.message{
+    background-color: #ffe1e1;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    border-top-right-radius: 0;
+}

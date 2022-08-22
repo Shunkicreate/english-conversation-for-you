@@ -6,7 +6,7 @@ export const Input: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat }) =>
   const [text, setText] = useState("");
   const handleSubmitEvent = () => {
     const addData: ChatType = {
-      person: "Human",
+      person: "You",
       message: text,
     };
     setChatDatas([...ChatDatas, addData]);
