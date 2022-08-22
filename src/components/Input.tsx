@@ -10,7 +10,6 @@ export const Input: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat }) =>
       message: text,
     };
     setChatDatas([...ChatDatas, addData]);
-    console.log(ChatDatas);
     setText("");
     setDoChat(true)
   };

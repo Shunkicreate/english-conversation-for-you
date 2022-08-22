@@ -2,23 +2,21 @@ import React, { FC } from "react";
 import { ChatEncoder } from "./ChatEncoder";
 import { ChatDecoder } from "./ChatDecoder";
 import { ChatGetter } from "./ChatGetter";
-
-import { ChatAIType } from '../../types/ChatAIType'
+import { ChatAIType } from "../../types/ChatAIType";
 import { ChatType } from "../../types/ChatType";
 import { AccessOpenAIAPI } from "./AccessOpenAIAPI";
+import { Speak } from "./Speak";
 export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
   const resultText: Promise<string> = AccessOpenAIAPI(
     ChatEncoder(ChatGetter(ChatDatas))
-    );
-    resultText.then((result) => {
+  );
+  resultText.then((result) => {
     // debugger;
     const decodedResultText: ChatType[] = ChatDecoder(result);
     setChatDatas(ChatDatas.concat(decodedResultText));
+    Speak(result);
+    console.log(result)
   });
 
-
-  return (
-    <div className="a">
-    </div>
-  );
+  return <div className="a"></div>;
 };

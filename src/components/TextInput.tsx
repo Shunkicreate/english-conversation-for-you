@@ -39,7 +39,6 @@ export const TextInput = () => {
     );
     returnData
       .then((result) => {
-        console.log(result)
         setShowText(result);
         setText("");
       })
