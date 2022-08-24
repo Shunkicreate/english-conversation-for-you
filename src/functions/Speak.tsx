@@ -4,6 +4,7 @@ export const Speak = (SpeacText: string) => {
     const uttr = new SpeechSynthesisUtterance();
     uttr.text = SpeacText;
     uttr.lang = 'en-US';
+    
     // 発言を再生
     window.speechSynthesis.speak(uttr);
   } else {

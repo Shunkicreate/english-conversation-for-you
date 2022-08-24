@@ -1,17 +1,38 @@
-.OneChat{
-    text-align: left;
-    max-width: 70%;
-    padding: 0 1rem;
+.ChatArea {
+  padding: 0 1rem;
+  display: block;
+  /* position: relative; */
 }
 
-.AI>.message{
-    border-radius: 1rem;
-    border-top-left-radius: 0;
-    color: red;
+.OneChat {
+  /* padding-right: 30%; */
+  /* text-align: left; */
+  /* max-width: 70%; */
+  /* position: absolute; */
 }
-.message{
-    background-color: #ffe1e1;
-    padding: 0.2rem 1rem;
-    border-radius: 1rem;
-    border-top-right-radius: 0;
+
+.You {
+  /* flex-direction: row-reverse; */
+  /* float: left; */
+  text-align: right;
+  /* padding-left: 30%; */
+  /* padding-right: 0; */
+  /* max-width: 10rem; */
 }
+
+.AI > .message {
+  border-radius: 1rem;
+  border-top-left-radius: 0;
+}
+
+.message {
+  display: inline-block;
+  background-color: #ffe1e1;
+  /* padding: 0.2rem 1rem; */
+  border-radius: 1rem;
+  border-top-right-radius: 0;
+}
+/* 
+.right {
+  text-align: right;
+} */

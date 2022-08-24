@@ -12,6 +12,10 @@ const App = () => {
       person: "AI",
       message: "I am an AI created by OpenAI. How can I help you today?\n",
     },
+    {
+      person: "You",
+      message: "Hello\n",
+    },
   ]);
   const [DoChat, setDoChat] = useState(false);
   // const [uid, setUid] = useState<number>(0);
