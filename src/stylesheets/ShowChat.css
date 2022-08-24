@@ -13,12 +13,7 @@
 }
 
 .You {
-  /* flex-direction: row-reverse; */
-  /* float: left; */
   text-align: right;
-  /* padding-left: 30%; */
-  /* padding-right: 0; */
-  /* max-width: 10rem; */
 }
 
 .AI > .message {
