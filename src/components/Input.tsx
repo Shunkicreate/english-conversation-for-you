@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
-import { ChatType } from "../../types/ChatType";
-import { InputType } from "../../types/InputType";
+import { ChatType } from "../types/ChatType";
+import { InputType } from "../types/InputType";
 
 export const Input: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat }) => {
   const [text, setText] = useState("");

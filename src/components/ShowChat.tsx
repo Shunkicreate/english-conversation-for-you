@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react";
-import { ShowChatTypes } from "../../types/ShowChatTypes";
+import { ShowChatTypes } from "../types/ShowChatTypes";
 import "../stylesheets/ShowChat.css";
 import { OneChat } from "./OneChat";
 

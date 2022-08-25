@@ -1,4 +1,4 @@
-import { ChatType } from "../../types/ChatType";
+import { ChatType } from "../types/ChatType";
 export const ChatDecoder = (ChatDatas: string) => {
   // debugger
   let ReturnData: ChatType[] = [];

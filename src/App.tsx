@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./stylesheets/App.css";
 import { useState } from "react";
-import { ChatType } from "../types/ChatType";
+import { ChatType } from "./types/ChatType";
 import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";

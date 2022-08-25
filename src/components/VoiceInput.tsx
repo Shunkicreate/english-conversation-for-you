@@ -1,6 +1,6 @@
 import React, { useState, FC, useEffect, useRef } from "react";
-import { ChatType } from "../../types/ChatType";
-import { VoiceInputType } from "../../types/VoiceInputType";
+import { ChatType } from "../types/ChatType";
+import { VoiceInputType } from "../types/VoiceInputType";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";

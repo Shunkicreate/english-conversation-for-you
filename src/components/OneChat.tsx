@@ -1,6 +1,6 @@
 import "../stylesheets/ShowChat.css";
 import { FC, useEffect, useState } from "react";
-import { FCOneChatType } from '../../types/FCOneChatType'
+import { FCOneChatType } from '../types/FCOneChatType'
 
 export const OneChat = (person: string, message: string) => {
     if (person === "AI" || person === "OpenAI") {
