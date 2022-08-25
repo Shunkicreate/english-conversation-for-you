@@ -5,6 +5,8 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { FCOneChat } from "./OneChat";
+import "../stylesheets/ShowChat.css";
+
 export const VoiceInput: FC<InputType> = ({
   ChatDatas,
   setChatDatas,
@@ -71,13 +73,14 @@ export const VoiceInput: FC<InputType> = ({
   return (
     <div>
       <div>
-        <div>{message}</div>
-        {/* {FCOneChat( person="You", message={message})} */}
-        {/* <div className="ChatArea" ref={element}>
-          {() => FCOneChat("You", message)}
-        </div> */}
-        <FCOneChat person={"You"} message={message} />
-        {/* {elem} */}
+        <div className="ShowChat">
+          <div className="ChatArea">
+            <div className="You OneChat">
+              <div className="person">You</div>
+              <div className="message default">{transcript}</div>
+            </div>
+          </div>
+        </div>
         <span>listening: {listening ? "on" : "off"}</span>
         <div>
           <button type="button" onClick={resetTranscript}>
@@ -90,9 +93,6 @@ export const VoiceInput: FC<InputType> = ({
             Stop
           </button>
         </div>
-      </div>
-      <div>
-        <span>{transcript}</span>
       </div>
     </div>
   );
