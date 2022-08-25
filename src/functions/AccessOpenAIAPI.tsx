@@ -29,7 +29,7 @@ export const AccessOpenAIAPI = async (text: string) => {
       console.log(e.message);
       return "AI: Sorry. I have no idea.";
     });
-  debugger;
+  // debugger;
   let body = response.data.choices[0].text;
   console.log("before cleaned", body)
   return TextCleaner(body);

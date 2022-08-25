@@ -1,23 +1,8 @@
 import { FC, useEffect, useRef } from "react";
 import { ShowChatTypes } from "../../types/ShowChatTypes";
 import "../stylesheets/ShowChat.css";
+import { OneChat } from "./OneChat";
 
-const OneChat = (person: string, message: string) => {
-  if (person === "AI" || person === "OpenAI") {
-    return (
-      <div className="AI OneChat">
-        <div className="person">{person}</div>
-        <div className="message">{message}</div>
-      </div>
-    );
-  }
-  return (
-    <div className="You OneChat">
-      <div className="person">{person}</div>
-      <div className="message">{message}</div>
-    </div>
-  );
-};
 
 export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
   const element = useRef<HTMLDivElement>(null);

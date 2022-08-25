@@ -1,45 +1,53 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { useState, FC, useEffect, useRef } from "react";
 import { ChatType } from "../../types/ChatType";
 import { InputType } from "../../types/InputType";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat }) => {
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { FCOneChat } from "./OneChat";
+export const VoiceInput: FC<InputType> = ({
+  ChatDatas,
+  setChatDatas,
+  setDoChat,
+}) => {
   const [message, messageSet] = useState("");
+  const element = useRef<HTMLDivElement>(null);
   const {
     transcript,
     interimTranscript,
     finalTranscript,
     resetTranscript,
-    listening
+    listening,
   } = useSpeechRecognition({
     commands: [
       {
         command: "reset",
-        callback: () => resetTranscript()
+        callback: () => resetTranscript(),
       },
       {
         command: "shut up",
-        callback: () => messageSet("I wasn't talking.")
+        callback: () => messageSet("I wasn't talking."),
       },
       {
         command: "Hello",
-        callback: () => messageSet("Hi there!")
-      }
-    ]
+        callback: () => messageSet("Hi there!"),
+      },
+    ],
   });
   const [PreFinalTranscript, setPreFinalTranscript] = useState("");
 
-  useEffect(()=>{
-    if( finalTranscript !== ""){
-      setPreFinalTranscript(finalTranscript)
+  useEffect(() => {
+    if (finalTranscript !== "") {
+      setPreFinalTranscript(finalTranscript);
       const addData: ChatType = {
         person: "You",
         message: finalTranscript,
       };
       setChatDatas([...ChatDatas, addData]);
-      resetTranscript()
-      setDoChat(true)
+      resetTranscript();
+      setDoChat(true);
     }
-  }, [finalTranscript])
+  }, [finalTranscript]);
 
   // useEffect(() => {
   //   if (finalTranscript !== "") {
@@ -55,13 +63,21 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
   const listenContinuously = () => {
     SpeechRecognition.startListening({
       continuous: true,
-      language: "en"
+      language: "en",
     });
   };
+  // let elem = FCOneChat({"You", message});
 
   return (
     <div>
       <div>
+        <div>{message}</div>
+        {/* {FCOneChat( person="You", message={message})} */}
+        {/* <div className="ChatArea" ref={element}>
+          {() => FCOneChat("You", message)}
+        </div> */}
+        <FCOneChat person={"You"} message={message} />
+        {/* {elem} */}
         <span>listening: {listening ? "on" : "off"}</span>
         <div>
           <button type="button" onClick={resetTranscript}>
@@ -75,7 +91,6 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
           </button>
         </div>
       </div>
-      <div>{message}</div>
       <div>
         <span>{transcript}</span>
       </div>

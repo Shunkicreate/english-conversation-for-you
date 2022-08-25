@@ -34,12 +34,12 @@ const App = () => {
         setChatDatas={setChatDatas}
         setDoChat={setDoChat}
       />
+      <ShowChat ChatDatas={ChatDatas}></ShowChat>
       <VoiceInput
         ChatDatas={ChatDatas}
         setChatDatas={setChatDatas}
         setDoChat={setDoChat}
       />
-      <ShowChat ChatDatas={ChatDatas}></ShowChat>
       {/* <TextInput></TextInput> */}
       {/* <ChatText></ChatText> */}
     </div>
