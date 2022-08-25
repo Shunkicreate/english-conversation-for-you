@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ChatEncoder } from "./ChatEncoder";
 import { ChatDecoder } from "./ChatDecoder";
 import { ChatGetter } from "./ChatGetter";
@@ -11,9 +11,8 @@ export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
     ChatEncoder(ChatGetter(ChatDatas))
   );
   resultText.then((result) => {
-    // debugger;
-    const decodedResultText: ChatType[] = ChatDecoder(result);
     console.log(result)
+    const decodedResultText: ChatType[] = ChatDecoder(result);
     setChatDatas(ChatDatas.concat(decodedResultText));
     Speak(result);
   });

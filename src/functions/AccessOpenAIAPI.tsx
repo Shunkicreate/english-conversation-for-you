@@ -25,30 +25,14 @@ export const AccessOpenAIAPI = async (text: string) => {
       presence_penalty: 0.0,
       stop: [" You:"],
     })
-  //Chat ver.
-  //   .createCompletion({
-  //     model: "text-davinci-002",
-  //     prompt: text,
-  //     temperature: 0.9,
-  //     max_tokens: 150,
-  //     top_p: 1,
-  //     frequency_penalty: 0,
-  //     presence_penalty: 0.6,
-  //     stop: [" You:"],
-  //   })
     .catch((e: any) => {
       console.log(e.message);
       return "AI: Sorry. I have no idea.";
     });
-  // debugger;
+  debugger;
   let body = response.data.choices[0].text;
-  // if(!body.includes("AI:")){
-  //   body = "AI:" + body 
-  // }
+  console.log("before cleaned", body)
   return TextCleaner(body);
-  // });
-  // text = text + body + "\n"; // stateに反映する
-  // return text;
 };
 export const Chat = (text: string) => {
   const result_text = AccessOpenAIAPI(text);
