@@ -1,15 +1,17 @@
 import React, { useState, FC, useEffect, useRef } from "react";
 import { ChatType } from "../../types/ChatType";
-import { InputType } from "../../types/InputType";
+import { VoiceInputType } from "../../types/VoiceInputType";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { FCOneChat } from "./OneChat";
 import "../stylesheets/ShowChat.css";
-
-export const VoiceInput: FC<InputType> = ({
+import recordingGif from "../assets/recording.gif";
+import { Recording } from "./Recording";
+export const VoiceInput: FC<VoiceInputType> = ({
   ChatDatas,
   setChatDatas,
+  DoChat,
   setDoChat,
 }) => {
   const [message, messageSet] = useState("");
@@ -81,11 +83,12 @@ export const VoiceInput: FC<InputType> = ({
             </div>
           </div>
         </div>
+        <Recording visible={listening} source={recordingGif}></Recording>
         <span>listening: {listening ? "on" : "off"}</span>
         <div>
-          <button type="button" onClick={resetTranscript}>
+          {/* <button type="button" onClick={resetTranscript}>
             Reset
-          </button>
+          </button> */}
           <button type="button" onClick={listenContinuously}>
             Listen
           </button>

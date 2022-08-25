@@ -12,16 +12,11 @@ const App = () => {
       person: "AI",
       message: "I am an AI created by OpenAI. How can I help you today?\n",
     },
-    {
-      person: "You",
-      message: "Hello\n",
-    },
   ]);
   const [DoChat, setDoChat] = useState(false);
   // const [uid, setUid] = useState<number>(0);
   useEffect(() => {
     if (ChatDatas.length > 1 && DoChat) {
-      // ('triger chatai', ChatDatas)
       ChatAI({ ChatDatas, setChatDatas });
       setDoChat(false);
     }
@@ -38,10 +33,9 @@ const App = () => {
       <VoiceInput
         ChatDatas={ChatDatas}
         setChatDatas={setChatDatas}
+        DoChat={DoChat}
         setDoChat={setDoChat}
       />
-      {/* <TextInput></TextInput> */}
-      {/* <ChatText></ChatText> */}
     </div>
   );
 };
