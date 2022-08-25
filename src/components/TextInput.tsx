@@ -33,7 +33,6 @@ export const TextInput = () => {
     // con_text += "You: " + con_text + "\n";
     // setShowText(ShowText + "You: " + con_text + "\n")
     // setText("")
-    // console.log('con_text', con_text)
     const returnData: Promise<string> = Chat(
       ShowText + "You: " + con_text + "\n"
     );
@@ -45,13 +44,10 @@ export const TextInput = () => {
       .catch((error) => {
         console.log(error);
       });
-    // console.log('return: send_text', returnData.)
   };
   // const showText = (text:string) => {
-  //     console.log(text)
   // }
   // // const keyFunction = useCallback((event) => {
-  //     console.log(event.key)
   //     if (event.key === " ") {
   //         navigate("input")
   //     }
@@ -62,7 +58,7 @@ export const TextInput = () => {
   return (
     <div className="startmanuebar">
       {/* <form onSubmit={(event)=>{con(text)}}> */}
-      {/* <form onSubmit={(event) => {setText2(event.target.value);console.log(text2)}}> */}
+      {/* <form onSubmit={(event) => {setText2(event.target.value);}}> */}
       <label>
         <input
           type="text"

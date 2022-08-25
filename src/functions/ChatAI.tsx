@@ -18,5 +18,5 @@ export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
     Speak(result);
   });
 
-  return <div className="a"></div>;
+  return null;
 };

@@ -41,9 +41,9 @@ export const AccessOpenAIAPI = async (text: string) => {
     });
   // debugger;
   let body = response.data.choices[0].text;
-  if(!body.includes("AI:")){
-    body = "AI:" + body 
-  }
+  // if(!body.includes("AI:")){
+  //   body = "AI:" + body 
+  // }
   return body;
   // });
   // text = text + body + "\n"; // stateに反映する

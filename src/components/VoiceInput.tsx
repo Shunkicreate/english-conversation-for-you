@@ -31,7 +31,6 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
   useEffect(()=>{
     if( finalTranscript !== ""){
       setPreFinalTranscript(finalTranscript)
-      console.log("finalTranscript", finalTranscript)
       const addData: ChatType = {
         person: "You",
         message: finalTranscript,
@@ -44,7 +43,6 @@ export const VoiceInput: FC<InputType> = ({ ChatDatas, setChatDatas,  setDoChat 
 
   // useEffect(() => {
   //   if (finalTranscript !== "") {
-  //     console.log("Got final result:", finalTranscript);
   //   }
   // }, [interimTranscript, finalTranscript]);
 
