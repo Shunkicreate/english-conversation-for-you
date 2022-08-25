@@ -83,6 +83,7 @@ export const VoiceInput: FC<VoiceInputType> = ({
             </div>
           </div>
         </div>
+        
         <Recording visible={listening} source={recordingGif}></Recording>
         <span>listening: {listening ? "on" : "off"}</span>
         <div>
