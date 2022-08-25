@@ -1,3 +1,4 @@
+import { TextCleaner } from "./TextCleaner";
 const { Configuration, OpenAIApi } = require("openai");
 
 export const AccessOpenAIAPI = async (text: string) => {
@@ -44,7 +45,7 @@ export const AccessOpenAIAPI = async (text: string) => {
   // if(!body.includes("AI:")){
   //   body = "AI:" + body 
   // }
-  return body;
+  return TextCleaner(body);
   // });
   // text = text + body + "\n"; // stateに反映する
   // return text;
