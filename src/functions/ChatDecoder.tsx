@@ -6,6 +6,9 @@ export const ChatDecoder = (ChatDatas: string) => {
   ChatDatas = ChatDatas.replace(regex, "");
   let ReturnDataArray: string[] = ChatDatas.split("\n");
   for (let i of ReturnDataArray) {
+    // if(i.includes(':') && !i.includes('AI:')){
+
+    // }
     const devideData: string[] = i.split(":");
     const singleChatData: ChatType = {
       person: devideData[0],

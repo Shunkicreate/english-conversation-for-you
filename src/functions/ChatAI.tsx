@@ -13,9 +13,9 @@ export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
   resultText.then((result) => {
     // debugger;
     const decodedResultText: ChatType[] = ChatDecoder(result);
+    console.log(result)
     setChatDatas(ChatDatas.concat(decodedResultText));
     Speak(result);
-    console.log(result)
   });
 
   return <div className="a"></div>;
