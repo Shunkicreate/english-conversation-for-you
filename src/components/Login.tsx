@@ -8,66 +8,47 @@ import { OAuthCredential } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [Uid, setUid] = useState('');
-  const provider = new GoogleAuthProvider();
+  const [Uid, setUid] = useState("");
+  const navigate = useNavigate();
   const CheckLogin = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUid(user.uid)
-        console.log('set uid!', Uid)
-        navigate('/Chat')
-      } 
+        setUid(user.uid);
+        console.log("set uid!", Uid);
+        navigate("/Chat");
+      }
     });
   };
-  const navigate = useNavigate();
-//   useEffect(() => {
-//     if (auth) {
-//       console.log("this is auth", auth);
-//       console.log("this is current user");
-//     }
-//   }, [Uid]);
-    CheckLogin()
+  CheckLogin();
+  const provider = new GoogleAuthProvider();
+  const ClickLogin = function () {
+    signInWithRedirect(auth, provider);
+  };
   //
-
-  //   try{
-  //     console.log("auth", auth);
-  //     console.log("auth.currentUser", auth.currentUser);
-  //   }
-  //   catch(e){
-  //     console.log(e)
-  //   }
-
-  //   useEffect(() => {
-  //     getRedirectResult(auth)
-  //       .then((result) => {
-  //         console.log(result);
-  //         if (result !== null) {
-  //           const credential: OAuthCredential | null =
-  //             GoogleAuthProvider.credentialFromResult(result);
-  //           if (credential !== null) {
-  //             const token = credential.accessToken;
-  //             console.log(token);
-  //             // The signed-in user info.
-  //             const user = result.user;
-  //             console.log(user);
-  //             console.log(user.uid);
-  //             navigate('/Chat')
-  //           }
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         // Handle Errors here.
-  //         const errorCode = error.code;
-  //         const errorMessage = error.message;
-  //         const email = error.email;
-  //         console.error(errorCode);
-  //         console.error(errorMessage);
-  //         console.error(email);
-  //         // The AuthCredential type that was used.
-  //         //const credential = GoogleAuthProvider.credentialFromError(error);
-  //       });
-  //   }, []);
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        console.log(result);
+        if (result !== null) {
+          const credential: OAuthCredential | null =
+            GoogleAuthProvider.credentialFromResult(result);
+          if (credential !== null) {
+            const user = result.user;
+            setUid(user.uid);
+            navigate("/Chat");
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        console.error(errorCode);
+        console.error(errorMessage);
+        console.error(email);
+      });
+  }, []);
 
   const CheckLogont = () => {
     onAuthStateChanged(auth, (user) => {
@@ -95,7 +76,9 @@ const Login = () => {
   return (
     <div>
       <h1>ログイン Google</h1>
-      <div>{/* <button onClick={() => ClickLogin()}>Login</button> */}</div>
+      <div>
+        <button onClick={() => ClickLogin()}>Login</button>
+      </div>
       <hr />
       <hr />
       <button onClick={() => clickLogout()}>Logout</button>
