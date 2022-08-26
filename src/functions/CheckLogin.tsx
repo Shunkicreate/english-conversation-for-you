@@ -1,14 +1,12 @@
-import { onAuthStateChanged,  Auth,  User } from "firebase/auth";
-import { useState } from "react";
+import { onAuthStateChanged, Auth } from "firebase/auth";
+// import { auth } from "./Firebase";
 
-export const CheckLogin = (auth: Auth) => {
-    const [users, setusers] = useState<User|null>(null) 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            setusers(user)
-        } else {
-            return(-1)
-        }
-    });
-    return users
-}
+export const CheckLogin: (auth: Auth) => null | string = (auth) => {
+    // debugger
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      return user.uid;
+    }
+  });
+  return null;
+};

@@ -15,7 +15,7 @@ const Login = () => {
       if (user) {
         setUid(user.uid);
         console.log("set uid!", Uid);
-        navigate("/Chat");
+        navigate("/");
       }
     });
   };
@@ -35,7 +35,7 @@ const Login = () => {
           if (credential !== null) {
             const user = result.user;
             setUid(user.uid);
-            navigate("/Chat");
+            navigate("/");
           }
         }
       })

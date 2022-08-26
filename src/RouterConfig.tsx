@@ -8,8 +8,8 @@ export const RouterConfig = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path={``} element={<Login />} />
-          <Route path={`/Chat`} element={<App />} />
+          <Route path={`/login`} element={<Login />} />
+          <Route path={`/`} element={<App />} />
           <Route path="*" element={<NotFoutnd />} />
         </Routes>
       </BrowserRouter>

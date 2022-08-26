@@ -5,8 +5,13 @@ import { ChatType } from "./types/ChatType";
 import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
-import { VoiceInput } from "./components/VoiceInput"
+import { VoiceInput } from "./components/VoiceInput";
+import { CheckLogin } from "./functions/CheckLogin";
+import { useNavigate } from "react-router-dom";
+import { auth } from "./functions/Firebase";
 const App = () => {
+  const [Uid, setUid] = useState<string | null>(null);
+  const navigate = useNavigate();
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([
     {
       person: "AI",
@@ -14,13 +19,20 @@ const App = () => {
     },
   ]);
   const [DoChat, setDoChat] = useState(false);
-  // const [uid, setUid] = useState<number>(0);
   useEffect(() => {
     if (ChatDatas.length > 1 && DoChat) {
       ChatAI({ ChatDatas, setChatDatas });
       setDoChat(false);
     }
   }, [ChatDatas, DoChat]);
+  useEffect(() => {
+    // debugger;
+    setUid(CheckLogin(auth));
+    if (!Uid) {
+      navigate("/login");
+      console.log("hahaha", Uid);
+    }
+  }, [Uid, navigate]);
 
   return (
     <div className="App">
