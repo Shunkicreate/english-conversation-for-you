@@ -9,7 +9,7 @@ export const RouterConfig = () => {
       <BrowserRouter>
         <Routes>
           <Route path={`/login`} element={<Login />} />
-          <Route path={`/`} element={<App />} />
+          <Route path={`/`} element={<App uid={null} />} />
           <Route path="*" element={<NotFoutnd />} />
         </Routes>
       </BrowserRouter>

@@ -8,18 +8,18 @@ import { OAuthCredential } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [Uid, setUid] = useState("");
+  // const [Uid, setUid] = useState("");
   const navigate = useNavigate();
-  const CheckLogin = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUid(user.uid);
-        console.log("set uid!", Uid);
-        navigate("/");
-      }
-    });
-  };
-  CheckLogin();
+  // const CheckLogin = () => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUid(user.uid);
+  //       console.log("set uid!", Uid);
+  //       navigate("/");
+  //     }
+  //   });
+  // };
+  // CheckLogin();
   const provider = new GoogleAuthProvider();
   const ClickLogin = function () {
     signInWithRedirect(auth, provider);
@@ -33,8 +33,9 @@ const Login = () => {
             GoogleAuthProvider.credentialFromResult(result);
           if (credential !== null) {
             const user = result.user;
-            setUid(user.uid);
-            navigate("/");
+            // setUid(user.uid);
+            console.log('go to root')
+            navigate("/", {state:{uid: user.uid}});
           }
         }
       })

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./stylesheets/App.css";
-import { useState } from "react";
+import { useState, FC } from "react";
 import { ChatType } from "./types/ChatType";
 import { Input } from "./components/Input";
 import { ChatAI } from "./functions/ChatAI";
@@ -9,8 +9,14 @@ import { VoiceInput } from "./components/VoiceInput";
 import { CheckLogin } from "./functions/CheckLogin";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./functions/Firebase";
-const App = () => {
-  const [Uid, setUid] = useState<string | null>(null);
+import { AppType } from "./types/AppType";
+import { useLocation } from 'react-router-dom';
+const App: FC<AppType> = ({ uid }) => {
+  // debugger
+  const location = useLocation();
+  const [locationUid, setlocationUid] 
+  = useState<{ uid: string }>(location.state as { uid: string })
+  const [Uid, setUid] = useState<string | null>(uid);
   const navigate = useNavigate();
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([
     {
@@ -26,16 +32,20 @@ const App = () => {
     }
   }, [ChatDatas, DoChat]);
   useEffect(() => {
-    // debugger;
+    debugger;
     setUid(CheckLogin(auth));
-    if (!Uid) {
+    if (locationUid !== null) {
+      setUid(locationUid.uid)
+    }
+    if (!Uid && !locationUid) {
       navigate("/login");
       console.log("hahaha", Uid);
     }
-  }, [Uid, navigate]);
+  }, []);
 
   return (
     <div className="App">
+      {Uid}
       <Input
         ChatDatas={ChatDatas}
         setChatDatas={setChatDatas}
