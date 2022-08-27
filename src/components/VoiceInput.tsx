@@ -8,6 +8,7 @@ import { FCOneChat } from "./OneChat";
 import "../stylesheets/ShowChat.css";
 import recordingGif from "../assets/recording.gif";
 import { Recording } from "./Recording";
+import "../stylesheets/Button.css"
 export const VoiceInput: FC<VoiceInputType> = ({
   ChatDatas,
   setChatDatas,
@@ -84,18 +85,18 @@ export const VoiceInput: FC<VoiceInputType> = ({
           </div>
         </div>
 
-        <Recording visible={listening} source={recordingGif}></Recording>
-        <span>listening: {listening ? "on" : "off"}</span>
+        {/* <span>listening: {listening ? "on" : "off"}</span> */}
         <div>
           {/* <button type="button" onClick={resetTranscript}>
             Reset
           </button> */}
-          <button type="button" onClick={listenContinuously}>
+          <button type="button" onClick={listenContinuously} className="button">
             Listen
           </button>
-          <button type="button" onClick={SpeechRecognition.stopListening}>
+          <button type="button" onClick={SpeechRecognition.stopListening} className="button">
             Stop
           </button>
+          <Recording visible={listening} source={recordingGif}></Recording>
         </div>
       </div>
     </div>
