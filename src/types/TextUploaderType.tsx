@@ -1,5 +1,5 @@
 import { ChatType } from "./ChatType";
 export interface TextUploaderType {
-    ChatDatas: ChatType[];
+    concattedChatDatas: ChatType[];
     Uid: string | null;
 }
