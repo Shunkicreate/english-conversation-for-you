@@ -21,7 +21,7 @@ export const OneChat = (person: string, message: string) => {
 
 export const FCOneChat: FC<FCOneChatType> = ({ person, message }) => {
   useEffect(() => {
-    console.log(message);
+    // console.log(message);
   }, [message]);
   if (person === "AI" || person === "OpenAI") {
     return (

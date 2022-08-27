@@ -27,7 +27,7 @@ const Login = () => {
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result !== null) {
           const credential: OAuthCredential | null =
             GoogleAuthProvider.credentialFromResult(result);
@@ -35,29 +35,22 @@ const Login = () => {
             const user = result.user;
             // setUid(user.uid);
             console.log('go to root')
-            navigate("/", {state:{uid: user.uid}});
+            navigate("/", { state: { uid: user.uid } });
           }
         }
       })
       .catch((error) => {
         console.error(error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        console.error(errorCode);
-        console.error(errorMessage);
-        console.error(email);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.error(errorCode);
+        // console.error(errorMessage);
       });
   }, []);
 
   const CheckLogont = () => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        const email = user.email;
-        console.log(uid);
-        console.log(email);
-      } else {
+      if (!user) {
         console.log("signed out");
       }
     });

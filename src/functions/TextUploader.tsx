@@ -6,7 +6,7 @@ import { CurrentTimeDataType } from "../types/CurrentTimeDataType";
 import { GetCurrentTime } from "./GetCurrentTime";
 import { MakeUploadData } from "./MakeUploadData";
 export const TextUploader: FC<TextUploaderType> = ({ ChatDatas, Uid }) => {
-    console.log("ChatDatas in text uploader", ChatDatas)
+    console.log("ChatDatas in text uploader", ChatDatas.slice(-2))
     const currenttimedata: CurrentTimeDataType = GetCurrentTime()
     const uploadData = MakeUploadData( currenttimedata, ChatDatas)
     update(ref(db, 'uids/' + Uid + '/' + Math.trunc(currenttimedata.unix)), {

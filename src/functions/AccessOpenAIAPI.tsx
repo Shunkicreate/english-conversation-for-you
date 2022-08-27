@@ -31,7 +31,7 @@ export const AccessOpenAIAPI = async (text: string) => {
     });
   // debugger;
   let body = response.data.choices[0].text;
-  console.log("before cleaned", body)
+  // console.log("before cleaned", body)
   return TextCleaner(body);
 };
 export const Chat = (text: string) => {

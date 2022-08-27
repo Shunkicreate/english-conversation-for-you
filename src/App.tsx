@@ -12,7 +12,6 @@ import { auth } from "./functions/Firebase";
 import { AppType } from "./types/AppType";
 import { useLocation } from 'react-router-dom';
 const App: FC<AppType> = ({ uid }) => {
-  // debugger
   const location = useLocation();
   const [locationUid, setlocationUid] 
   = useState<{ uid: string }>(location.state as { uid: string })
@@ -39,7 +38,7 @@ const App: FC<AppType> = ({ uid }) => {
     }
     if (!Uid && !locationUid) {
       navigate("/login");
-      console.log("hahaha", Uid);
+      // console.log("hahaha", Uid);
     }
   }, []);
 
