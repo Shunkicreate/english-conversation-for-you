@@ -7,6 +7,7 @@ export const GetCurrentTime: ()=> CurrentTimeDataType = () => {
     const hour = now.getHours();
     const minutes = now.getMinutes();
     const day = now.getDay();
+    const unix = Date.now()
     const returnData: CurrentTimeDataType = {
         year: year,
         month: month,
@@ -14,6 +15,7 @@ export const GetCurrentTime: ()=> CurrentTimeDataType = () => {
         hour: hour,
         minutes: minutes,
         day: day,
+        unix: unix,
     }
     return returnData
 }

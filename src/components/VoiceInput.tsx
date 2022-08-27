@@ -15,7 +15,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
   setChatDatas,
   DoChat,
   setDoChat,
-  Uid
 }) => {
   const [message, messageSet] = useState("");
   const element = useRef<HTMLDivElement>(null);
@@ -51,7 +50,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
         message: finalTranscript,
       };
       setChatDatas([...ChatDatas, addData]);
-      TextUploader({ChatDatas, Uid})
       resetTranscript();
       setDoChat(true);
     }

@@ -5,4 +5,5 @@ export interface CurrentTimeDataType {
     hour: number;
     minutes: number;
     day: number;
+    unix: number;
 }

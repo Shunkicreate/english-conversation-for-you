@@ -6,7 +6,8 @@ import { ChatAIType } from "../types/ChatAIType";
 import { ChatType } from "../types/ChatType";
 import { AccessOpenAIAPI } from "./AccessOpenAIAPI";
 import { Speak } from "./Speak";
-export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
+import { TextUploader } from "../functions/TextUploader";
+export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas, Uid }) => {
   const resultText: Promise<string> = AccessOpenAIAPI(
     ChatEncoder(ChatGetter(ChatDatas))
   );
@@ -15,6 +16,8 @@ export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas }) => {
     const decodedResultText: ChatType[] = ChatDecoder(result);
     setChatDatas(ChatDatas.concat(decodedResultText));
     Speak(result);
+    TextUploader({ChatDatas, Uid})
+
   });
 
   return null;

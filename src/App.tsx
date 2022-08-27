@@ -27,7 +27,7 @@ const App: FC<AppType> = ({ uid }) => {
   const [DoChat, setDoChat] = useState(false);
   useEffect(() => {
     if (ChatDatas.length > 1 && DoChat) {
-      ChatAI({ ChatDatas, setChatDatas });
+      ChatAI({ ChatDatas, setChatDatas, Uid });
       setDoChat(false);
     }
   }, [ChatDatas, DoChat]);
@@ -57,7 +57,6 @@ const App: FC<AppType> = ({ uid }) => {
         setChatDatas={setChatDatas}
         DoChat={DoChat}
         setDoChat={setDoChat}
-        Uid={Uid}
       />
     </div>
   );

@@ -8,5 +8,6 @@ export const ChatEncoder = (ChatDatas: ChatType[]) => {
   })
   // for (let i of ChatDatas) {
   // }
+  console.log(ReturnData)
   return ReturnData;
 };
