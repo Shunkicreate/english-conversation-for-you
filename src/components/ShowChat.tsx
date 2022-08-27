@@ -3,7 +3,6 @@ import { ShowChatTypes } from "../types/ShowChatTypes";
 import "../stylesheets/ShowChat.css";
 import { OneChat } from "./OneChat";
 
-
 export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
