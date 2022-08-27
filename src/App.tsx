@@ -32,7 +32,7 @@ const App: FC<AppType> = ({ uid }) => {
     }
   }, [ChatDatas, DoChat]);
   useEffect(() => {
-    debugger;
+    // debugger;
     setUid(CheckLogin(auth));
     if (locationUid !== null) {
       setUid(locationUid.uid)
@@ -45,7 +45,7 @@ const App: FC<AppType> = ({ uid }) => {
 
   return (
     <div className="App">
-      {Uid}
+      {/* {Uid} */}
       <Input
         ChatDatas={ChatDatas}
         setChatDatas={setChatDatas}
