@@ -4,4 +4,5 @@ export interface VoiceInputType {
   setChatDatas: React.Dispatch<React.SetStateAction<ChatType[]>>;
   DoChat: boolean;
   setDoChat: React.Dispatch<React.SetStateAction<boolean>>;
+  Uid: string | null;
 }

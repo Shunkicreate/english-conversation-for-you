@@ -9,11 +9,13 @@ import "../stylesheets/ShowChat.css";
 import recordingGif from "../assets/recording.gif";
 import { Recording } from "./Recording";
 import "../stylesheets/Button.css"
+import { TextUploader } from "../functions/TextUploader";
 export const VoiceInput: FC<VoiceInputType> = ({
   ChatDatas,
   setChatDatas,
   DoChat,
   setDoChat,
+  Uid
 }) => {
   const [message, messageSet] = useState("");
   const element = useRef<HTMLDivElement>(null);
@@ -49,6 +51,7 @@ export const VoiceInput: FC<VoiceInputType> = ({
         message: finalTranscript,
       };
       setChatDatas([...ChatDatas, addData]);
+      TextUploader({ChatDatas, Uid})
       resetTranscript();
       setDoChat(true);
     }

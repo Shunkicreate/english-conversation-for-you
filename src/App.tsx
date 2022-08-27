@@ -57,6 +57,7 @@ const App: FC<AppType> = ({ uid }) => {
         setChatDatas={setChatDatas}
         DoChat={DoChat}
         setDoChat={setDoChat}
+        Uid={Uid}
       />
     </div>
   );
