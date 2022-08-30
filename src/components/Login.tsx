@@ -7,6 +7,7 @@ import { getRedirectResult, GoogleAuthProvider } from "firebase/auth";
 import { OAuthCredential } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import "../stylesheets/Button.css"
 const Login = () => {
   // const [Uid, setUid] = useState("");
   const navigate = useNavigate();
@@ -68,13 +69,13 @@ const Login = () => {
 
   return (
     <div>
-      <h1>ログイン Google</h1>
       <div>
-        <button onClick={() => ClickLogin()}>Login</button>
+        <h3>Google ログイン</h3>
       </div>
-      <hr />
-      <hr />
-      <button onClick={() => clickLogout()}>Logout</button>
+      <div>
+        <button onClick={() => ClickLogin()} className="button">Login</button>
+      </div>
+      <button onClick={() => clickLogout()} className="button">Logout</button>
     </div>
   );
 };
