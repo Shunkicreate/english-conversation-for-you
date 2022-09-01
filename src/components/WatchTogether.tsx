@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { GetVttFile } from "../functions/GetVttFile";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
+    const [VttData, setVttData] = useState("")
     const youtubeId = 'pmG6JxkVzKM';
     return (
-        <div className="App">
+        <div className="WatchTogether">
             {isThumbnail ? (
                 <img
                     src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
