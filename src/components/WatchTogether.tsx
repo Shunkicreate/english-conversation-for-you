@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { GetVttFile } from "../functions/GetVttFile";
+import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
 
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [VttData, setVttData] = useState("")
-    useEffect(()=>{
+    useEffect(() => {
         var data = {
-            "url": "https://www.youtube.com/watch?v=i0ShMDZ_q-U"
+            "url": "https://www.youtube.com/watch?v=iFg-bFAu2AU"
         };
-    
+
         var config = {
             method: 'post',
-            url: 'http://127.0.0.1:5000/youtubeDlSubtitles',
+            url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
             },
             data: data
         };
@@ -27,7 +29,7 @@ export const WatchTogether = () => {
                 console.log(error);
             });
     })
-    const youtubeId = 'pmG6JxkVzKM';
+    const youtubeId = 'iFg-bFAu2AU';
     return (
         <div className="WatchTogether">
             {isThumbnail ? (
@@ -37,17 +39,25 @@ export const WatchTogether = () => {
                     alt="サムネイル"
                 />
             ) : (
-                <iframe
-                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
+                <div>
+                    <iframe
+                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                    <div>
+                        <video src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`} title="YouTube video player">
+                            <track default src={VttData} />
+                        </video>
+                    </div>
+                    <ShowSubtitles />
+                </div>
             )}
             {/* <div>{VttData}</div> */}
         </div>
-        
+
     );
 
 }
