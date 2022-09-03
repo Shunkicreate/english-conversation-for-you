@@ -18,7 +18,6 @@ export const WatchTogether = () => {
     const funcShowSubtitles = ShowSubtitles({ subtitlesObjList })
 
     useEffect(() => {
-        console.log('start connention')
         if (InputUrl !== "") {
             var data = {
                 "url": InputUrl
@@ -39,9 +38,6 @@ export const WatchTogether = () => {
                     // setVttData(JSON.stringify(response.data))
                     // presubtitlesObjList = MakeSubtitlesObj(VttData)
                     const preList = MakeSubtitlesObj(VttData)
-                    for( var i of preList){
-                        console.log(i)
-                    }
                     setsubtitlesObjList(preList)
                 })
                 .catch(function (error) {
@@ -54,7 +50,6 @@ export const WatchTogether = () => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
     useEffect(() => {
-        console.log(subtitlesObjList)
         if (subtitlesObjList.length > 0) {
             setIsThumbnail(false)
         }
@@ -85,7 +80,7 @@ export const WatchTogether = () => {
                         }
                     }} />
             </div>
-            {subtitlesObjList.length > 0 ? (
+            {isThumbnail ? (
                 <img
                     src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
                     onClick={() => setIsThumbnail(false)}
@@ -106,6 +101,11 @@ export const WatchTogether = () => {
                             <track default src={VttData} />
                         </video>
                     </div> */}
+                    <div>
+                        <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                        {/* {funcShowSubtitles} */}
+
+                    </div>
                     {subtitlesObjList.length > 0 ? (
                         <div>no video</div>
                     ) : (
@@ -117,9 +117,9 @@ export const WatchTogether = () => {
                     )}
                 </div>
             )}
-            <div>
+            {/* <div>
                 {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
-            </div>
+            </div> */}
             {/* <div>{VttData}</div> */}
         </div>
 

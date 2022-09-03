@@ -54,9 +54,9 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
                     <div>
                         {subtitlesObjList[Index].text}
                     </div>
-                    <div>
+                    {/* <div>
                         {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
-                    </div>
+                    </div> */}
                 </div>
 
 
