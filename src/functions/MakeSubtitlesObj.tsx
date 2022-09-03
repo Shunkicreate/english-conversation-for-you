@@ -1,6 +1,5 @@
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 export const MakeSubtitlesObj: (subtitles: string) => subtitlesObjListType[] = (subtitles) => {
-    console.log(subtitles)
     subtitles = subtitles.replaceAll('\\n', '\n')
     subtitles = subtitles.replaceAll('\n\n\n', '\n\n')
     var subtitlesObj = subtitles.split('\n\n')
@@ -36,7 +35,6 @@ export const MakeSubtitlesObj: (subtitles: string) => subtitlesObjListType[] = (
             curId: curId
         }
         subtitlesObjList.push(addData)
-        console.log(i)
     }
     return subtitlesObjList
 }
