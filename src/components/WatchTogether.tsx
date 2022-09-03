@@ -5,8 +5,12 @@ import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
-
-
+ interface Props {
+    count:number
+ }
+const Excomponent = (props: Props) => {
+    return (<div><div>count: {props.count}</div></div>)
+}
 
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
@@ -51,7 +55,7 @@ export const WatchTogether = () => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
     useEffect(() => {
-        debugger
+        // debugger
         console.log(subtitlesObjList)
         if(subtitlesObjList.length > 0){
             setIsThumbnail(false)
@@ -63,9 +67,15 @@ export const WatchTogether = () => {
     //     setInputUrl(InputData)
     //     setYoutubeId(GetYouTubeVideoId(InputUrl))
     // }
+    const [excount, setExcount] = useState(0)
+
 
     return (
         <div className="WatchTogether">
+            <div onClick={() => {setExcount(excount + 1)}}>
+            excount: {excount}
+            </div>
+            <Excomponent count={excount} />
             <div>
                 <input type="text"
                     defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
