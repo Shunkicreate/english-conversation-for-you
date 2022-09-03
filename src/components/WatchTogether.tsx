@@ -6,7 +6,7 @@ import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
 import { useStopwatch } from "react-timer-hook";
-
+import '../stylesheets/WatchTogether.css'
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     // const [VttData, setVttData] = useState("")

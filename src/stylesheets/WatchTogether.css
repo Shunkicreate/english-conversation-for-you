@@ -1,0 +1,19 @@
+.WatchTogether{
+    text-align: center;
+    width: 55%;
+    height: 100%;
+    margin: auto;
+}
+
+/* iframe{
+    width: 100%;
+    height: 100%;
+} */
+
+
+@media screen and (max-width:1280px) {
+  
+    .WatchTogether {
+      width: 100%;
+    }
+  }
