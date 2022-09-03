@@ -1,5 +1,6 @@
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { useStopwatch } from "react-timer-hook";
+import { useEffect, useState } from "react";
 export const ShowSubtitles = () => {
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
         useStopwatch({ autoStart: true });
@@ -41,7 +42,22 @@ export const ShowSubtitles = () => {
         subtitlesObjList.push(addData)
         console.log(i)
     }
+    const [Index, setIndex] = useState(0)
+    useEffect(() => {
+        const now = seconds + 60 * (minutes + 60 * (hours + 24 * days))
+        if (now > subtitlesObjList[Index].start) {
+            if (Index === subtitlesObjList.length - 1) {
+                const addData: subtitlesObjListType = {
+                    start: Infinity,
+                    text: 'end',
+                    curId: 'cur-id-inf'
+                }
+                subtitlesObjList.push(addData)
+            }
+            setIndex(Index + 1)
+        }
 
+    }, [days, hours, minutes, seconds])
 
     return (
         <div>
@@ -62,6 +78,9 @@ export const ShowSubtitles = () => {
                         Reset
                     </button>
                 </div>
+            </div>
+            <div>
+                {subtitlesObjList[Index].text}
             </div>
             <div>
                 {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
