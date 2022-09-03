@@ -57,7 +57,7 @@ export const WatchTogether = () => {
     }, [days, hours, minutes, seconds])
     return (
         <div className="WatchTogether">
-            <div>
+            <div className="InputArea">
                 <input type="text"
                     defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
                     onChange={(e) => {
@@ -69,44 +69,53 @@ export const WatchTogether = () => {
                         }
                     }} />
             </div>
-            {isThumbnail ? (
-                <img
-                    src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
-                    onClick={() => setIsThumbnail(false)}
-                    alt="サムネイル"
-                />
-            ) : (
-                <div>
+            <div className="ShowArea">
+                {isThumbnail ? (
                     <div>
-                        <iframe
-                            src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
+                        {YoutubeId === "" ? (
+                            <div>none</div>
+                        ) : (
+                            <img
+                                src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
+                                onClick={() => setIsThumbnail(false)}
+                                alt="サムネイル"
+                            />
+                        )}
 
                     </div>
+                ) : (
                     <div>
-                        <div style={{ textAlign: "center" }}>
-                            <div>
-                                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                                <span>{seconds}</span>
-                            </div>
-                            <button onClick={start}>Start</button>
-                            <button onClick={pause}>Pause</button>
-                            <button
-                                onClick={reset as unknown as React.MouseEventHandler<HTMLButtonElement>}
-                            >
-                                Reset
-                            </button>
+                        <div>
+                            <iframe
+                                src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+
                         </div>
-                        <ShowSubtitles subtitlesObjList={subtitlesObjList}
-                            Now={Now}
-                        />
+                        <div>
+                            <div style={{ textAlign: "center" }}>
+                                <div>
+                                    <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
+                                    <span>{seconds}</span>
+                                </div>
+                                <button className="button" onClick={start}>Start</button>
+                                <button className="button" onClick={pause}>Pause</button>
+                                <button className="button"
+                                    onClick={reset as unknown as React.MouseEventHandler<HTMLButtonElement>}
+                                >
+                                    Reset
+                                </button>
+                            </div>
+                            <ShowSubtitles subtitlesObjList={subtitlesObjList}
+                                Now={Now}
+                            />
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
 
     );

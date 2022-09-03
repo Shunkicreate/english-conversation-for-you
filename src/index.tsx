@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./stylesheets/index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterConfig } from './RouterConfig';
+import "./stylesheets/Button.css"
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
