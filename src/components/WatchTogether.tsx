@@ -5,12 +5,7 @@ import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
- interface Props {
-    count:number
- }
-const Excomponent = (props: Props) => {
-    return (<div><div>count: {props.count}</div></div>)
-}
+import { Excomponent } from "./Ex";
 
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
