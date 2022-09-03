@@ -25,6 +25,7 @@ export const WatchTogether = () => {
         };
         axios(config)
             .then(function (response) {
+                debugger
                 console.log(JSON.stringify(response.data));
                 setVttData(JSON.stringify(response.data))
                 setIsThumbnail(false)
@@ -38,6 +39,7 @@ export const WatchTogether = () => {
         <div className="WatchTogether">
             <div>
                 <input type="text"
+                defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
                     onChange={(e) => {
                         setInputData(e.target.value)
                     }}
@@ -63,12 +65,16 @@ export const WatchTogether = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>
-                    <div>
+                    {/* <div>
                         <video src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`} title="YouTube video player">
                             <track default src={VttData} />
                         </video>
-                    </div>
-                    <ShowSubtitles subtitles={VttData} />
+                    </div> */}
+                    {VttData !== "" ?(
+                        <ShowSubtitles subtitles={VttData} />
+                    ):(
+                        <div>no video</div>
+                    )}
                 </div>
             )}
             {/* <div>{VttData}</div> */}
