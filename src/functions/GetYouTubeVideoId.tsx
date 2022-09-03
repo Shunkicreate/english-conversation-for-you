@@ -1,5 +1,6 @@
 export const GetYouTubeVideoId = (url: string) => {
     const name = 'v'
+    // debugger
     let queryString = url.split('?');
     if (queryString.length >= 2) {
         let paras = queryString[1].split('&');

@@ -12,33 +12,45 @@ export const WatchTogether = () => {
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
+
     useEffect(() => {
-        var data = {
-            "url": InputUrl
-        };
-
-        var config = {
-            method: 'post',
-            url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
-            },
-            data: data
-        };
-        axios(config)
-            .then(function (response) {
-                // debugger
-                console.log(JSON.stringify(response.data));
-                setVttData(JSON.stringify(response.data))
-                setIsThumbnail(false)
-                setsubtitlesObjList(MakeSubtitlesObj(VttData))
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if(InputUrl !== ""){
+            var data = {
+                "url": InputUrl
+            };
+            var config = {
+                method: 'post',
+                url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
+                },
+                data: data
+            };
+            axios(config)
+                .then(function (response) {
+                    // debugger
+                    // console.log(JSON.stringify(response.data));
+                    setVttData(JSON.stringify(response.data))
+                    setsubtitlesObjList(MakeSubtitlesObj(VttData))
+                    setIsThumbnail(false)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     }, [InputUrl])
+
+    useEffect(() => {
+        setYoutubeId(GetYouTubeVideoId(InputUrl))
+    }, [InputData, InputUrl])
+
+    // const setYoutubeVideoData = () => {
+    //     debugger
+    //     setInputUrl(InputData)
+    //     setYoutubeId(GetYouTubeVideoId(InputUrl))
+    // }
+
     return (
         <div className="WatchTogether">
             <div>
@@ -50,9 +62,8 @@ export const WatchTogether = () => {
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                             setInputUrl(InputData)
-                            setYoutubeId(GetYouTubeVideoId(InputUrl))
                         }
-                    }} />{InputData}{InputUrl}
+                    }} />
             </div>
             {isThumbnail ? (
                 <img
@@ -68,7 +79,8 @@ export const WatchTogether = () => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                    ></iframe>
+                        ></iframe>
+                        {`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
                     {/* <div>
                         <video src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`} title="YouTube video player">
                             <track default src={VttData} />
