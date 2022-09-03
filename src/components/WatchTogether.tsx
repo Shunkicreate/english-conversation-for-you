@@ -15,12 +15,11 @@ export const WatchTogether = () => {
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     // var presubtitlesObjList:subtitlesObjListType[] = []
+    const funcShowSubtitles = ShowSubtitles({ subtitlesObjList })
 
-    const funcShowSubtitles = ShowSubtitles({subtitlesObjList})
-    
     useEffect(() => {
-        // debugger
-        if(InputUrl !== ""){
+        console.log('start connention')
+        if (InputUrl !== "") {
             var data = {
                 "url": InputUrl
             };
@@ -36,29 +35,32 @@ export const WatchTogether = () => {
             axios(config)
                 .then(function (response) {
                     const VttData = JSON.stringify(response.data)
+                    console.log(VttData)
                     // setVttData(JSON.stringify(response.data))
                     // presubtitlesObjList = MakeSubtitlesObj(VttData)
-                    setsubtitlesObjList(MakeSubtitlesObj(VttData))
+                    const preList = MakeSubtitlesObj(VttData)
+                    for( var i of preList){
+                        console.log(i)
+                    }
+                    setsubtitlesObjList(preList)
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-            }
-        }, [InputUrl])
+        }
+    }, [InputUrl])
 
-        useEffect(() => {
+    useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
     useEffect(() => {
-        // debugger
         console.log(subtitlesObjList)
-        if(subtitlesObjList.length > 0){
+        if (subtitlesObjList.length > 0) {
             setIsThumbnail(false)
         }
     }, [subtitlesObjList])
 
     // const setYoutubeVideoData = () => {
-    //     debugger
     //     setInputUrl(InputData)
     //     setYoutubeId(GetYouTubeVideoId(InputUrl))
     // }
@@ -67,8 +69,8 @@ export const WatchTogether = () => {
 
     return (
         <div className="WatchTogether">
-            <div onClick={() => {setExcount(excount + 1)}}>
-            excount: {excount}
+            <div onClick={() => { setExcount(excount + 1) }}>
+                excount: {excount}
             </div>
             <Excomponent count={excount} />
             <div>
@@ -97,8 +99,8 @@ export const WatchTogether = () => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        ></iframe>
-                        {`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
+                    ></iframe>
+                    {`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
                     {/* <div>
                         <video src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`} title="YouTube video player">
                             <track default src={VttData} />
@@ -106,15 +108,18 @@ export const WatchTogether = () => {
                     </div> */}
                     {subtitlesObjList.length > 0 ? (
                         <div>no video</div>
-                        ) : (
-                            <div>
-                                <ShowSubtitles subtitlesObjList={subtitlesObjList} />
-                                {/* {funcShowSubtitles} */}
+                    ) : (
+                        <div>
+                            <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                            {/* {funcShowSubtitles} */}
 
-                            </div>
+                        </div>
                     )}
                 </div>
             )}
+            <div>
+                {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
+            </div>
             {/* <div>{VttData}</div> */}
         </div>
 

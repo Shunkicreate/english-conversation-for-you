@@ -11,7 +11,7 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
     const [Index, setIndex] = useState(0)
     useEffect(() => {
         const now = seconds + 60 * (minutes + 60 * (hours + 24 * days))
-        if(subtitlesObjList.length > 1){
+        if(subtitlesObjList.length > 0){
             if (now > subtitlesObjList[Index].start) {
                 if (Index === subtitlesObjList.length - 1) {
                     const addData: subtitlesObjListType = {

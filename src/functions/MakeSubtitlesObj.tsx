@@ -1,6 +1,8 @@
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 export const MakeSubtitlesObj: (subtitles: string) => subtitlesObjListType[] = (subtitles) => {
-    subtitles = subtitles.replace('\n\n\n', '\n\n')
+    console.log(subtitles)
+    subtitles = subtitles.replaceAll('\\n', '\n')
+    subtitles = subtitles.replaceAll('\n\n\n', '\n\n')
     var subtitlesObj = subtitles.split('\n\n')
     subtitlesObj = subtitlesObj.slice(1)
     if (subtitlesObj[subtitlesObj.length - 1] === "\n") {
