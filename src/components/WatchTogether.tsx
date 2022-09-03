@@ -5,15 +5,22 @@ import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
+
+
+
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
-    const [VttData, setVttData] = useState("")
+    // const [VttData, setVttData] = useState("")
     const [InputUrl, setInputUrl] = useState("")
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
+    // var presubtitlesObjList:subtitlesObjListType[] = []
 
+    const funcShowSubtitles = ShowSubtitles({subtitlesObjList})
+    
     useEffect(() => {
+        // debugger
         if(InputUrl !== ""){
             var data = {
                 "url": InputUrl
@@ -29,21 +36,27 @@ export const WatchTogether = () => {
             };
             axios(config)
                 .then(function (response) {
-                    // debugger
-                    // console.log(JSON.stringify(response.data));
-                    setVttData(JSON.stringify(response.data))
+                    const VttData = JSON.stringify(response.data)
+                    // setVttData(JSON.stringify(response.data))
+                    // presubtitlesObjList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(MakeSubtitlesObj(VttData))
-                    setIsThumbnail(false)
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
-    }, [InputUrl])
+            }
+        }, [InputUrl])
 
-    useEffect(() => {
+        useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
+    useEffect(() => {
+        debugger
+        console.log(subtitlesObjList)
+        if(subtitlesObjList.length > 0){
+            setIsThumbnail(false)
+        }
+    }, [subtitlesObjList])
 
     // const setYoutubeVideoData = () => {
     //     debugger
@@ -65,7 +78,7 @@ export const WatchTogether = () => {
                         }
                     }} />
             </div>
-            {isThumbnail ? (
+            {subtitlesObjList.length > 0 ? (
                 <img
                     src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
                     onClick={() => setIsThumbnail(false)}
@@ -89,7 +102,11 @@ export const WatchTogether = () => {
                     {subtitlesObjList.length > 0 ? (
                         <div>no video</div>
                         ) : (
-                        <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                            <div>
+                                <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                                {/* {funcShowSubtitles} */}
+
+                            </div>
                     )}
                 </div>
             )}

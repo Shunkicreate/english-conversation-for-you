@@ -5,7 +5,7 @@ interface Propstype {
   text: string;
 }
 
-const SowChat = (props: Propstype) => {
+const ShowChat = (props: Propstype) => {
   const texts = props.text.split(/(\n)/).map((item, index) => {
     return (
       <React.Fragment key={index}>
@@ -77,7 +77,7 @@ export const TextInput = () => {
       <input type="submit" value="Submit" />
       {/* <ChatText event.target.value></ChatText> */}
       <div>{text}</div>
-      <SowChat text={ShowText}></SowChat>
+      <ShowChat text={ShowText}></ShowChat>
       {/* <div onClick={(event)=>{con(text)}}>button</div> */}
       {/* </form> */}
     </div>
