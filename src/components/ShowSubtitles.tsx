@@ -1,17 +1,14 @@
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
-import { useStopwatch } from "react-timer-hook";
 import { useEffect, useState, FC } from "react";
 type Props = {
     subtitlesObjList: subtitlesObjListType[];
+    Now: number;
 };
-export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
-    const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
-        useStopwatch({ autoStart: true });
+export const ShowSubtitles: FC<Props> = ({ subtitlesObjList, Now }) => {
     const [Index, setIndex] = useState(0)
     useEffect(() => {
-        const now = seconds + 60 * (minutes + 60 * (hours + 24 * days))
-        if(subtitlesObjList.length > 0){
-            if (now > subtitlesObjList[Index].start) {
+        if (subtitlesObjList.length > 0) {
+            if (Now > subtitlesObjList[Index].start) {
                 if (Index === subtitlesObjList.length - 1) {
                     const addData: subtitlesObjListType = {
                         start: Infinity,
@@ -24,25 +21,10 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
             }
         }
 
-    }, [days, hours, minutes, seconds])
+    }, [Now, Index, subtitlesObjList])
 
     return (
         <div>
-            <div>
-                <div style={{ textAlign: "center" }}>
-                    <div>
-                        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                        <span>{seconds}</span>
-                    </div>
-                    <button onClick={start}>Start</button>
-                    <button onClick={pause}>Pause</button>
-                    <button
-                        onClick={reset as unknown as React.MouseEventHandler<HTMLButtonElement>}
-                    >
-                        Reset
-                    </button>
-                </div>
-            </div>
             {(subtitlesObjList.length === 0) ? (
                 <div>no obj</div>
             ) : (

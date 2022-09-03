@@ -5,6 +5,7 @@ import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
+import { useStopwatch } from "react-timer-hook";
 
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
@@ -12,8 +13,10 @@ export const WatchTogether = () => {
     const [InputUrl, setInputUrl] = useState("")
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
+    const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
-
+    const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
+        useStopwatch({ autoStart: true });
     useEffect(() => {
         if (InputUrl !== "") {
             var data = {
@@ -49,6 +52,9 @@ export const WatchTogether = () => {
         }
     }, [subtitlesObjList])
 
+    useEffect(() => {
+        setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)))
+    }, [days, hours, minutes, seconds])
     return (
         <div className="WatchTogether">
             <div>
@@ -71,25 +77,34 @@ export const WatchTogether = () => {
                 />
             ) : (
                 <div>
-                    <iframe
-                        src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                    {`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
                     <div>
-                        <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                        <iframe
+                            src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
 
                     </div>
-                    {subtitlesObjList.length > 0 ? (
-                        <div>no video</div>
-                    ) : (
-                        <div>
-                            <ShowSubtitles subtitlesObjList={subtitlesObjList} />
+                    <div>
+                        <div style={{ textAlign: "center" }}>
+                            <div>
+                                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
+                                <span>{seconds}</span>
+                            </div>
+                            <button onClick={start}>Start</button>
+                            <button onClick={pause}>Pause</button>
+                            <button
+                                onClick={reset as unknown as React.MouseEventHandler<HTMLButtonElement>}
+                            >
+                                Reset
+                            </button>
                         </div>
-                    )}
+                        <ShowSubtitles subtitlesObjList={subtitlesObjList}
+                            Now={Now}
+                        />
+                    </div>
                 </div>
             )}
         </div>
