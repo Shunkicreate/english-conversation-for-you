@@ -3,12 +3,15 @@ import { GetVttFile } from "../functions/GetVttFile";
 import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
+import { subtitlesObjListType } from "../types/subtitlesObjListType"
+import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [VttData, setVttData] = useState("")
     const [InputUrl, setInputUrl] = useState("")
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
+    const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     useEffect(() => {
         var data = {
             "url": InputUrl
@@ -25,21 +28,22 @@ export const WatchTogether = () => {
         };
         axios(config)
             .then(function (response) {
-                debugger
+                // debugger
                 console.log(JSON.stringify(response.data));
                 setVttData(JSON.stringify(response.data))
                 setIsThumbnail(false)
+                setsubtitlesObjList(MakeSubtitlesObj(VttData))
 
             })
             .catch(function (error) {
                 console.log(error);
             });
-    },[InputUrl])
+    }, [InputUrl])
     return (
         <div className="WatchTogether">
             <div>
                 <input type="text"
-                defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
+                    defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
                     onChange={(e) => {
                         setInputData(e.target.value)
                     }}
@@ -70,10 +74,10 @@ export const WatchTogether = () => {
                             <track default src={VttData} />
                         </video>
                     </div> */}
-                    {VttData !== "" ?(
-                        <ShowSubtitles subtitles={VttData} />
-                    ):(
+                    {subtitlesObjList.length > 0 ? (
                         <div>no video</div>
+                        ) : (
+                        <ShowSubtitles subtitlesObjList={subtitlesObjList} />
                     )}
                 </div>
             )}
