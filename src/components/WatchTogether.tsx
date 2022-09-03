@@ -7,6 +7,7 @@ import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
 import { useStopwatch } from "react-timer-hook";
 import '../stylesheets/WatchTogether.css'
+import '../stylesheets/Input.css'
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     // const [VttData, setVttData] = useState("")
@@ -58,16 +59,19 @@ export const WatchTogether = () => {
     return (
         <div className="WatchTogether">
             <div className="InputArea">
-                <input type="text"
-                    defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
-                    onChange={(e) => {
-                        setInputData(e.target.value)
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                            setInputUrl(InputData)
-                        }
-                    }} />
+                <div className="InputWrap">
+                    <input className="Input" type="text"
+                        defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
+                        onChange={(e) => {
+                            setInputData(e.target.value)
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                setInputUrl(InputData)
+                            }
+                        }} />
+
+                </div>
             </div>
             <div className="ShowArea">
                 {isThumbnail ? (
