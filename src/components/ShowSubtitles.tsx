@@ -5,7 +5,6 @@ type Props = {
     subtitlesObjList: subtitlesObjListType[];
 };
 export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
-    // debugger
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
         useStopwatch({ autoStart: true });
     const [Index, setIndex] = useState(0)
@@ -31,13 +30,10 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
         <div>
             <div>
                 <div style={{ textAlign: "center" }}>
-                    <h1>react-timer-hook</h1>
-                    <p>Stopwatch Demo</p>
-                    <div style={{ fontSize: "100px" }}>
+                    <div>
                         <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
                         <span>{seconds}</span>
                     </div>
-                    <p>{isRunning ? "Running" : "Not running"}</p>
                     <button onClick={start}>Start</button>
                     <button onClick={pause}>Pause</button>
                     <button
@@ -54,9 +50,6 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList }) => {
                     <div>
                         {subtitlesObjList[Index].text}
                     </div>
-                    {/* <div>
-                        {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
-                    </div> */}
                 </div>
 
 

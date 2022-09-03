@@ -5,7 +5,6 @@ import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
 import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
-import { Excomponent } from "./Ex";
 
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
@@ -14,8 +13,6 @@ export const WatchTogether = () => {
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
-    // var presubtitlesObjList:subtitlesObjListType[] = []
-    const funcShowSubtitles = ShowSubtitles({ subtitlesObjList })
 
     useEffect(() => {
         if (InputUrl !== "") {
@@ -34,9 +31,6 @@ export const WatchTogether = () => {
             axios(config)
                 .then(function (response) {
                     const VttData = JSON.stringify(response.data)
-                    console.log(VttData)
-                    // setVttData(JSON.stringify(response.data))
-                    // presubtitlesObjList = MakeSubtitlesObj(VttData)
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
                 })
@@ -55,19 +49,8 @@ export const WatchTogether = () => {
         }
     }, [subtitlesObjList])
 
-    // const setYoutubeVideoData = () => {
-    //     setInputUrl(InputData)
-    //     setYoutubeId(GetYouTubeVideoId(InputUrl))
-    // }
-    const [excount, setExcount] = useState(0)
-
-
     return (
         <div className="WatchTogether">
-            <div onClick={() => { setExcount(excount + 1) }}>
-                excount: {excount}
-            </div>
-            <Excomponent count={excount} />
             <div>
                 <input type="text"
                     defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
@@ -96,14 +79,8 @@ export const WatchTogether = () => {
                         allowFullScreen
                     ></iframe>
                     {`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
-                    {/* <div>
-                        <video src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`} title="YouTube video player">
-                            <track default src={VttData} />
-                        </video>
-                    </div> */}
                     <div>
                         <ShowSubtitles subtitlesObjList={subtitlesObjList} />
-                        {/* {funcShowSubtitles} */}
 
                     </div>
                     {subtitlesObjList.length > 0 ? (
@@ -111,16 +88,10 @@ export const WatchTogether = () => {
                     ) : (
                         <div>
                             <ShowSubtitles subtitlesObjList={subtitlesObjList} />
-                            {/* {funcShowSubtitles} */}
-
                         </div>
                     )}
                 </div>
             )}
-            {/* <div>
-                {subtitlesObjList.map((obj) => <div>{obj.text}</div>)}
-            </div> */}
-            {/* <div>{VttData}</div> */}
         </div>
 
     );
