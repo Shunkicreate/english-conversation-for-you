@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GetVttFile } from "../functions/GetVttFile";
 import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
 import { useStopwatch } from "react-timer-hook";
 import '../stylesheets/WatchTogether.css'
 import '../stylesheets/Input.css'
+import { idText } from "typescript";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     // const [VttData, setVttData] = useState("")
@@ -17,7 +18,7 @@ export const WatchTogether = () => {
     const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
-        useStopwatch({ autoStart: true });
+        useStopwatch({ autoStart: false });
     useEffect(() => {
         if (InputUrl !== "") {
             var data = {
@@ -37,6 +38,7 @@ export const WatchTogether = () => {
                     const VttData = JSON.stringify(response.data)
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
+                    start()
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -53,9 +55,40 @@ export const WatchTogether = () => {
         }
     }, [subtitlesObjList])
 
+    const timeDelay = 2
+
     useEffect(() => {
-        setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)))
+        setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)) - timeDelay)
     }, [days, hours, minutes, seconds])
+
+    const YoutubeArea = useRef<HTMLIFrameElement>()
+
+    useEffect(() => {
+        const handleClick = () => {
+            console.log('Button clicked');
+        };
+
+        if (YoutubeArea && YoutubeArea.current) {
+            // Passing the same reference
+            YoutubeArea.current.addEventListener('click', handleClick)
+        }
+        return () => {
+            // Passing the same reference
+            if (YoutubeArea.current) {
+                YoutubeArea.current.removeEventListener('click', handleClick)
+            }
+        }
+    }, []);
+
+    const observeYoutube = () => {
+        if (isRunning) {
+            pause()
+        }
+        else {
+            start()
+        }
+    }
+
     return (
         <div className="WatchTogether">
             <div className="InputArea">
@@ -89,15 +122,15 @@ export const WatchTogether = () => {
                     </div>
                 ) : (
                     <div>
-                        <div>
-                            <iframe
-                                src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            ></iframe>
-
+                        <iframe
+                            src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            onClick={observeYoutube}
+                        ></iframe>
+                        <div className="YoutubeArea" onClick={observeYoutube}>
                         </div>
                         <div>
                             <div style={{ textAlign: "center" }}>
