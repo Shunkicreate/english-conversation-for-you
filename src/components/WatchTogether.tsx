@@ -108,7 +108,14 @@ export const WatchTogether = () => {
             </div>
             <div className="ShowArea">
                 <div>
-                    <ShowYoutube />
+                    <ShowYoutube
+                        start={start}
+                        pause={pause}
+                    />
+                    <div>
+                        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
+                        <span>{seconds}</span>
+                    </div>
                 </div>
                 {isThumbnail ? (
                     <div>

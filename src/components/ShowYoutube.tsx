@@ -1,15 +1,21 @@
 import YouTube from "react-youtube"
 import { FC, useEffect, useRef } from "react";
-export const ShowYoutube: FC= () => {
+import { ShowYouTubeType } from "../types/ShowYouTubeType";
+export const ShowYoutube: FC<ShowYouTubeType>= ({
+    start,
+    pause
+}) => {
 
     const onPlayerStateChange = (num: number) => {
         console.log('onPlayerStateChange')
         console.log(num)
         if(num === 1){
             console.log('playing')
+            start()
         }
         else if(num === 2){
             console.log('stopping')
+            pause()
         }
     }
     const opts = {
