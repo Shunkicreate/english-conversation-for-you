@@ -11,12 +11,13 @@ import { ShowYoutube } from "./ShowYoutube";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
-    const [InputData, setInputData] = useState("")
+    // const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
         useStopwatch({ autoStart: false });
+    const InputData = useRef<HTMLInputElement>(null!);
     // useEffect(() => {
     //     if (InputUrl !== "") {
     //         var data = {
@@ -44,10 +45,11 @@ export const WatchTogether = () => {
     //     }
     // }, [InputUrl])
 
-    const GetSubTitleObj = () => {
-        if (InputUrl !== "") {
+    const GetSubTitleObj = (URL: string) => {
+        // debugger
+        if (URL !== "") {
             var data = {
-                "url": InputUrl
+                "url": URL
             };
             var config = {
                 method: 'post',
@@ -61,7 +63,7 @@ export const WatchTogether = () => {
             axios(config)
                 .then(function (response) {
                     const VttData = JSON.stringify(response.data)
-                    debugger
+                    // debugger
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
                     start()
@@ -73,10 +75,14 @@ export const WatchTogether = () => {
     }
 
     const InitThisPage = () => {
-        setInputUrl(InputData)
+        // debugger
+        let URL = InputData.current.value
+        const VideoId = GetYouTubeVideoId(URL)
+        setInputUrl(URL)
+        setYoutubeId(VideoId)
         reset()
         pause()
-        GetSubTitleObj()
+        GetSubTitleObj(URL)
         setIsThumbnail(true)
     }
 
@@ -85,6 +91,7 @@ export const WatchTogether = () => {
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
+
     useEffect(() => {
         if (subtitlesObjList.length > 0) {
             setIsThumbnail(false)
@@ -130,11 +137,14 @@ export const WatchTogether = () => {
             <div className="InputArea">
                 {Now}
                 <div className="InputWrap">
-                    <input className="Input" type="text"
+                    <input
+                        className="Input"
+                        type="text"
                         defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
-                        onChange={(e) => {
-                            setInputData(e.target.value)
-                        }}
+                        ref={InputData}
+                        // onChange={(e) => {
+                        //     setInputData(e.target.value)
+                        // }}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                                 InitThisPage()
@@ -168,11 +178,11 @@ export const WatchTogether = () => {
                     </div>
                 ) : (
                     <div>
-                    <ShowYoutube
-                        start={start}
-                        pause={pause}
-                        YoutubeId={YoutubeId}
-                    />
+                        <ShowYoutube
+                            start={start}
+                            pause={pause}
+                            YoutubeId={YoutubeId}
+                        />
                         {/* <div className="YoutubeArea" onClick={observeYoutube}>
                         </div> */}
                         <div>
