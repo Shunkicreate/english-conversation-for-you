@@ -9,6 +9,7 @@ import { useStopwatch } from "react-timer-hook";
 import '../stylesheets/WatchTogether.css'
 import '../stylesheets/Input.css'
 import { idText } from "typescript";
+import { ShowYoutube } from "./ShowYoutube";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     // const [VttData, setVttData] = useState("")
@@ -107,6 +108,9 @@ export const WatchTogether = () => {
                 </div>
             </div>
             <div className="ShowArea">
+                <div>
+                    <ShowYoutube />
+                </div>
                 {isThumbnail ? (
                     <div>
                         {YoutubeId === "" ? (
