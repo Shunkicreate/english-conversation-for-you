@@ -28,16 +28,16 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList, Now }) => {
                 <div>no obj</div>
             ) : (
                 <div>
-                    <div>
-                        {subtitlesObjList[Index].text}
+                    <div className="AI OneChat">
+                        <div className="person">
+                            Subtitles
+                        </div>
+                        <div className="message">{subtitlesObjList[Index].text}</div>
                     </div>
                 </div>
 
 
             )}
-            {/* <div>
-                {subtitlesObjList.map((index) => <div>{index.text}</div>)}
-            </div> */}
         </div>
     )
 }

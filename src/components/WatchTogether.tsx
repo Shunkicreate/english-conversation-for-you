@@ -18,35 +18,8 @@ export const WatchTogether = () => {
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
         useStopwatch({ autoStart: false });
     const InputData = useRef<HTMLInputElement>(null!);
-    // useEffect(() => {
-    //     if (InputUrl !== "") {
-    //         var data = {
-    //             "url": InputUrl
-    //         };
-    //         var config = {
-    //             method: 'post',
-    //             url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
-    //             },
-    //             data: data
-    //         };
-    //         axios(config)
-    //             .then(function (response) {
-    //                 const VttData = JSON.stringify(response.data)
-    //                 const preList = MakeSubtitlesObj(VttData)
-    //                 setsubtitlesObjList(preList)
-    //                 start()
-    //             })
-    //             .catch(function (error) {
-    //                 console.log(error);
-    //             });
-    //     }
-    // }, [InputUrl])
 
     const GetSubTitleObj = (URL: string) => {
-        // debugger
         if (URL !== "") {
             var data = {
                 "url": URL
@@ -75,7 +48,6 @@ export const WatchTogether = () => {
     }
 
     const InitThisPage = () => {
-        // debugger
         let URL = InputData.current.value
         const VideoId = GetYouTubeVideoId(URL)
         setInputUrl(URL)
@@ -135,16 +107,12 @@ export const WatchTogether = () => {
     return (
         <div className="WatchTogether">
             <div className="InputArea">
-                {Now}
                 <div className="InputWrap">
                     <input
                         className="Input"
                         type="text"
-                        defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
+                        defaultValue={"https://www.youtube.com/watch?v=TmaAOV4SJNQ"}
                         ref={InputData}
-                        // onChange={(e) => {
-                        //     setInputData(e.target.value)
-                        // }}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                                 InitThisPage()
@@ -153,17 +121,6 @@ export const WatchTogether = () => {
                 </div>
             </div>
             <div className="ShowArea">
-                <div>
-                    {/* <ShowYoutube
-                        start={start}
-                        pause={pause}
-                        YoutubeId={YoutubeId}
-                    />
-                    <div>
-                        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                        <span>{seconds}</span>
-                    </div> */}
-                </div>
                 {isThumbnail ? (
                     <div>
                         {YoutubeId === "" ? (
@@ -178,27 +135,14 @@ export const WatchTogether = () => {
                     </div>
                 ) : (
                     <div>
-                        <ShowYoutube
-                            start={start}
-                            pause={pause}
-                            YoutubeId={YoutubeId}
-                        />
-                        {/* <div className="YoutubeArea" onClick={observeYoutube}>
-                        </div> */}
                         <div>
-                            {/* <div style={{ textAlign: "center" }}>
-                                <div>
-                                    <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-                                    <span>{seconds}</span>
-                                </div>
-                                <button className="button" onClick={start}>Start</button>
-                                <button className="button" onClick={pause}>Pause</button>
-                                <button className="button"
-                                    onClick={reset as unknown as React.MouseEventHandler<HTMLButtonElement>}
-                                >
-                                    Reset
-                                </button>
-                            </div> */}
+                            <ShowYoutube
+                                start={start}
+                                pause={pause}
+                                YoutubeId={YoutubeId}
+                            />
+                        </div>
+                        <div>
                             <ShowSubtitles subtitlesObjList={subtitlesObjList}
                                 Now={Now}
                             />
@@ -207,7 +151,5 @@ export const WatchTogether = () => {
                 )}
             </div>
         </div>
-
     );
-
 }

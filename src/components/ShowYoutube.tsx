@@ -8,6 +8,7 @@ export const ShowYoutube: FC<ShowYouTubeType>= ({
 }) => {
 
     const onPlayerStateChange = (num: number) => {
+        console.log(num)
         if(num === 1){
             start()
         }
