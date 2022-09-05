@@ -1,17 +1,16 @@
 import YouTube from "react-youtube"
-export const ShowYoutube = () => {
+import { FC, useEffect, useRef } from "react";
+export const ShowYoutube: FC= () => {
 
-    const onPlayerReady = () => {
-        console.log('onPlayerReady')
-    }
-    const onPlayerPlaybackQualityChange = () => {
-        console.log('onPlayerPlaybackQualityChange')
-    }
-    const onPlayerStateChange = () => {
+    const onPlayerStateChange = (num: number) => {
         console.log('onPlayerStateChange')
-    }
-    const onPlayerError = () => {
-        console.log('onPlayerError')
+        console.log(num)
+        if(num === 1){
+            console.log('playing')
+        }
+        else if(num === 2){
+            console.log('stopping')
+        }
     }
     const opts = {
         height: '390',
@@ -26,6 +25,7 @@ export const ShowYoutube = () => {
             modestbranding: 1,
             playsinline: 1,
             rel: 0,
+            mute: true,
         },
     }
 
@@ -33,7 +33,7 @@ export const ShowYoutube = () => {
         <YouTube
             videoId="1eFq21yT1vE"
             opts={opts}
-            onStateChange={(e) => {onPlayerStateChange()}}
+            onStateChange={(e) => {onPlayerStateChange(e.data)}}
 
         />
     )

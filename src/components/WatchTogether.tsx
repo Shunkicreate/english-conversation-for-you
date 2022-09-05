@@ -104,7 +104,6 @@ export const WatchTogether = () => {
                                 setInputUrl(InputData)
                             }
                         }} />
-
                 </div>
             </div>
             <div className="ShowArea">
