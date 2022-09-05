@@ -3,18 +3,15 @@ import { FC, useEffect, useRef } from "react";
 import { ShowYouTubeType } from "../types/ShowYouTubeType";
 export const ShowYoutube: FC<ShowYouTubeType>= ({
     start,
-    pause
+    pause,
+    YoutubeId,
 }) => {
 
     const onPlayerStateChange = (num: number) => {
-        console.log('onPlayerStateChange')
-        console.log(num)
         if(num === 1){
-            console.log('playing')
             start()
         }
         else if(num === 2){
-            console.log('stopping')
             pause()
         }
     }
@@ -37,7 +34,7 @@ export const ShowYoutube: FC<ShowYouTubeType>= ({
 
     return (
         <YouTube
-            videoId="1eFq21yT1vE"
+            videoId={YoutubeId}
             opts={opts}
             onStateChange={(e) => {onPlayerStateChange(e.data)}}
 

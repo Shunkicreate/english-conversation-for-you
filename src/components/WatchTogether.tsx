@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { GetVttFile } from "../functions/GetVttFile";
 import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
@@ -8,11 +7,9 @@ import { MakeSubtitlesObj } from "../functions/MakeSubtitlesObj";
 import { useStopwatch } from "react-timer-hook";
 import '../stylesheets/WatchTogether.css'
 import '../stylesheets/Input.css'
-import { idText } from "typescript";
 import { ShowYoutube } from "./ShowYoutube";
 export const WatchTogether = () => {
     const [isThumbnail, setIsThumbnail] = useState(true);
-    // const [VttData, setVttData] = useState("")
     const [InputUrl, setInputUrl] = useState("")
     const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
@@ -20,7 +17,34 @@ export const WatchTogether = () => {
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
         useStopwatch({ autoStart: false });
-    useEffect(() => {
+    // useEffect(() => {
+    //     if (InputUrl !== "") {
+    //         var data = {
+    //             "url": InputUrl
+    //         };
+    //         var config = {
+    //             method: 'post',
+    //             url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
+    //             },
+    //             data: data
+    //         };
+    //         axios(config)
+    //             .then(function (response) {
+    //                 const VttData = JSON.stringify(response.data)
+    //                 const preList = MakeSubtitlesObj(VttData)
+    //                 setsubtitlesObjList(preList)
+    //                 start()
+    //             })
+    //             .catch(function (error) {
+    //                 console.log(error);
+    //             });
+    //     }
+    // }, [InputUrl])
+
+    const GetSubTitleObj = () => {
         if (InputUrl !== "") {
             var data = {
                 "url": InputUrl
@@ -37,6 +61,7 @@ export const WatchTogether = () => {
             axios(config)
                 .then(function (response) {
                     const VttData = JSON.stringify(response.data)
+                    debugger
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
                     start()
@@ -45,7 +70,17 @@ export const WatchTogether = () => {
                     console.log(error);
                 });
         }
-    }, [InputUrl])
+    }
+
+    const InitThisPage = () => {
+        setInputUrl(InputData)
+        reset()
+        pause()
+        GetSubTitleObj()
+        setIsThumbnail(true)
+    }
+
+    useEffect(() => { InitThisPage() }, []);
 
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
@@ -93,6 +128,7 @@ export const WatchTogether = () => {
     return (
         <div className="WatchTogether">
             <div className="InputArea">
+                {Now}
                 <div className="InputWrap">
                     <input className="Input" type="text"
                         defaultValue={"https://www.youtube.com/watch?v=6Dh-RL__uN4"}
@@ -101,21 +137,22 @@ export const WatchTogether = () => {
                         }}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                setInputUrl(InputData)
+                                InitThisPage()
                             }
                         }} />
                 </div>
             </div>
             <div className="ShowArea">
                 <div>
-                    <ShowYoutube
+                    {/* <ShowYoutube
                         start={start}
                         pause={pause}
+                        YoutubeId={YoutubeId}
                     />
                     <div>
                         <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
                         <span>{seconds}</span>
-                    </div>
+                    </div> */}
                 </div>
                 {isThumbnail ? (
                     <div>
@@ -128,22 +165,18 @@ export const WatchTogether = () => {
                                 alt="サムネイル"
                             />
                         )}
-
                     </div>
                 ) : (
                     <div>
-                        <iframe
-                            src={`https://www.youtube.com/embed/${YoutubeId}?autoplay=1`}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            onClick={observeYoutube}
-                        ></iframe>
-                        <div className="YoutubeArea" onClick={observeYoutube}>
-                        </div>
+                    <ShowYoutube
+                        start={start}
+                        pause={pause}
+                        YoutubeId={YoutubeId}
+                    />
+                        {/* <div className="YoutubeArea" onClick={observeYoutube}>
+                        </div> */}
                         <div>
-                            <div style={{ textAlign: "center" }}>
+                            {/* <div style={{ textAlign: "center" }}>
                                 <div>
                                     <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
                                     <span>{seconds}</span>
@@ -155,7 +188,7 @@ export const WatchTogether = () => {
                                 >
                                     Reset
                                 </button>
-                            </div>
+                            </div> */}
                             <ShowSubtitles subtitlesObjList={subtitlesObjList}
                                 Now={Now}
                             />

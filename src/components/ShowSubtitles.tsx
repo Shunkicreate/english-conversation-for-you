@@ -20,7 +20,6 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList, Now }) => {
                 setIndex(Index + 1)
             }
         }
-
     }, [Now, Index, subtitlesObjList])
 
     return (
@@ -36,6 +35,9 @@ export const ShowSubtitles: FC<Props> = ({ subtitlesObjList, Now }) => {
 
 
             )}
+            {/* <div>
+                {subtitlesObjList.map((index) => <div>{index.text}</div>)}
+            </div> */}
         </div>
     )
 }
