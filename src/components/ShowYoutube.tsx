@@ -1,21 +1,21 @@
 import YouTube from "react-youtube"
-import { FC, useEffect, useRef } from "react";
+import { FC } from "react";
 import { ShowYouTubeType } from "../types/ShowYouTubeType";
-export const ShowYoutube: FC<ShowYouTubeType>= ({
+export const ShowYoutube: FC<ShowYouTubeType> = ({
     start,
     pause,
     YoutubeId,
 }) => {
 
     const onPlayerStateChange = (num: number) => {
-        console.log(num)
-        if(num === 1){
+        if (num === 1) {
             start()
         }
-        else if(num === 2){
+        else if (num === 2) {
             pause()
         }
     }
+
     const opts = {
         height: '390',
         width: '640',
@@ -37,8 +37,7 @@ export const ShowYoutube: FC<ShowYouTubeType>= ({
         <YouTube
             videoId={YoutubeId}
             opts={opts}
-            onStateChange={(e) => {onPlayerStateChange(e.data)}}
-
+            onStateChange={(e) => { onPlayerStateChange(e.data) }}
         />
     )
 

@@ -15,7 +15,7 @@ export const WatchTogether = () => {
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
-    const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
+    const { seconds, minutes, hours, days,  start, pause, reset } =
         useStopwatch({ autoStart: false });
     const InputData = useRef<HTMLInputElement>(null!);
 
@@ -58,8 +58,6 @@ export const WatchTogether = () => {
         setIsThumbnail(true)
     }
 
-    useEffect(() => { InitThisPage() }, []);
-
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
@@ -75,34 +73,6 @@ export const WatchTogether = () => {
     useEffect(() => {
         setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)) - timeDelay)
     }, [days, hours, minutes, seconds])
-
-    const YoutubeArea = useRef<HTMLIFrameElement>()
-
-    useEffect(() => {
-        const handleClick = () => {
-            console.log('Button clicked');
-        };
-
-        if (YoutubeArea && YoutubeArea.current) {
-            // Passing the same reference
-            YoutubeArea.current.addEventListener('click', handleClick)
-        }
-        return () => {
-            // Passing the same reference
-            if (YoutubeArea.current) {
-                YoutubeArea.current.removeEventListener('click', handleClick)
-            }
-        }
-    }, []);
-
-    const observeYoutube = () => {
-        if (isRunning) {
-            pause()
-        }
-        else {
-            start()
-        }
-    }
 
     return (
         <div className="WatchTogether">

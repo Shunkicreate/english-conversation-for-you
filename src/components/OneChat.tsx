@@ -1,5 +1,5 @@
 import "../stylesheets/ShowChat.css";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { FCOneChatType } from "../types/FCOneChatType";
 
 export const OneChat = (person: string, message: string) => {

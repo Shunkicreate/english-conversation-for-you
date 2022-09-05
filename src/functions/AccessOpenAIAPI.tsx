@@ -1,11 +1,12 @@
 import { TextCleaner } from "./TextCleaner";
 const { Configuration, OpenAIApi } = require("openai");
 
-export const AccessOpenAIAPI = async (text: string) => {
+export const AccessOpenAIAPI: (text: string) => Promise<string> = async (text: string) => {
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
   });
   const openai = new OpenAIApi(configuration);
+  let body = ""
   const response = await openai
     //Open Ai params
     //temperature: 値が高いほど、モデルがより多くのリスクを負うことを意味します。 より創造的なアプリケーションには 0.9 を、明確に定義された答えを持つアプリケーションには 0 (argmax サンプリング) を試してください。 これを使用するか、トップ p を使用する
@@ -28,11 +29,14 @@ export const AccessOpenAIAPI = async (text: string) => {
     .catch((e: any) => {
       console.log(e.message);
       return "AI: Sorry. I have no idea.";
-    });
+    })
+    .then(()=>{
+      body = response.data.choices[0].text;
+      return body = TextCleaner(body);
+    })
   // debugger;
-  let body = response.data.choices[0].text;
   // console.log("before cleaned", body)
-  return TextCleaner(body);
+  return await body
 };
 export const Chat = (text: string) => {
   const result_text = AccessOpenAIAPI(text);
