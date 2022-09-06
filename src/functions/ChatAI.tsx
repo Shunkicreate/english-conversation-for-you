@@ -16,7 +16,7 @@ export const ChatAI: FC<ChatAIType> = ({ ChatDatas, setChatDatas, Uid }) => {
     const concattedChatDatas: ChatType[] = ChatDatas.concat(decodedResultText)
     setChatDatas(concattedChatDatas);
     Speak(result);
-    debugger
+    // debugger
     TextUploader({concattedChatDatas, Uid})
   });
 

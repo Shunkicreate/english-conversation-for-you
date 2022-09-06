@@ -6,7 +6,7 @@ export const AccessOpenAIAPI: (text: string) => Promise<string> = async (text: s
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
   });
   const openai = new OpenAIApi(configuration);
-  let body = ""
+  // let body = ""
   const response = await openai
     //Open Ai params
     //temperature: 値が高いほど、モデルがより多くのリスクを負うことを意味します。 より創造的なアプリケーションには 0.9 を、明確に定義された答えを持つアプリケーションには 0 (argmax サンプリング) を試してください。 これを使用するか、トップ p を使用する
@@ -30,13 +30,9 @@ export const AccessOpenAIAPI: (text: string) => Promise<string> = async (text: s
       console.log(e.message);
       return "AI: Sorry. I have no idea.";
     })
-    .then(()=>{
-      body = response.data.choices[0].text;
-      return body = TextCleaner(body);
-    })
-  // debugger;
-  // console.log("before cleaned", body)
-  return await body
+    let body = response.data.choices[0].text;
+    body = TextCleaner(body);
+    return body
 };
 export const Chat = (text: string) => {
   const result_text = AccessOpenAIAPI(text);
