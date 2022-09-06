@@ -1,8 +1,9 @@
+import '../stylesheets/Header.css'
 export const Header = () => {
   return (
     <header>
       <div className="Title">AI Chat</div>
-      <div>login</div>
+      <div className='Login'>login</div>
     </header>
   )
 }

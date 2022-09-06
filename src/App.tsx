@@ -11,10 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "./functions/Firebase";
 import { AppType } from "./types/AppType";
 import { useLocation } from 'react-router-dom';
+import { Header } from "./components/Header";
 const App: FC<AppType> = ({ uid }) => {
   const location = useLocation();
-  const [locationUid, setlocationUid] 
-  = useState<{ uid: string }>(location.state as { uid: string })
+  const [locationUid, setlocationUid]
+    = useState<{ uid: string }>(location.state as { uid: string })
   const [Uid, setUid] = useState<string | null>(uid);
   const navigate = useNavigate();
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([
@@ -44,19 +45,21 @@ const App: FC<AppType> = ({ uid }) => {
 
   return (
     <div className="App">
-      {/* {Uid} */}
-      <Input
-        ChatDatas={ChatDatas}
-        setChatDatas={setChatDatas}
-        setDoChat={setDoChat}
-      />
-      <ShowChat ChatDatas={ChatDatas}></ShowChat>
-      <VoiceInput
-        ChatDatas={ChatDatas}
-        setChatDatas={setChatDatas}
-        DoChat={DoChat}
-        setDoChat={setDoChat}
-      />
+      <Header />
+      <div className="content">
+        <Input
+          ChatDatas={ChatDatas}
+          setChatDatas={setChatDatas}
+          setDoChat={setDoChat}
+        />
+        <ShowChat ChatDatas={ChatDatas}></ShowChat>
+        <VoiceInput
+          ChatDatas={ChatDatas}
+          setChatDatas={setChatDatas}
+          DoChat={DoChat}
+          setDoChat={setDoChat}
+        />
+      </div>
     </div>
   );
 };
