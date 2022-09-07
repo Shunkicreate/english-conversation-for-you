@@ -2,12 +2,15 @@
     text-align: center;
     /* width: 55%;
     height: 100%; */
+    height: 100%;
     margin: auto;
     display: block;
 }
 
 .content {
+    min-height: 91vh;
     width: 55%;
+    height: 100%;
     margin: auto;
 }
 

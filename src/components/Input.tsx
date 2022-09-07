@@ -14,10 +14,12 @@ export const Input: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat }) => 
     setDoChat(true)
   };
   return (
-    <div className="input">
-      <label>
+    <div>
+      <div className="InputWrap">
         <input
+          className="Input"
           type="text"
+          placeholder="Aa"
           value={text}
           onChange={(event) => {
             setText(event.target.value);
@@ -28,14 +30,14 @@ export const Input: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat }) => 
             }
           }}
         />
-      </label>
+      </div>
       <input
-        type="submit"
-        value="Submit"
-        onClick={(event) => {
-          handleSubmitEvent();
-        }}
-      />
+          type="submit"
+          value="Submit"
+          onClick={(event) => {
+            handleSubmitEvent();
+          }}
+        />
       <div>{text}</div>
     </div>
   );

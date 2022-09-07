@@ -47,16 +47,16 @@ const App: FC<AppType> = ({ uid }) => {
     <div className="App">
       <Header />
       <div className="content">
-        <Input
-          ChatDatas={ChatDatas}
-          setChatDatas={setChatDatas}
-          setDoChat={setDoChat}
-        />
         <ShowChat ChatDatas={ChatDatas}></ShowChat>
         <VoiceInput
           ChatDatas={ChatDatas}
           setChatDatas={setChatDatas}
           DoChat={DoChat}
+          setDoChat={setDoChat}
+        />
+        <Input
+          ChatDatas={ChatDatas}
+          setChatDatas={setChatDatas}
           setDoChat={setDoChat}
         />
       </div>

@@ -4,7 +4,7 @@
     justify-content: center !important;
     box-sizing: border-box;
     border-radius: 40px;
-    box-shadow: 0 6px 8px rgba(0,0,0,.15);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .15);
     background: white;
     margin: 1.5rem auto;
     position: relative;
@@ -20,7 +20,7 @@
     outline: none;
     padding: 0;
     flex: 0 0 auto;
-    width: 75%;
+    width: 85%;
     height: 100%;
     font-size: 1.3rem;
 }
