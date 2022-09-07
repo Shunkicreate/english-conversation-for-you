@@ -12,6 +12,7 @@ import { auth } from "./functions/Firebase";
 import { AppType } from "./types/AppType";
 import { useLocation } from 'react-router-dom';
 import { Header } from "./components/Header";
+import { WatchTogether } from "./components/WatchTogether";
 const App: FC<AppType> = ({ uid }) => {
   const location = useLocation();
   const [locationUid, setlocationUid]
@@ -47,6 +48,7 @@ const App: FC<AppType> = ({ uid }) => {
     <div className="App">
       <Header />
       <div className="content">
+        <WatchTogether ShowYouTube={true} />
         <ShowChat ChatDatas={ChatDatas}></ShowChat>
         <VoiceInput
           ChatDatas={ChatDatas}

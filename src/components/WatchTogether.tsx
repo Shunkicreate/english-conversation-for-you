@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, FC } from "react";
 import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
@@ -8,14 +8,16 @@ import { useStopwatch } from "react-timer-hook";
 import '../stylesheets/WatchTogether.css'
 import '../stylesheets/Input.css'
 import { ShowYoutube } from "./ShowYoutube";
-export const WatchTogether = () => {
+import { WatchTogetherType } from "../types/WatchTogetherType";
+
+export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
     // const [InputData, setInputData] = useState("")
     const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
     const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
-    const { seconds, minutes, hours, days,  start, pause, reset } =
+    const { seconds, minutes, hours, days, start, pause, reset } =
         useStopwatch({ autoStart: false });
     const InputData = useRef<HTMLInputElement>(null!);
 
@@ -76,50 +78,57 @@ export const WatchTogether = () => {
 
     return (
         <div className="WatchTogether">
-            <div className="InputArea">
-                <div className="InputWrap">
-                    <input
-                        className="Input"
-                        type="text"
-                        defaultValue={"https://www.youtube.com/watch?v=TmaAOV4SJNQ"}
-                        ref={InputData}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                InitThisPage()
-                            }
-                        }} />
-                </div>
-            </div>
-            <div className="ShowArea">
-                {isThumbnail ? (
-                    <div>
-                        {YoutubeId === "" ? (
-                            <div>none</div>
+            {ShowYouTube ? (
+                <div></div>
+            ) : (
+                <div>
+
+                    <div className="InputArea">
+                        <div className="InputWrap">
+                            <input
+                                className="Input"
+                                type="text"
+                                defaultValue={"https://www.youtube.com/watch?v=TmaAOV4SJNQ"}
+                                ref={InputData}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        InitThisPage()
+                                    }
+                                }} />
+                        </div>
+                    </div>
+                    <div className="ShowArea">
+                        {isThumbnail ? (
+                            <div>
+                                {YoutubeId === "" ? (
+                                    <div>none</div>
+                                ) : (
+                                    <img
+                                        src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
+                                        onClick={() => setIsThumbnail(false)}
+                                        alt="サムネイル"
+                                    />
+                                )}
+                            </div>
                         ) : (
-                            <img
-                                src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
-                                onClick={() => setIsThumbnail(false)}
-                                alt="サムネイル"
-                            />
+                            <div>
+                                <div>
+                                    <ShowYoutube
+                                        start={start}
+                                        pause={pause}
+                                        YoutubeId={YoutubeId}
+                                    />
+                                </div>
+                                <div>
+                                    <ShowSubtitles subtitlesObjList={subtitlesObjList}
+                                        Now={Now}
+                                    />
+                                </div>
+                            </div>
                         )}
                     </div>
-                ) : (
-                    <div>
-                        <div>
-                            <ShowYoutube
-                                start={start}
-                                pause={pause}
-                                YoutubeId={YoutubeId}
-                            />
-                        </div>
-                        <div>
-                            <ShowSubtitles subtitlesObjList={subtitlesObjList}
-                                Now={Now}
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 }
