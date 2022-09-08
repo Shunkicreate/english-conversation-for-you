@@ -1,7 +1,6 @@
-import { FC, useEffect, useRef, Fragment  } from "react";
+import { FC, useEffect, Fragment  } from "react";
 import { ShowChatTypes } from "../types/ShowChatTypes";
 import "../stylesheets/ShowChat.css";
-import { OneChat } from "./OneChat";
 import { FCOneChat } from "./OneChat";
 
 export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
