@@ -79,24 +79,7 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
     return (
         <div className="WatchTogether">
             {ShowYouTube ? (
-                <div></div>
-            ) : (
-                <div>
-
-                    <div className="InputArea">
-                        <div className="InputWrap">
-                            <input
-                                className="Input"
-                                type="text"
-                                defaultValue={"https://www.youtube.com/watch?v=TmaAOV4SJNQ"}
-                                ref={InputData}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter') {
-                                        InitThisPage()
-                                    }
-                                }} />
-                        </div>
-                    </div>
+                <div className="YouTubeCanvas">
                     <div className="ShowArea">
                         {isThumbnail ? (
                             <div>
@@ -127,6 +110,24 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
                             </div>
                         )}
                     </div>
+                    <div className="InputArea">
+                        <div className="InputWrap">
+                            <input
+                                className="Input"
+                                type="text"
+                                defaultValue={"https://www.youtube.com/watch?v=TmaAOV4SJNQ"}
+                                ref={InputData}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        InitThisPage()
+                                    }
+                                }} />
+                        </div>
+                    </div>
+
+                </div>
+            ) : (
+                <div className="YouTubeCanvas">
                 </div>
             )}
         </div>

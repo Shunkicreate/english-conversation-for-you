@@ -23,8 +23,14 @@ iframe{
         height: 100%; */
 }
 
+.ShowArea{
+    background-color:bisque;
+}
+
 @media screen and (max-width: 1280px) {
     .WatchTogether {
         width: 100%;
     }
 }
+
+
