@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./stylesheets/App.css";
 import { useState, FC } from "react";
 import { ChatType } from "./types/ChatType";
@@ -31,7 +31,7 @@ const App: FC<AppType> = ({ uid }) => {
       ChatAI({ ChatDatas, setChatDatas, Uid });
       setDoChat(false);
     }
-  }, [ChatDatas, DoChat]);
+  }, [ChatDatas, DoChat, Uid]);
   useEffect(() => {
     // debugger;
     setUid(CheckLogin(auth));
