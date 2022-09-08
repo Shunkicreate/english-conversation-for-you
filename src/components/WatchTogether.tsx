@@ -10,7 +10,7 @@ import '../stylesheets/Input.css'
 import { ShowYoutube } from "./ShowYoutube";
 import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
-
+import { PasteClipboard } from "./PasteClipboard";
 export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
@@ -113,6 +113,9 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
                     </div>
                     <div>
                         <YouTubeSearch />
+                    </div>
+                    <div>
+                        <PasteClipboard setInputUrl={setInputUrl} />
                     </div>
                     <div className="InputArea">
                         <div className="InputWrap">

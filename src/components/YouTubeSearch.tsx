@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 export const YouTubeSearch = () => {
     const [Query, setQuery] = useState("")
-    const [SearchURL, setSearchURL] = useState("")
     const url = "https://www.youtube.com/results?search_query="
-    useEffect(() => {
-        setSearchURL(url + Query)
-    }, [Query])
     const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         window.open(url + Query, '_blank');
-        // const location = url + Query
     }
     return (
         <div>
