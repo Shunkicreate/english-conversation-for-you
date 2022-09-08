@@ -9,6 +9,7 @@ import '../stylesheets/WatchTogether.css'
 import '../stylesheets/Input.css'
 import { ShowYoutube } from "./ShowYoutube";
 import { WatchTogetherType } from "../types/WatchTogetherType";
+import { YouTubeSearch } from "./YouTubeSearch";
 
 export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
@@ -109,6 +110,9 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
                                 </div>
                             </div>
                         )}
+                    </div>
+                    <div>
+                        <YouTubeSearch />
                     </div>
                     <div className="InputArea">
                         <div className="InputWrap">
