@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { TextUploaderType } from "../types/TextUploaderType";
 import { db } from "./Firebase";
-import { ref, set, update } from "firebase/database";
+import { ref, update } from "firebase/database";
 import { CurrentTimeDataType } from "../types/CurrentTimeDataType";
 import { GetCurrentTime } from "./GetCurrentTime";
 import { MakeUploadData } from "./MakeUploadData";
