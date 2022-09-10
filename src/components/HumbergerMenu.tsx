@@ -16,8 +16,9 @@
 //     )
 // }
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from '../stylesheets/HumbergerMenu.module.css';
+import img from '../assets/Humberger.svg'
 
 // interface MenuProps {
 //     children: React.ReactNode;
@@ -25,14 +26,12 @@ import styles from '../stylesheets/HumbergerMenu.module.css';
 //     onClose: () => void;
 // }
 export const HumbergerMenu = () => {
-    let [Open, setOpen] = useState(true);
-    const onClick = () => {
-        setOpen(true)
-    }
-    const onClose = () => {
-        setOpen(false)
-    }
-    // const { children, Open, onClose } = props;
+    // const [Open, setOpen] = useState(true);
+  const [Open, setOpen] = useState(false);
+
+    const onClose = useCallback(() => {
+        setOpen(()=>Open?(false):Open)
+    }, [Open, setOpen])
 
     function handleKeypress(event: React.KeyboardEvent<HTMLDivElement>) {
         if (event.keyCode === 27) {
@@ -54,14 +53,16 @@ export const HumbergerMenu = () => {
 
     return (
         <div>
+            <div onClick={()=>setOpen(true)}><img src={img}></img></div>
+            {/* <div onClick={()=>setOpen(true)}><img src='../assets/Humberger.svg'></img></div> */}
             <div
                 onClick={onClose}
                 role="presentation"
                 onKeyPress={handleKeypress}
-                data-Open={JSON.stringify(Open)}
+                data-open={JSON.stringify(Open)}
                 className={styles.overlay}
             >div</div>
-            <nav data-Open={JSON.stringify(Open)} className={styles.menu}>
+            <nav data-open={JSON.stringify(Open)} className={styles.menu}>
                 {/* {children} */}
                 <div>child elem</div>
             </nav>
