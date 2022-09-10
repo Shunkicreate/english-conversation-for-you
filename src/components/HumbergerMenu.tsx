@@ -1,36 +1,13 @@
-// import { slide as Menu } from 'react-burger-menu'
-// import { useNavigate } from "react-router-dom";
-
-// export const HumbergerMenu = () => {
-//     const navigate = useNavigate();
-//     const handleNavigate = (to: string) => {
-//         navigate("/" + to)
-//     }
-//     return (
-//         <Menu>
-//             <div id="home" className="menu-item" onClick={() => { handleNavigate("/") }}>Home</div>
-//             <div id="login" className="menu-item" onClick={() => { handleNavigate("/login") }}>Login</div>
-//             <div id="watch-together" className="menu-item" onClick={() => { handleNavigate("/watch-together") }}>watch youtube together</div>
-//         </Menu>
-
-//     )
-// }
-
+import { useNavigate } from "react-router-dom";
 import React, { useState, useCallback } from 'react';
-import styles from '../stylesheets/HumbergerMenu.module.css';
+import styles from '../stylesheets/HumbergerMenu.module.css'
 import img from '../assets/Humberger.svg'
 
-// interface MenuProps {
-//     children: React.ReactNode;
-//     Open: boolean;
-//     onClose: () => void;
-// }
 export const HumbergerMenu = () => {
-    // const [Open, setOpen] = useState(true);
-  const [Open, setOpen] = useState(false);
-
+    const navigate = useNavigate();
+    const [Open, setOpen] = useState(false);
     const onClose = useCallback(() => {
-        setOpen(()=>Open?(false):Open)
+        setOpen(() => Open ? (false) : Open)
     }, [Open, setOpen])
 
     function handleKeypress(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -53,18 +30,18 @@ export const HumbergerMenu = () => {
 
     return (
         <div>
-            <div onClick={()=>setOpen(true)}><img src={img}></img></div>
-            {/* <div onClick={()=>setOpen(true)}><img src='../assets/Humberger.svg'></img></div> */}
+            <div onClick={() => setOpen(true)}  className={styles['HumbergerMenuIconWrap']} ><img src={img} alt="HumbergerMenuIcon" className={styles['HumbergerMenuIcon']} ></img></div>
             <div
                 onClick={onClose}
                 role="presentation"
                 onKeyPress={handleKeypress}
                 data-open={JSON.stringify(Open)}
                 className={styles.overlay}
-            >div</div>
+            />
             <nav data-open={JSON.stringify(Open)} className={styles.menu}>
-                {/* {children} */}
-                <div>child elem</div>
+                <div id="home" className="menu-item" onClick={() => { navigate("/") }}>Home</div>
+                <div id="login" className="menu-item" onClick={() => { navigate("/login") }}>Login</div>
+                <div id="watch-together" className="menu-item" onClick={() => { navigate("/watch-together") }}>watch youtube together</div>
             </nav>
         </div>
     );

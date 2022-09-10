@@ -4,14 +4,14 @@
     justify-content: flex-start;
     max-width: 90%;
     height: 100vh;
-    background-color: #f2f2f2;
+    background-color: #fdedd1;
     text-align: left;
     padding: 32px 112px 16px 16px;
     z-index: 1000;
     position: absolute;
     top: 0;
     left: 0;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     transform: translateX(-100%);
 }
 
@@ -21,7 +21,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 1000;
 }
@@ -32,4 +32,18 @@
 
 .menu[data-open='true'] {
     transform: translateX(0);
+}
+
+.HumbergerMenuIcon{
+    /* position: inherit; */
+    /* padding: auto; */
+    display: block;
+    margin: auto 0;
+    height: 100%;
+    max-width: 3.5rem;
+    /* margin-top: 10; */
+}
+
+.HumbergerMenuIconWrap{
+    height: 100%;
 }
