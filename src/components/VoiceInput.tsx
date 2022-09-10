@@ -4,12 +4,10 @@ import { VoiceInputType } from "../types/VoiceInputType";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { FCOneChat } from "./OneChat";
 import "../stylesheets/ShowChat.css";
 import recordingGif from "../assets/recording.gif";
 import { Recording } from "./Recording";
 import "../stylesheets/Button.css"
-import { TextUploader } from "../functions/TextUploader";
 export const VoiceInput: FC<VoiceInputType> = ({
   ChatDatas,
   setChatDatas,
@@ -20,7 +18,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
   const element = useRef<HTMLDivElement>(null);
   const {
     transcript,
-    interimTranscript,
     finalTranscript,
     resetTranscript,
     listening,
@@ -55,11 +52,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
     }
   }, [finalTranscript]);
 
-  // useEffect(() => {
-  //   if (finalTranscript !== "") {
-  //   }
-  // }, [interimTranscript, finalTranscript]);
-
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     console.log(
       "Your browser does not support speech recognition software! Try Chrome desktop, maybe?"
@@ -72,8 +64,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
       language: "en",
     });
   };
-  // let elem = FCOneChat({"You", message});
-
   return (
     <div>
       <div>
@@ -85,12 +75,7 @@ export const VoiceInput: FC<VoiceInputType> = ({
             </div>
           </div>
         </div>
-
-        {/* <span>listening: {listening ? "on" : "off"}</span> */}
         <div>
-          {/* <button type="button" onClick={resetTranscript}>
-            Reset
-          </button> */}
           <button type="button" onClick={listenContinuously} className="button">
             Listen
           </button>
