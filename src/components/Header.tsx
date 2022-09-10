@@ -10,7 +10,7 @@ export const Header: FC<{ WatchTogetherBool: boolean, setWatchTogetherBool: Reac
   return (
     <header>
       <div className="Title">AI Chat</div>
-      <div className='button' onClick={() => { handleClick() }}>watch YouTube together</div>
+      <div className='button' onClick={() => { handleClick() }}>watch YouTube</div>
       <HumbergerMenu />
     </header>
   )

@@ -40,7 +40,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
             axios(config)
                 .then(function (response) {
                     const VttData = JSON.stringify(response.data)
-                    // debugger
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
                     start()
@@ -51,19 +50,26 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
         }
     }
 
-    const InitThisPage = () => {
-        let URL = InputData.current.value
-        const VideoId = GetYouTubeVideoId(URL)
-        setInputUrl(URL)
-        setYoutubeId(VideoId)
-        reset()
-        pause()
-        GetSubTitleObj(URL)
-        setIsThumbnail(true)
-    }
+
+    useEffect(() => {
+        if (InputUrl) {
+            let URL = InputUrl
+            const VideoId = GetYouTubeVideoId(URL)
+            setInputUrl(URL)
+            setYoutubeId(VideoId)
+            reset()
+            pause()
+            GetSubTitleObj(URL)
+            setIsThumbnail(true)
+        }
+
+    }, [InputUrl])
 
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
+        // if(InputData){
+        //     InitThisPage()
+        // }
     }, [InputData, InputUrl])
 
     useEffect(() => {
@@ -105,8 +111,10 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
                                 />
                             </div>
                             <div>
-                                <ShowSubtitles subtitlesObjList={subtitlesObjList}
+                                <ShowSubtitles
+                                    subtitlesObjList={subtitlesObjList}
                                     Now={Now}
+
                                 />
                             </div>
                         </div>
@@ -119,7 +127,8 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
             )}
             <div className="InputArea">
                 <YouTubeSearch />
-                <PasteClipboard setInputUrl={setInputUrl} />
+                <PasteClipboard
+                    setInputUrl={setInputUrl} />
             </div>
         </div>
     );

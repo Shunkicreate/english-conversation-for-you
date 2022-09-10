@@ -30,7 +30,6 @@ export const HumbergerMenu = () => {
 
     return (
         <div>
-            <div onClick={() => setOpen(true)}  className={styles['HumbergerMenuIconWrap']} ><img src={img} alt="HumbergerMenuIcon" className={styles['HumbergerMenuIcon']} ></img></div>
             <div
                 onClick={onClose}
                 role="presentation"
@@ -43,6 +42,7 @@ export const HumbergerMenu = () => {
                 <div id="login" className="menu-item" onClick={() => { navigate("/login") }}>Login</div>
                 <div id="watch-together" className="menu-item" onClick={() => { navigate("/watch-together") }}>watch youtube together</div>
             </nav>
+            <div onClick={() => setOpen(!Open)} className={styles['HumbergerMenuIconWrap']} ><img src={img} alt="HumbergerMenuIcon" className={styles['HumbergerMenuIcon']} ></img></div>
         </div>
     );
 }

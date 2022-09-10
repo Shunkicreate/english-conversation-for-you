@@ -16,4 +16,6 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 1rem;
+  display: inline-block;
+  min-width: 11rem;
 }
