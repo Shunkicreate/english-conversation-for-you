@@ -7,7 +7,7 @@ export const GetVttFile = async () => {
 
     var config = {
         method: 'post',
-        url: 'http://127.0.0.1:5000/youtubeDlSubtitles',
+        url: 'https://127.0.0.1:5000/youtubeDlSubtitles',
         headers: {
             'Content-Type': 'application/json',
         },

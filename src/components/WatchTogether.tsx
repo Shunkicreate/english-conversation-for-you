@@ -29,7 +29,8 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
             };
             var config = {
                 method: 'post',
-                url: 'http://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8080/youtubeDlSubtitles',
+                url: 'https://english-conversation-for-you-backend.azurewebsites.net/youtubeDlSubtitles',
+                // url: 'https://ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com:8000/youtubeDlSubtitles',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': 'ec2-13-112-150-63.ap-northeast-1.compute.amazonaws.com'
