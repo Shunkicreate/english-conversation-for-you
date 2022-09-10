@@ -1,6 +1,6 @@
 .WatchTogether {
     text-align: center;
-    width: 55%;
+    width: 100%;
     height: 100%;
     margin: auto;
 }
@@ -25,6 +25,17 @@ iframe{
 
 .ShowArea{
     background-color:bisque;
+}
+
+.InputArea{
+    display: flex;
+}
+
+.YouTubeSearch{
+    margin: auto;
+}
+.PasteClipboard{
+    margin: auto;
 }
 
 @media screen and (max-width: 1280px) {

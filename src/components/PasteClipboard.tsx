@@ -1,6 +1,6 @@
 import { PasteClipboardType } from '../types/PasteClipboardType';
 import { useState, FC } from 'react';
-export const PasteClipboard:FC<PasteClipboardType> = ({setInputUrl}) => {
+export const PasteClipboard: FC<PasteClipboardType> = ({ setInputUrl }) => {
     const [Text, setText] = useState("")
     const handleClick = () => {
         navigator.clipboard.readText().then(function (data) {
@@ -10,9 +10,11 @@ export const PasteClipboard:FC<PasteClipboardType> = ({setInputUrl}) => {
         });
     }
     return (
-        <div className="button" onClick={() => { handleClick() }}>
-            Click to Paste YouTube link
-            <div>{Text}</div>
+        <div className='PasteClipboard'>
+            <div className="button" onClick={() => { handleClick() }}>
+                Click to Paste YouTube link
+                <div>{Text}</div>
+            </div>
         </div>
     )
 }
