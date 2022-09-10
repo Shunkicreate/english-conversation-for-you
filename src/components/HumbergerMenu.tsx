@@ -17,46 +17,47 @@
 // }
 
 import React from 'react';
-import styles from './HumbergerMenu.module.css';
+import styles from '../stylesheets/HumbergerMenu.module.css';
 
-interface MenuProps {
-    children: React.ReactNode;
-    open: boolean;
-    onClose: () => void;
-}
+// interface MenuProps {
+//     children: React.ReactNode;
+//     open: boolean;
+//     onClose: () => void;
+// }
 
-export const HumbergerMenu = (props: MenuProps) => {
-    const { children, open, onClose } = props;
+export const HumbergerMenu = () => {
+    // const { children, open, onClose } = props;
 
-    function handleKeypress(event: React.KeyboardEvent<HTMLDivElement>) {
-        if (event.keyCode === 27) {
-            onClose();
-        }
-    }
+    // function handleKeypress(event: React.KeyboardEvent<HTMLDivElement>) {
+    //     if (event.keyCode === 27) {
+    //         onClose();
+    //     }
+    // }
 
-    React.useEffect(() => {
-        function fn(event: KeyboardEvent) {
-            if (event.keyCode === 27) {
-                onClose();
-            }
-        }
+    // React.useEffect(() => {
+    //     function fn(event: KeyboardEvent) {
+    //         if (event.keyCode === 27) {
+    //             onClose();
+    //         }
+    //     }
 
-        document.addEventListener('keydown', fn);
+    //     document.addEventListener('keydown', fn);
 
-        return () => document.removeEventListener('keydown', fn);
-    }, [onClose]);
+    //     return () => document.removeEventListener('keydown', fn);
+    // }, [onClose]);
 
     return (
         <div>
             <div
-                onClick={onClose}
+                // onClick={onClose}
                 role="presentation"
-                onKeyPress={handleKeypress}
-                data-open={JSON.stringify(open)}
+                // onKeyPress={handleKeypress}
+                // data-open={JSON.stringify(open)}
                 className={styles.overlay}
             />
-            <nav data-open={JSON.stringify(open)} className={styles.menu}>
-                {children}
+            <nav className={styles.menu}>
+            {/* <nav data-open={JSON.stringify(open)} className={styles.menu}> */}
+                {/* {children} */}
             </nav>
         </div>
     );

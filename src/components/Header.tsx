@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header>
       <div className="Title">AI Chat</div>
-      <div className='button' onClick={() => {navigate('/watch-together')}}>watch YouTube together</div>
+      <div className='button' onClick={() => { navigate('/watch-together') }}>watch YouTube together</div>
       <HumbergerMenu />
     </header>
   )
