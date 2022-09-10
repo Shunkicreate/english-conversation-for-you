@@ -44,6 +44,7 @@ const App: FC<AppType> = ({ uid }) => {
     }
   }, []);
 
+  
   return (
     <div className="App">
       <Header />
