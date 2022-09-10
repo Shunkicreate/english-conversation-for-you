@@ -26,6 +26,8 @@ const App: FC<AppType> = ({ uid }) => {
     },
   ]);
   const [DoChat, setDoChat] = useState(false);
+  const [WatchTogetherBool, setWatchTogetherBool] = useState(false);
+
   useEffect(() => {
     if (ChatDatas.length > 1 && DoChat) {
       ChatAI({ ChatDatas, setChatDatas, Uid });
@@ -33,23 +35,26 @@ const App: FC<AppType> = ({ uid }) => {
     }
   }, [ChatDatas, DoChat, Uid]);
   useEffect(() => {
-    // debugger;
     setUid(CheckLogin(auth));
     if (locationUid !== null) {
       setUid(locationUid.uid)
     }
     if (!Uid && !locationUid) {
       navigate("/login");
-      // console.log("hahaha", Uid);
     }
   }, []);
 
-  
+
   return (
     <div className="App">
-      <Header />
+      <Header WatchTogetherBool={WatchTogetherBool} setWatchTogetherBool={setWatchTogetherBool} />
       <div className="content">
-        <WatchTogether ShowYouTube={true} />
+        {WatchTogetherBool ? (
+          <WatchTogether ShowYouTube={true} />
+
+        ) : (
+          <div style={{ display: 'none' }}></div>
+        )}
         <ShowChat ChatDatas={ChatDatas}></ShowChat>
         <VoiceInput
           ChatDatas={ChatDatas}

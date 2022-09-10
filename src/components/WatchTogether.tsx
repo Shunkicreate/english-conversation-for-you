@@ -82,45 +82,45 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
         <div className="WatchTogether">
             {ShowYouTube ? (
                 // <div className="YouTubeCanvas">
-                    <div className="ShowArea">
-                        {isThumbnail ? (
+                <div className="ShowArea">
+                    {isThumbnail ? (
+                        <div>
+                            {YoutubeId === "" ? (
+                                <div>none</div>
+                            ) : (
+                                <img
+                                    src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
+                                    onClick={() => setIsThumbnail(false)}
+                                    alt="サムネイル"
+                                />
+                            )}
+                        </div>
+                    ) : (
+                        <div>
                             <div>
-                                {YoutubeId === "" ? (
-                                    <div>none</div>
-                                ) : (
-                                    <img
-                                        src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
-                                        onClick={() => setIsThumbnail(false)}
-                                        alt="サムネイル"
-                                    />
-                                )}
+                                <ShowYoutube
+                                    start={start}
+                                    pause={pause}
+                                    YoutubeId={YoutubeId}
+                                />
                             </div>
-                        ) : (
                             <div>
-                                <div>
-                                    <ShowYoutube
-                                        start={start}
-                                        pause={pause}
-                                        YoutubeId={YoutubeId}
-                                    />
-                                </div>
-                                <div>
-                                    <ShowSubtitles subtitlesObjList={subtitlesObjList}
-                                        Now={Now}
-                                    />
-                                </div>
+                                <ShowSubtitles subtitlesObjList={subtitlesObjList}
+                                    Now={Now}
+                                />
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
+                </div>
                 // </div>
             ) : (
                 <div className="YouTubeCanvas">
                 </div>
             )}
-                                    <div className="InputArea">
-                                        <YouTubeSearch />
-                                        <PasteClipboard setInputUrl={setInputUrl} />
-                                    </div>
+            <div className="InputArea">
+                <YouTubeSearch />
+                <PasteClipboard setInputUrl={setInputUrl} />
+            </div>
         </div>
     );
 }
