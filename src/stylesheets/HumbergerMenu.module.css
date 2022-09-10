@@ -29,7 +29,7 @@
 }
 
 .overlay[data-open='true'] {
-    /* display: block; */
+    display: block;
 }
 
 .menu[data-open='true'] {
