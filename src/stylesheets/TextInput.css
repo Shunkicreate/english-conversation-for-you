@@ -1,0 +1,12 @@
+.TextInput{
+    display: flex;
+}
+
+.sendImg{
+    max-width: 2rem;
+    margin: 0 auto
+}
+
+.wrapsendImg {
+    display: inline-flex;
+}

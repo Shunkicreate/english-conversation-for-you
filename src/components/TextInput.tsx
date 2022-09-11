@@ -1,7 +1,8 @@
 import React, { useState, FC } from "react";
 import { ChatType } from "../types/ChatType";
 import { InputType } from "../types/InputType";
-
+import sendImg from "../assets/SendButton.svg"
+import "../stylesheets/TextInput.css"
 export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat }) => {
   const [text, setText] = useState("");
   const handleSubmitEvent = () => {
@@ -14,7 +15,7 @@ export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat })
     setDoChat(true)
   };
   return (
-    <div>
+    <div className="TextInput">
       <div className="InputWrap">
         <input
           className="Input"
@@ -31,14 +32,12 @@ export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat })
           }}
         />
       </div>
-      <input
-          type="submit"
-          value="Submit"
-          onClick={(event) => {
-            handleSubmitEvent();
-          }}
-        />
-      <div>{text}</div>
+      <div
+        onClick={(event) => {
+          handleSubmitEvent();
+        }} className="wrapsendImg">
+          <img src={sendImg} alt="SendButton" className="sendImg" />
+      </div>
     </div>
   );
 };
