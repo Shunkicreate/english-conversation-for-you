@@ -4,7 +4,6 @@ import { InputType } from "../types/InputType";
 import sendImg from "../assets/SendButton.svg"
 import "../stylesheets/TextInput.css"
 export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat, InputText, setInputText }) => {
-  // const [text, setText] = useState("");
   const handleSubmitEvent = () => {
     const addData: ChatType = {
       person: "You",

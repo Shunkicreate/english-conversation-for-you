@@ -12,6 +12,8 @@ export const VoiceInput: FC<VoiceInputType> = ({
   setChatDatas,
   DoChat,
   setDoChat,
+  InputText,
+  setInputText
 }) => {
   const [message, messageSet] = useState("");
   const element = useRef<HTMLDivElement>(null);
@@ -36,6 +38,9 @@ export const VoiceInput: FC<VoiceInputType> = ({
       },
     ],
   });
+  useEffect(() => {
+    setInputText(InputText + transcript)
+  }, [transcript])
   const [PreFinalTranscript, setPreFinalTranscript] = useState("");
   useEffect(() => {
     if (finalTranscript !== "") {

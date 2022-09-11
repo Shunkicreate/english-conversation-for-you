@@ -3,25 +3,45 @@ import { TextInput } from "./TextInput"
 import { VoiceInput } from "./VoiceInput"
 import { ChatType } from "../types/ChatType"
 import { ShowInputChat } from "./ShowInputChat"
+import "../stylesheets/InputComponent.css"
 export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dispatch<React.SetStateAction<ChatType[]>>, DoChat: boolean, setDoChat: React.Dispatch<React.SetStateAction<boolean>> }> = ({ ChatDatas, setChatDatas, DoChat, setDoChat }) => {
     const [InputText, setInputText] = useState("")
-
+    const [Mode, setMode] = useState("Voice")
+    const ChangeMode = () => {
+        if (Mode === "Voice") {
+            setMode("Type")
+        }
+        else if (Mode === "Type") {
+            setMode("Voice")
+        }
+    }
     return (
         <div>
             <ShowInputChat InputText={InputText} />
-            <VoiceInput
-                ChatDatas={ChatDatas}
-                setChatDatas={setChatDatas}
-                DoChat={DoChat}
-                setDoChat={setDoChat}
-            />
-            <TextInput
-                ChatDatas={ChatDatas}
-                setChatDatas={setChatDatas}
-                setDoChat={setDoChat}
-                InputText={InputText}
-                setInputText={setInputText}
-            />
+            <div className="InputComponent">
+                <div onClick={ChangeMode}>
+                    change mode
+                </div>
+                {Mode === "Voice" ? (
+                    <VoiceInput
+                        ChatDatas={ChatDatas}
+                        setChatDatas={setChatDatas}
+                        DoChat={DoChat}
+                        setDoChat={setDoChat}
+                        InputText={InputText}
+                        setInputText={setInputText}
+                    />
+                ) : (
+                    <TextInput
+                        ChatDatas={ChatDatas}
+                        setChatDatas={setChatDatas}
+                        setDoChat={setDoChat}
+                        InputText={InputText}
+                        setInputText={setInputText}
+                    />
+                )}
+
+            </div>
         </div>
     )
 
