@@ -21,7 +21,7 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
     }
 
     useEffect(() => {
-        if (Submit) {
+        if (Submit && InputText !== "") {
             const addData: ChatType = {
                 person: "You",
                 message: InputText,
