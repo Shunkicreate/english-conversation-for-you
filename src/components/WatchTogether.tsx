@@ -98,7 +98,7 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                     subtitlesObjList.push(addData)
                 }
                 const addData: ChatType = {
-                    person: "YouTube",
+                    person: "YTfriend",
                     message: subtitlesObjList[Index].text,
                 };
                 setChatDatas([...ChatDatas, addData]);
