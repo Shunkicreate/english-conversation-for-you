@@ -1,5 +1,4 @@
-import React, { useState, FC, useEffect, useRef } from "react";
-import { ChatType } from "../types/ChatType";
+import React, { FC, useEffect } from "react";
 import { VoiceInputType } from "../types/VoiceInputType";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -8,15 +7,10 @@ import recordingGif from "../assets/recording.gif";
 import { Recording } from "./Recording";
 import "../stylesheets/Button.css"
 export const VoiceInput: FC<VoiceInputType> = ({
-  ChatDatas,
-  setChatDatas,
-  DoChat,
-  setDoChat,
   InputText,
-  setInputText
+  setInputText,
+  setSubmit
 }) => {
-  const [message, messageSet] = useState("");
-  const element = useRef<HTMLDivElement>(null);
   const {
     transcript,
     finalTranscript,
@@ -28,30 +22,19 @@ export const VoiceInput: FC<VoiceInputType> = ({
         command: "reset",
         callback: () => resetTranscript(),
       },
-      {
-        command: "shut up",
-        callback: () => messageSet("I wasn't talking."),
-      },
-      {
-        command: "Hello",
-        callback: () => messageSet("Hi there!"),
-      },
     ],
   });
-  useEffect(() => {
-    setInputText(InputText + transcript)
+  
+  useEffect(()=>{
+    console.log("transcript: ", transcript)
+    // setInputText(InputText + transcript)
   }, [transcript])
-  const [PreFinalTranscript, setPreFinalTranscript] = useState("");
+  
   useEffect(() => {
     if (finalTranscript !== "") {
-      setPreFinalTranscript(finalTranscript);
-      const addData: ChatType = {
-        person: "You",
-        message: finalTranscript,
-      };
-      setChatDatas([...ChatDatas, addData]);
+      setInputText(InputText + finalTranscript)
+      setSubmit(true)
       resetTranscript();
-      setDoChat(true);
     }
   }, [finalTranscript]);
 

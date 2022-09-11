@@ -39,12 +39,13 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
                 </div>
                 {Mode === "Voice" ? (
                     <VoiceInput
-                        ChatDatas={ChatDatas}
-                        setChatDatas={setChatDatas}
-                        DoChat={DoChat}
-                        setDoChat={setDoChat}
+                        // ChatDatas={ChatDatas}
+                        // setChatDatas={setChatDatas}
+                        // DoChat={DoChat}
+                        // setDoChat={setDoChat}
                         InputText={InputText}
                         setInputText={setInputText}
+                        setSubmit={setSubmit}
                     />
                 ) : (
                     <TextInput
