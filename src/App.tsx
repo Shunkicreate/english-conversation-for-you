@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./stylesheets/App.css";
 import { useState, FC } from "react";
 import { ChatType } from "./types/ChatType";
-import { Input } from "./components/Input";
+import { TextInput } from "./components/TextInputInput";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
 import { VoiceInput } from "./components/VoiceInput";
@@ -13,6 +13,7 @@ import { AppType } from "./types/AppType";
 import { useLocation } from 'react-router-dom';
 import { Header } from "./components/Header";
 import { WatchTogether } from "./components/WatchTogether";
+import { InputComponent } from "./components/InputComponent";
 const App: FC<AppType> = ({ uid }) => {
   const location = useLocation();
   const [locationUid, setlocationUid]
@@ -56,15 +57,10 @@ const App: FC<AppType> = ({ uid }) => {
           <div style={{ display: 'none' }}></div>
         )}
         <ShowChat ChatDatas={ChatDatas}></ShowChat>
-        <VoiceInput
+        <InputComponent
           ChatDatas={ChatDatas}
           setChatDatas={setChatDatas}
           DoChat={DoChat}
-          setDoChat={setDoChat}
-        />
-        <Input
-          ChatDatas={ChatDatas}
-          setChatDatas={setChatDatas}
           setDoChat={setDoChat}
         />
       </div>
