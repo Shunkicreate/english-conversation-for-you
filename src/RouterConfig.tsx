@@ -11,7 +11,9 @@ export const RouterConfig = () => {
         <Routes>
           <Route path={`/`} element={<App uid={null} />} />
           <Route path={`/login`} element={<Login />} />
-          <Route path={'/watch-together'} element={<WatchTogether ShowYouTube={true} />} />
+          {/* <Route path={'/watch-together'} element={<WatchTogether ShowYouTube={true}             
+            ChatDatas={}
+            setChatDatas={setChatDatas}/>} /> */}
           <Route path="*" element={<NotFoutnd />} />
         </Routes>
       </BrowserRouter>

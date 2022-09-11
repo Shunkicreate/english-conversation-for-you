@@ -11,7 +11,8 @@ import { ShowYoutube } from "./ShowYoutube";
 import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
 import { PasteClipboard } from "./PasteClipboard";
-export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
+import { ChatType } from "../types/ChatType"
+export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, setChatDatas }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
     // const [InputData, setInputData] = useState("")
@@ -21,6 +22,8 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
     const { seconds, minutes, hours, days, start, pause, reset } =
         useStopwatch({ autoStart: false });
     const InputData = useRef<HTMLInputElement>(null!);
+    const timeDelay = 2
+    const [Index, setIndex] = useState(0)
 
     const GetSubTitleObj = (URL: string) => {
         if (URL !== "") {
@@ -50,7 +53,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
         }
     }
 
-
     useEffect(() => {
         if (InputUrl) {
             let URL = InputUrl
@@ -78,11 +80,32 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
         }
     }, [subtitlesObjList])
 
-    const timeDelay = 2
 
     useEffect(() => {
         setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)) - timeDelay)
     }, [days, hours, minutes, seconds])
+
+
+    useEffect(() => {
+        if (subtitlesObjList.length > 0) {
+            if (Now > subtitlesObjList[Index].start) {
+                if (Index === subtitlesObjList.length - 1) {
+                    const addData: subtitlesObjListType = {
+                        start: Infinity,
+                        text: 'end',
+                        curId: 'cur-id-inf'
+                    }
+                    subtitlesObjList.push(addData)
+                }
+                const addData: ChatType = {
+                    person: "YouTube",
+                    message: subtitlesObjList[Index].text,
+                };
+                setChatDatas([...ChatDatas, addData]);
+                setIndex(Index + 1)
+            }
+        }
+    }, [Now, Index, subtitlesObjList, ChatDatas, setChatDatas])
 
     return (
         <div className="WatchTogether">
@@ -111,11 +134,10 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube }) => {
                                 />
                             </div>
                             <div>
-                                <ShowSubtitles
+                                {/* <ShowSubtitles
                                     subtitlesObjList={subtitlesObjList}
                                     Now={Now}
-
-                                />
+                                /> */}
                             </div>
                         </div>
                     )}
