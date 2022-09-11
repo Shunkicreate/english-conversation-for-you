@@ -15,7 +15,7 @@ const ShowChat = (props: Propstype) => {
   });
   return <div>{texts}</div>;
 };
-export const TextInput = () => {
+export const DeletedTextInput = () => {
   // const navigate = useNavigate();
 
   // useEffect(() => {
