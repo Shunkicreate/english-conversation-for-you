@@ -1,3 +1,7 @@
 .InputComponent{
     display: inline-flex;
 }
+
+.ModeButton{
+    max-width: 4rem;
+}
