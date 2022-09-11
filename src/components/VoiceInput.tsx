@@ -4,7 +4,6 @@ import { VoiceInputType } from "../types/VoiceInputType";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import "../stylesheets/ShowChat.css";
 import recordingGif from "../assets/recording.gif";
 import { Recording } from "./Recording";
 import "../stylesheets/Button.css"
@@ -38,7 +37,6 @@ export const VoiceInput: FC<VoiceInputType> = ({
     ],
   });
   const [PreFinalTranscript, setPreFinalTranscript] = useState("");
-
   useEffect(() => {
     if (finalTranscript !== "") {
       setPreFinalTranscript(finalTranscript);
@@ -66,25 +64,13 @@ export const VoiceInput: FC<VoiceInputType> = ({
   };
   return (
     <div>
-      <div>
-        <div className="ShowChat">
-          <div className="ChatArea">
-            <div className="You OneChat">
-              <div className="person">You</div>
-              <div className="message default">{transcript}</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <button type="button" onClick={listenContinuously} className="button">
-            Listen
-          </button>
-          <button type="button" onClick={SpeechRecognition.stopListening} className="button">
-            Stop
-          </button>
-          <Recording visible={listening} source={recordingGif}></Recording>
-        </div>
-      </div>
+      <button type="button" onClick={listenContinuously} className="button">
+        Listen
+      </button>
+      <button type="button" onClick={SpeechRecognition.stopListening} className="button">
+        Stop
+      </button>
+      <Recording visible={listening} source={recordingGif}></Recording>
     </div>
   );
 };

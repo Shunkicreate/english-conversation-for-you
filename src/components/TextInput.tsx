@@ -3,15 +3,15 @@ import { ChatType } from "../types/ChatType";
 import { InputType } from "../types/InputType";
 import sendImg from "../assets/SendButton.svg"
 import "../stylesheets/TextInput.css"
-export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat }) => {
-  const [text, setText] = useState("");
+export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat, InputText, setInputText }) => {
+  // const [text, setText] = useState("");
   const handleSubmitEvent = () => {
     const addData: ChatType = {
       person: "You",
-      message: text,
+      message: InputText,
     };
     setChatDatas([...ChatDatas, addData]);
-    setText("");
+    setInputText("");
     setDoChat(true)
   };
   return (
@@ -21,9 +21,9 @@ export const TextInput: FC<InputType> = ({ ChatDatas, setChatDatas, setDoChat })
           className="Input"
           type="text"
           placeholder="Aa"
-          value={text}
+          value={InputText}
           onChange={(event) => {
-            setText(event.target.value);
+            setInputText(event.target.value);
           }}
           onKeyPress={(event) => {
             if (event.key === "Enter") {

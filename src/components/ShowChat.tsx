@@ -1,4 +1,4 @@
-import { FC, useEffect, Fragment  } from "react";
+import { FC, useEffect, Fragment } from "react";
 import { ShowChatTypes } from "../types/ShowChatTypes";
 import "../stylesheets/ShowChat.css";
 import { FCOneChat } from "./OneChat";
@@ -10,13 +10,11 @@ export const ShowChat: FC<ShowChatTypes> = ({ ChatDatas }) => {
   return (
     <div className="ShowChat">
       <div className="ChatArea">
-        {ChatDatas?(ChatDatas.map((ChatData) =>
-          // OneChat(ChatData.person, ChatData.message)
+        {ChatDatas ? (ChatDatas.map((ChatData) =>
           <Fragment key={ChatData.message}>
-            <FCOneChat  person={ChatData.person}message={ChatData.message} />
-
+            <FCOneChat person={ChatData.person} message={ChatData.message} />
           </Fragment>
-        )):(
+        )) : (
           <div></div>
         )}
       </div>
