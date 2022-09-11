@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { TextInput } from "./TextInputInput"
+import { TextInput } from "./TextInput"
 import { VoiceInput } from "./VoiceInput"
 import { ChatType } from "../types/ChatType"
 

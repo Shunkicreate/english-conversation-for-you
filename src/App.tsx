@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./stylesheets/App.css";
 import { useState, FC } from "react";
 import { ChatType } from "./types/ChatType";
-import { TextInput } from "./components/TextInputInput";
+import { TextInput } from "./components/TextInput";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
 import { VoiceInput } from "./components/VoiceInput";
