@@ -24,17 +24,22 @@ export const VoiceInput: FC<VoiceInputType> = ({
       },
     ],
   });
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     console.log("transcript: ", transcript)
     // setInputText(InputText + transcript)
   }, [transcript])
-  
+
   useEffect(() => {
     if (finalTranscript !== "") {
       setInputText(InputText + finalTranscript)
-      setSubmit(true)
       resetTranscript();
+      SpeechRecognition.stopListening()
+      setTimeout(() => {
+        setSubmit(true)
+        listenContinuously()
+        console.log('set timeout')
+      }, 2 * 1000)
     }
   }, [finalTranscript]);
 

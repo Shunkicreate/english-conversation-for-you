@@ -37,13 +37,14 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
             <ShowInputChat InputText={InputText} />
             <div className="InputComponent">
                 <div onClick={ChangeMode}>
-                    {Mode === "Voice" ?(
+                    {Mode === "Voice" ? (
                         <img className="ModeButton" src={Speak} alt="Speak" />
-                        ):(
-                            <img className="ModeButton" src={Type} alt="Type" />
+                    ) : (
+                        <img className="ModeButton" src={Type} alt="Type" />
                     )}
                 </div>
                 {Mode === "Voice" ? (
+
                     <VoiceInput
                         // ChatDatas={ChatDatas}
                         // setChatDatas={setChatDatas}
@@ -65,6 +66,22 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
                 )}
 
             </div>
+            {/* <div>
+                {Submit ? ('speakingtrue') : ('false')}
+                <div>
+                    {window.speechSynthesis.speaking ? ('true') : ('false')}
+                </div>
+                <div>
+                    {window.speechSynthesis.onvoiceschanged ? ('true') : ('false')}
+                </div>
+                <div>
+                    {window.speechSynthesis.paused ? ('true') : ('false')}
+                </div>
+                <div>
+                    {window.speechSynthesis.pending ? ('true') : ('false')}
+                </div>
+            </div> */}
+
         </div>
     )
 

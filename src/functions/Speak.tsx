@@ -1,3 +1,4 @@
+import SpeechRecognition from "react-speech-recognition";
 export const Speak = (SpeakText: string) => {
   if ("speechSynthesis" in window) {
     // 発言を設定
@@ -7,6 +8,16 @@ export const Speak = (SpeakText: string) => {
       uttr.text = i;
       uttr.lang = 'en-US'
       window.speechSynthesis.speak(uttr);
+      SpeechRecognition.stopListening()
+      if (i === DevidedSpeakText[DevidedSpeakText.length - 1]) {
+        uttr.addEventListener('end', (() => {
+          console.log("fin")
+          SpeechRecognition.startListening({
+            continuous: true,
+            language: "en",
+          });
+        }))
+      }
     }
   } else {
     alert("Sorry. Your brouser can't speak.");

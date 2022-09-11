@@ -1,5 +1,4 @@
-import React, { useState, FC } from "react";
-import { ChatType } from "../types/ChatType";
+import { FC } from "react";
 import { InputType } from "../types/InputType";
 import sendImg from "../assets/SendButton.svg"
 import "../stylesheets/TextInput.css"
