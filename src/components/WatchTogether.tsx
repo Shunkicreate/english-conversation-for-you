@@ -12,12 +12,10 @@ import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
 import { PasteClipboard } from "./PasteClipboard";
 import { ChatType } from "../types/ChatType"
-import { ShareTwitter } from "./ShareTwitter";
 export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, setChatDatas }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
-    // const [InputData, setInputData] = useState("")
-    const [YoutubeId, setYoutubeId] = useState("iFg-bFAu2AU")
+    const [YoutubeId, setYoutubeId] = useState("")
     const [Now, setNow] = useState(0)
     const [subtitlesObjList, setsubtitlesObjList] = useState<subtitlesObjListType[]>([])
     const { seconds, minutes, hours, days, start, pause, reset } =
@@ -86,7 +84,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
         setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)) - timeDelay)
     }, [days, hours, minutes, seconds])
 
-
     useEffect(() => {
         if (subtitlesObjList.length > 0) {
             if (Now > subtitlesObjList[Index].start) {
@@ -116,7 +113,7 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                     {isThumbnail ? (
                         <div>
                             {YoutubeId === "" ? (
-                                <div>none</div>
+                                <div className="Empty">Please Set YouTube URL</div>
                             ) : (
                                 <img
                                     src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
@@ -126,21 +123,11 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                             )}
                         </div>
                     ) : (
-                        <div>
-                            <div>
-                                <ShowYoutube
-                                    start={start}
-                                    pause={pause}
-                                    YoutubeId={YoutubeId}
-                                />
-                            </div>
-                            <div>
-                                {/* <ShowSubtitles
-                                    subtitlesObjList={subtitlesObjList}
-                                    Now={Now}
-                                /> */}
-                            </div>
-                        </div>
+                        <ShowYoutube
+                            start={start}
+                            pause={pause}
+                            YoutubeId={YoutubeId}
+                        />
                     )}
                 </div>
                 // </div>
@@ -148,9 +135,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                 <div className="YouTubeCanvas">
                 </div>
             )}
-            <div>
-                <ShareTwitter />
-            </div>
             <div className="InputArea">
                 <YouTubeSearch />
                 <PasteClipboard

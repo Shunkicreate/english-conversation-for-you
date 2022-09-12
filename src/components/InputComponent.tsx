@@ -5,6 +5,7 @@ import { ChatType } from "../types/ChatType"
 import { ShowInputChat } from "./ShowInputChat"
 import "../stylesheets/InputComponent.css"
 import Type from "../assets/Type.svg"
+import { ShareTwitter } from "./ShareTwitter";
 import Speak from "../assets/Speak.svg"
 export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dispatch<React.SetStateAction<ChatType[]>>, DoChat: boolean, setDoChat: React.Dispatch<React.SetStateAction<boolean>> }> = ({ ChatDatas, setChatDatas, DoChat, setDoChat }) => {
     const [InputText, setInputText] = useState("")
@@ -34,7 +35,10 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
     }, [Submit])
     return (
         <div>
+            <div>
+                <ShareTwitter />
             <ShowInputChat InputText={InputText} />
+            </div>
             <div className="InputComponent">
                 <div onClick={ChangeMode}>
                     {Mode === "Voice" ? (
