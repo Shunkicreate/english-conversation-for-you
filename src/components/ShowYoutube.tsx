@@ -1,6 +1,7 @@
 import YouTube from "react-youtube"
-import { FC } from "react";
+import { FC, useLayoutEffect, useState } from "react";
 import { ShowYouTubeType } from "../types/ShowYouTubeType";
+import { useWindowSize } from "../functions/useWindowSize";
 export const ShowYoutube: FC<ShowYouTubeType> = ({
     start,
     pause,
@@ -16,9 +17,22 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
         }
     }
 
+    const [width, height] = useWindowSize();
+    // const width = () => {
+    //     if (window.innerWidth > 1280) {
+    //         return Math.round(window.innerWidth / 3)
+    //     }
+    //     return 1280
+    // };
+    // const height = () => {
+    //     if (window.innerHeight > 720) {
+    //         return Math.round(window.innerHeight / 3)
+    //     }
+    //     return 1280
+    // };
     const opts = {
-        height: '390',
-        width: '640',
+        height: width,
+        width: height,
         playerVars: { // https://developers.google.com/youtube/player_parameters
             autoplay: 1,
             cc_load_policy: 0,
@@ -34,11 +48,17 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
     }
 
     return (
-        <YouTube
-            videoId={YoutubeId}
-            opts={opts}
-            onStateChange={(e) => { onPlayerStateChange(e.data) }}
-        />
+        <div>
+            <div>
+                {width}{height}
+            </div>
+            <YouTube
+                videoId={YoutubeId}
+                opts={opts}
+                onStateChange={(e) => { onPlayerStateChange(e.data) }}
+            />
+
+        </div>
     )
 
 }
