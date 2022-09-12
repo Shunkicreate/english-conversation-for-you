@@ -1,5 +1,5 @@
 import YouTube from "react-youtube"
-import { FC, useLayoutEffect, useState } from "react";
+import { FC } from "react";
 import { ShowYouTubeType } from "../types/ShowYouTubeType";
 import { useWindowSize } from "../functions/useWindowSize";
 export const ShowYoutube: FC<ShowYouTubeType> = ({
