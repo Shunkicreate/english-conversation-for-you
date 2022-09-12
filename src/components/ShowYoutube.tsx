@@ -51,7 +51,7 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
             <YouTube
                 videoId={YoutubeId}
                 opts={opts}
-                onStateChange={(e) => { onPlayerStateChange(e.data) }}
+                onStateChange={(e) => { onPlayerStateChange(e.data);console.log(e.data) }}
             />
     )
 

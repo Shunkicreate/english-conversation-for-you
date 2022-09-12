@@ -12,7 +12,7 @@ import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
 import { PasteClipboard } from "./PasteClipboard";
 import { ChatType } from "../types/ChatType"
-export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, setChatDatas }) => {
+export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
     const [YoutubeId, setYoutubeId] = useState("")
@@ -44,7 +44,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                     const VttData = JSON.stringify(response.data)
                     const preList = MakeSubtitlesObj(VttData)
                     setsubtitlesObjList(preList)
-                    start()
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -68,9 +67,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
 
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
-        // if(InputData){
-        //     InitThisPage()
-        // }
     }, [InputData, InputUrl])
 
     useEffect(() => {
@@ -107,39 +103,24 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
 
     return (
         <div className="WatchTogether">
-            {ShowYouTube ? (
-                // <div className="YouTubeCanvas">
-                <div className="ShowArea">
-                    {isThumbnail ? (
-                        <div>
-                            {YoutubeId === "" ? (
-                                <div className="Empty">Please Set YouTube URL</div>
-                            ) : (
-                                <img
-                                    src={`https://img.youtube.com/vi/${YoutubeId}/maxresdefault.jpg`}
-                                    onClick={() => setIsThumbnail(false)}
-                                    alt="サムネイル"
-                                />
-                            )}
-                        </div>
-                    ) : (
-                        <ShowYoutube
-                            start={start}
-                            pause={pause}
-                            YoutubeId={YoutubeId}
-                        />
-                    )}
-                </div>
-                // </div>
-            ) : (
-                <div className="YouTubeCanvas">
-                </div>
-            )}
+            <div className="ShowArea">
+                {YoutubeId === "" ? (
+                    <div className="Empty">
+                        Please Set YouTube URL
+                    </div>
+                ) : (
+                    <ShowYoutube
+                        start={start}
+                        pause={pause}
+                        YoutubeId={YoutubeId}
+                    />
+                )}
+            </div>
             <div className="InputArea">
                 <YouTubeSearch />
                 <PasteClipboard
                     setInputUrl={setInputUrl} />
             </div>
         </div>
-    );
+    )
 }

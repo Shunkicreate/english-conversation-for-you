@@ -52,7 +52,7 @@ const App: FC<AppType> = ({ uid }) => {
       <div className="content">
         {WatchTogetherBool ? (
           <WatchTogether
-            ShowYouTube={true}
+            // ShowYouTube={true}
             ChatDatas={ChatDatas}
             setChatDatas={setChatDatas}
           />
