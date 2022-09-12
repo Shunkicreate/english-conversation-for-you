@@ -17,24 +17,24 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
         }
     }
 
-    const [width, height] = useWindowSize();
-    // const width = () => {
-    //     if (window.innerWidth > 1280) {
-    //         return Math.round(window.innerWidth / 3)
-    //     }
-    //     return 1280
-    // };
-    // const height = () => {
-    //     if (window.innerHeight > 720) {
-    //         return Math.round(window.innerHeight / 3)
-    //     }
-    //     return 1280
-    // };
+    const [width] = useWindowSize();
+    const calWidth = (width:number) => {
+        if (width > 1280) {
+            return Math.round(width / 2)
+        }
+        else {
+            return width
+        }
+    }
+    const calHeight = (width:number) => {
+        return Math.round(calWidth(width) /16 * 9)
+    }
+
     const opts = {
-        height: width,
-        width: height,
+        width: calWidth(width),
+        height: calHeight(width),
         playerVars: { // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
+            autoplay: 0,
             cc_load_policy: 0,
             controls: 0,
             disablekb: 1,
@@ -48,17 +48,11 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
     }
 
     return (
-        <div>
-            <div>
-                {width}{height}
-            </div>
             <YouTube
                 videoId={YoutubeId}
                 opts={opts}
                 onStateChange={(e) => { onPlayerStateChange(e.data) }}
             />
-
-        </div>
     )
 
 }
