@@ -12,6 +12,7 @@ import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
 import { PasteClipboard } from "./PasteClipboard";
 import { ChatType } from "../types/ChatType"
+import { ShareTwitter } from "./ShareTwitter";
 export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, setChatDatas }) => {
     const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
@@ -147,6 +148,9 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ShowYouTube, ChatDatas, s
                 <div className="YouTubeCanvas">
                 </div>
             )}
+            <div>
+                <ShareTwitter />
+            </div>
             <div className="InputArea">
                 <YouTubeSearch />
                 <PasteClipboard
