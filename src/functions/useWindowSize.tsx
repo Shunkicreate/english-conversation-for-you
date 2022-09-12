@@ -14,3 +14,15 @@ export const useWindowSize = (): number[] => {
   return size;
 
 };
+
+export const calWidth = (width:number) => {
+    if (width > 1280) {
+        return Math.round(width / 2)
+    }
+    else {
+        return width
+    }
+}
+export const calHeight = (width:number) => {
+    return Math.round(calWidth(width) /16 * 9)
+}

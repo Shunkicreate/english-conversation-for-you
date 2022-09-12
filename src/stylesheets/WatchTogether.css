@@ -6,16 +6,26 @@
     margin: auto;
     margin-top: 3rem;
     position: relative;
-    background-color:bisque;
 }
 
 .ShowArea{
+    background-color:bisque;
     margin: auto;
+    /* position: relative; */
 }
 
 .Empty{
-    padding: calc(20% - 1rem) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.Empty .content {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%); */
+  }
 
 iframe{
     margin: 1rem;
@@ -24,12 +34,12 @@ iframe{
 .InputArea{
     display: flex;
     bottom: 1rem;
-    position: absolute;
+    /* position: absolute;
     left: 50%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
-    min-width: 100%;
+    min-width: 100%; */
 }
 
 .YouTubeSearch{
@@ -42,6 +52,9 @@ iframe{
 @media screen and (max-width: 1280px) {
     .WatchTogether {
         width: 100%;
+    }
+    iframe{
+        margin: 0;
     }
 }
 

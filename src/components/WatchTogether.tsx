@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, FC } from "react";
-import { ShowSubtitles } from "./ShowSubtitles";
 import axios from 'axios';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
 import { subtitlesObjListType } from "../types/subtitlesObjListType"
@@ -12,8 +11,9 @@ import { WatchTogetherType } from "../types/WatchTogetherType";
 import { YouTubeSearch } from "./YouTubeSearch";
 import { PasteClipboard } from "./PasteClipboard";
 import { ChatType } from "../types/ChatType"
+import { useWindowSize, calWidth, calHeight } from "../functions/useWindowSize";
+
 export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }) => {
-    const [isThumbnail, setIsThumbnail] = useState(true);
     const [InputUrl, setInputUrl] = useState("")
     const [YoutubeId, setYoutubeId] = useState("")
     const [Now, setNow] = useState(0)
@@ -60,7 +60,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }
             reset()
             pause()
             GetSubTitleObj(URL)
-            setIsThumbnail(true)
         }
 
     }, [InputUrl])
@@ -68,13 +67,6 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }
     useEffect(() => {
         setYoutubeId(GetYouTubeVideoId(InputUrl))
     }, [InputData, InputUrl])
-
-    useEffect(() => {
-        if (subtitlesObjList.length > 0) {
-            setIsThumbnail(false)
-        }
-    }, [subtitlesObjList])
-
 
     useEffect(() => {
         setNow(seconds + 60 * (minutes + 60 * (hours + 24 * days)) - timeDelay)
@@ -101,12 +93,17 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }
         }
     }, [Now, Index, subtitlesObjList, ChatDatas, setChatDatas])
 
+    const [width] = useWindowSize();
+
+
     return (
         <div className="WatchTogether">
             <div className="ShowArea">
                 {YoutubeId === "" ? (
-                    <div className="Empty">
+                    <div className="Empty" style={{width: calWidth(width), height: calHeight(width) }}>
+                        <div className="content">
                         Please Set YouTube URL
+                        </div>
                     </div>
                 ) : (
                     <ShowYoutube

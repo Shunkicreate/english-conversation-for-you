@@ -1,7 +1,7 @@
 import YouTube from "react-youtube"
 import { FC } from "react";
 import { ShowYouTubeType } from "../types/ShowYouTubeType";
-import { useWindowSize } from "../functions/useWindowSize";
+import { useWindowSize, calWidth, calHeight } from "../functions/useWindowSize";
 export const ShowYoutube: FC<ShowYouTubeType> = ({
     start,
     pause,
@@ -18,17 +18,6 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
     }
 
     const [width] = useWindowSize();
-    const calWidth = (width:number) => {
-        if (width > 1280) {
-            return Math.round(width / 2)
-        }
-        else {
-            return width
-        }
-    }
-    const calHeight = (width:number) => {
-        return Math.round(calWidth(width) /16 * 9)
-    }
 
     const opts = {
         width: calWidth(width),
