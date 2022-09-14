@@ -2,10 +2,8 @@ import { useEffect } from "react";
 import "./stylesheets/App.css";
 import { useState, FC } from "react";
 import { ChatType } from "./types/ChatType";
-import { TextInput } from "./components/TextInput";
 import { ChatAI } from "./functions/ChatAI";
 import { ShowChat } from "./components/ShowChat";
-import { VoiceInput } from "./components/VoiceInput";
 import { CheckLogin } from "./functions/CheckLogin";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./functions/Firebase";
@@ -14,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { Header } from "./components/Header";
 import { WatchTogether } from "./components/WatchTogether";
 import { InputComponent } from "./components/InputComponent";
+
 const App: FC<AppType> = ({ uid }) => {
   const location = useLocation();
   const [locationUid, setlocationUid]
@@ -48,7 +47,7 @@ const App: FC<AppType> = ({ uid }) => {
 
   return (
     <div className="App">
-      <Header WatchTogetherBool={WatchTogetherBool} setWatchTogetherBool={setWatchTogetherBool} />
+      <Header WatchTogetherBool={WatchTogetherBool} setWatchTogetherBool={setWatchTogetherBool} ChatDatas={ChatDatas} />
       <div className="content">
         {WatchTogetherBool ? (
           <WatchTogether
