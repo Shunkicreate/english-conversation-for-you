@@ -7,7 +7,7 @@ export const ShareTwitter:FC<{txt:string}> = ({txt}) => {
     _url.searchParams.set("url", "https://merry-torte-fbd589.netlify.app/");
     return (
         <div id="widget">
-            <div className="btn-o" data-scribe="component:button"><a href={_url.toString()} className="btn" id="b" target="_blank" rel="noopener noreferrer" ><i></i><span className="label" id="l">Share Chat in Twitter</span></a></div>
+            <div className="btn-o" data-scribe="component:button"><a href={_url.toString()} className="btn" id="b" target="_blank" rel="noopener noreferrer" ><i></i><span className="label" id="l">Share</span></a></div>
         </div>
     )
 }

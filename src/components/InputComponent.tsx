@@ -44,50 +44,26 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
             <div className="InputComponent">
                 <div onClick={ChangeMode}>
                     {Mode === "Voice" ? (
-                        <img className="ModeButton" src={Speak} alt="Speak" />
-                    ) : (
                         <img className="ModeButton" src={Type} alt="Type" />
+                    ) : (
+                        <img className="ModeButton" src={Speak} alt="Speak" />
                     )}
                 </div>
                 {Mode === "Voice" ? (
 
                     <VoiceInput
-                        // ChatDatas={ChatDatas}
-                        // setChatDatas={setChatDatas}
-                        // DoChat={DoChat}
-                        // setDoChat={setDoChat}
                         InputText={InputText}
                         setInputText={setInputText}
                         setSubmit={setSubmit}
                     />
                 ) : (
                     <TextInput
-                        // ChatDatas={ChatDatas}
-                        // setChatDatas={setChatDatas}
-                        // setDoChat={setDoChat}
                         InputText={InputText}
                         setInputText={setInputText}
                         setSubmit={setSubmit}
                     />
                 )}
-
             </div>
-            {/* <div>
-                {Submit ? ('speakingtrue') : ('false')}
-                <div>
-                    {window.speechSynthesis.speaking ? ('true') : ('false')}
-                </div>
-                <div>
-                    {window.speechSynthesis.onvoiceschanged ? ('true') : ('false')}
-                </div>
-                <div>
-                    {window.speechSynthesis.paused ? ('true') : ('false')}
-                </div>
-                <div>
-                    {window.speechSynthesis.pending ? ('true') : ('false')}
-                </div>
-            </div> */}
-
         </div>
     )
 
