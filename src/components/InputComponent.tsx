@@ -7,6 +7,8 @@ import "../stylesheets/InputComponent.css"
 import Type from "../assets/Type.svg"
 import { ShareTwitter } from "./ShareTwitter";
 import Speak from "../assets/Speak.svg"
+import { MakeTweet } from "../functions/MakeTweet";
+
 export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dispatch<React.SetStateAction<ChatType[]>>, DoChat: boolean, setDoChat: React.Dispatch<React.SetStateAction<boolean>> }> = ({ ChatDatas, setChatDatas, DoChat, setDoChat }) => {
     const [InputText, setInputText] = useState("")
     const [Mode, setMode] = useState("Voice")
@@ -36,7 +38,7 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
     return (
         <div>
             <div className="TwitterAndInput">
-                <ShareTwitter txt={"hello world"}/>
+                <ShareTwitter txt={MakeTweet(ChatDatas)}/>
                 <ShowInputChat InputText={InputText} />
             </div>
             <div className="InputComponent">
