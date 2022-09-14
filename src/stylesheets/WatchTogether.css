@@ -49,6 +49,23 @@ iframe{
     margin: auto;
 }
 
+.TwitterAndInput{
+    position: relative;
+    height: 7rem;
+}
+
+.widget{
+    position: absolute;
+    top: auto;
+    bottom: auto;
+}
+
+.InputChat{
+    position: absolute;
+    right: 1rem;
+}
+
+
 @media screen and (max-width: 1280px) {
     .WatchTogether {
         width: 100%;

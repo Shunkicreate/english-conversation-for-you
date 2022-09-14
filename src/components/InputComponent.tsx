@@ -35,9 +35,9 @@ export const InputComponent: FC<{ ChatDatas: ChatType[], setChatDatas: React.Dis
     }, [Submit])
     return (
         <div>
-            <div>
+            <div className="TwitterAndInput">
                 <ShareTwitter />
-            <ShowInputChat InputText={InputText} />
+                <ShowInputChat InputText={InputText} />
             </div>
             <div className="InputComponent">
                 <div onClick={ChangeMode}>

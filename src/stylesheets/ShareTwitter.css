@@ -1,11 +1,17 @@
-.widget {
+#widget {
 color: #333;
 user-select: none;
-/* line-height: 1.5rem; */
 display: inline-block;
 white-space: nowrap;
-overflow: hidden;
-text-align: left;}
+/* overflow: hidden; */
+text-align: left;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+-ms-transform: translateY(-50%);
+left: 1rem;
+}
 
 .btn-o{
     color: #333;
