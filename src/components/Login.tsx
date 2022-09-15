@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { auth } from "../functions/Firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signInWithRedirect } from "firebase/auth";
@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/Button.css"
 
-const Login = () => {
+const Login: FC<{Redirect: boolean}> = ({Redirect}) => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const ClickLogin = function () {
@@ -15,12 +15,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate("/", { state: { uid: user.uid } });
-      }
-    });
-  }, [navigate])
+    if(Redirect){
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          navigate("/", { state: { uid: user.uid } });
+        }
+      });
+    }
+  }, [navigate, Redirect])
 
   const clickLogout = async () => {
     signOut(auth)
