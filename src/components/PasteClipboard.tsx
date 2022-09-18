@@ -17,6 +17,9 @@ export const PasteClipboard: FC<PasteClipboardType> = ({ setInputUrl }) => {
                 <div>
                     Click to Paste YouTube link
                 </div>
+                <div className="setsumei" style={{fontSize: 1 , }}>
+                    共有からではなくURLの入力
+                </div>
                 <div>
                     id: {GetYouTubeVideoId(Text)}
                 </div>
