@@ -19,3 +19,13 @@
   display: inline-block;
   min-width: 11rem;
 }
+
+@media screen and (max-width:1280px) {
+  .button{
+  padding: 0 0.1rem;
+  margin: 0.3rem;
+  font-size: 1.0rem;
+  min-width: 9rem;
+
+  }
+}

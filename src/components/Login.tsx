@@ -1,28 +1,59 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { auth } from "../functions/Firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { signInWithRedirect } from "firebase/auth";
+import { signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/Button.css"
 
-const Login: FC<{Redirect: boolean}> = ({Redirect}) => {
+
+
+const Login: FC<{ Redirect: boolean }> = ({ Redirect }) => {
+  // const [signinAction, setSigninAction] = useState(false)
+
+  // useEffect(() => {
+  //   const createUser = async () => {
+  //     const firebaseAuthUser = await getRedirectResult(auth)
+  //     if (!firebaseAuthUser?.user) return
+  //     const uid = firebaseAuthUser.user!.uid
+  //     console.log("fin")
+  //     navigate("/", { state: { uid: uid } });
+  //   }
+  //   createUser()
+  // }, [signinAction])
+  // console.log(Redirect)
+  // debugger
+  const [NewRedirect, setNewRedirect] = useState(Redirect)
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const ClickLogin = function () {
-    signInWithRedirect(auth, provider);
+    signInWithRedirect(auth, provider)
+    setNewRedirect(true)
+    // setSigninAction(true)
   };
 
   useEffect(() => {
-    if(Redirect){
+    // if (NewRedirect) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           navigate("/", { state: { uid: user.uid } });
         }
       });
-    }
-  }, [navigate, Redirect])
+    // }
+    // if (NewRedirect) {
+    //   onAuthStateChanged(auth, (user) => {
+    //     setNewRedirect(false)
+    //     if (user) {
+    //       navigate("/", { state: { uid: user.uid } });
+    //     }
+    //   });
+    // }
+    // else if(user){
+    //   navigate("/", { state: { uid: user.uid } });
+
+    // }
+  }, [navigate, NewRedirect, Redirect])
 
   const clickLogout = async () => {
     signOut(auth)
@@ -36,9 +67,9 @@ const Login: FC<{Redirect: boolean}> = ({Redirect}) => {
 
   return (
     <div>
-      <div>
-        <h3>Google ログイン</h3>
-      </div>
+      {/* <div>
+        <h3>Google ログイン{NewRedirect ? ("true") : ("false")}</h3>
+      </div> */}
       <div>
         <button onClick={() => ClickLogin()} className="button">Login</button>
       </div>

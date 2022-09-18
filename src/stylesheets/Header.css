@@ -8,7 +8,8 @@ header {
 }
 
 .Title {
-    width: 70%;
+    /* width: 70%; */
+    margin: auto;
 }
 
 @media screen and (max-width:1280px) {
@@ -16,6 +17,10 @@ header {
         padding-left: 0;
         padding-right: 0;
 
+    }
+
+    .Title{
+        font-size: 1.3rem;
     }
 }
 /* .Login {

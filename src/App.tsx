@@ -12,24 +12,13 @@ import { useLocation } from 'react-router-dom';
 import { Header } from "./components/Header";
 import { WatchTogether } from "./components/WatchTogether";
 import { InputComponent } from "./components/InputComponent";
-import { StackScreenProps } from '@react-navigation/stack';
-type RootStackParamList = {
-  login: undefined
-  Details:  { // 画面名
-    Redirect: boolean; // 受け渡すパラメータの型を定義
-  };
-};
 
 const App: FC<AppType> = ({ uid }) => {
-  type NewsPageNavigationProp = StackScreenProps<
-    RootStackParamList,// 画面とパラメータの定義を呼び出し
-    'News'// 画面名を設定
-  >;
   const location = useLocation();
   const [locationUid, setlocationUid]
     = useState<{ uid: string }>(location.state as { uid: string })
   const [Uid, setUid] = useState<string | null>(uid);
-  const navigate = useNavigate:NewsPageNavigationProp();
+  const navigate = useNavigate();
   const [ChatDatas, setChatDatas] = useState<ChatType[]>([
     {
       person: "AI",
@@ -46,12 +35,13 @@ const App: FC<AppType> = ({ uid }) => {
     }
   }, [ChatDatas, DoChat, Uid]);
   useEffect(() => {
+    // debugger
     setUid(CheckLogin(auth));
     if (locationUid !== null) {
       setUid(locationUid.uid)
     }
     if (!Uid && !locationUid) {
-      navigate("/login", {Redirect: false});
+      navigate("/login", { state: { Redirect: true } });
     }
   }, []);
 

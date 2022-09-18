@@ -39,8 +39,8 @@ export const HumbergerMenu = () => {
             />
             <nav data-open={JSON.stringify(Open)} className={styles.menu}>
                 <div id="home" className="menu-item" onClick={() => { navigate("/") }}>Home</div>
-                <div id="login" className="menu-item" onClick={() => { navigate("/login") }}>Login</div>
-                <div id="watch-together" className="menu-item" onClick={() => { navigate("/watch-together") }}>watch youtube together</div>
+                <div id="login" className="menu-item" onClick={() => { navigate("/login", { state: { Redirect: false } }) }}>Login</div>
+                {/* <div id="watch-together" className="menu-item" onClick={() => { navigate("/watch-together") }}>watch youtube together</div> */}
             </nav>
             <div onClick={() => setOpen(!Open)} className={styles['HumbergerMenuIconWrap']} ><img src={img} alt="HumbergerMenuIcon" className={styles['HumbergerMenuIcon']} ></img></div>
         </div>
