@@ -1,7 +1,7 @@
 import { PasteClipboardType } from '../types/PasteClipboardType';
 import { useState, FC } from 'react';
 import { GetYouTubeVideoId } from "../functions/GetYouTubeVideoId";
-
+import "../stylesheets/PasteClipboard.css"
 export const PasteClipboard: FC<PasteClipboardType> = ({ setInputUrl }) => {
     const [Text, setText] = useState("")
     const handleClick = () => {
@@ -17,7 +17,7 @@ export const PasteClipboard: FC<PasteClipboardType> = ({ setInputUrl }) => {
                 <div>
                     Click to Paste YouTube link
                 </div>
-                <div className="setsumei" style={{fontSize: 1 , }}>
+                <div className="setsumei" >
                     共有からではなくURLの入力 <br></br>字幕がついている動画のみ
                 </div>
                 <div>
