@@ -32,7 +32,7 @@ export const ShowYoutube: FC<ShowYouTubeType> = ({
             modestbranding: 1,
             playsinline: 1,
             rel: 0,
-            mute: true,
+            // mute: true,
         },
     }
 
