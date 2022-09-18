@@ -101,7 +101,7 @@ export const WatchTogether: FC<WatchTogetherType> = ({ ChatDatas, setChatDatas }
             <div className="ShowArea">
                 {YoutubeId === "" ? (
                     <div className="Empty" style={{width: calWidth(width), height: calHeight(width) }}>
-                        <div className="content">
+                        <div className="EmptyContent">
                         Please Set YouTube URL
                         </div>
                     </div>
