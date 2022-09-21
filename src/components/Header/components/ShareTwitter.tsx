@@ -1,4 +1,4 @@
-import "../stylesheets/ShareTwitter.css"
+import "./ShareTwitter.css"
 import { FC } from "react";
 export const ShareTwitter:FC<{txt:string}> = ({txt}) => {
     const _url = new URL("https://twitter.com/intent/tweet");

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useCallback } from 'react';
-import styles from '../stylesheets/HumbergerMenu.module.css'
-import img from '../assets/Humberger.svg'
+import styles from './HumbergerMenu.module.css'
+import img from '../../../assets/Humberger.svg'
 
 export const HumbergerMenu = () => {
     const navigate = useNavigate();
