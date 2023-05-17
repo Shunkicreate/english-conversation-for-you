@@ -1,9 +1,9 @@
-import '../stylesheets/Header.css'
-import { HumbergerMenu } from './HumbergerMenu';
+import './Header.css'
 import { FC } from 'react';
-import { ShareTwitter } from "./ShareTwitter";
-import { MakeTweet } from "../functions/MakeTweet";
-import { ChatType } from "../types/ChatType"
+import { HumbergerMenu } from './components/HumbergerMenu';
+import { ShareTwitter } from "./components/ShareTwitter";
+import { MakeTweet } from "./functions/MakeTweet";
+import { ChatType } from "../../types/ChatType"
 
 export const Header: FC<{ WatchTogetherBool: boolean, setWatchTogetherBool: React.Dispatch<React.SetStateAction<boolean>>,
 ChatDatas: ChatType[]

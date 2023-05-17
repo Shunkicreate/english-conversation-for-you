@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "./functions/Firebase";
 import { AppType } from "./types/AppType";
 import { useLocation } from 'react-router-dom';
-import { Header } from "./components/Header";
+import { Header } from "./components/Header/Header";
 import { WatchTogether } from "./components/WatchTogether";
 import { InputComponent } from "./components/InputComponent";
 
